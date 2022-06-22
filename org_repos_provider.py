@@ -39,4 +39,4 @@ class OrgReposProvider:
         try:
             return SELF._client.execute(QUERY, variable_values=VARIABLE_VALUES)
         except TransportQueryError as ERR:
-            raise OrgRepoProviderError(ERR.errors[0]["message"])
+            raise OrgReposProviderError(ERR.errors[0]["message"])
