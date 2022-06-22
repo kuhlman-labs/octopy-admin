@@ -3,11 +3,11 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
 
 
-class OrgRepoProviderError(Exception):
+class OrgReposProviderError(Exception):
     pass
 
 
-class OrgRepoProvider:
+class OrgReposProvider:
     def __init__(SELF, CONF):
         HEADERS = {"Authorization": f"Bearer {CONF['DEST_TOKEN']}"}
         TRANSPORT = AIOHTTPTransport(url=CONF["DEST_URL"], headers=HEADERS)
@@ -27,7 +27,7 @@ class OrgRepoProvider:
             ]
             REPOS = RESULT["organization"]["repositories"]["edges"]
             for REPO in REPOS:
-                yield REPO
+                yield REPO["node"]
             if not HAS_NEXT_PAGE:
                 return
 

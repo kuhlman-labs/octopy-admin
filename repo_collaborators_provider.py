@@ -3,11 +3,11 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
 
 
-class RepoCollaboratorProviderError(Exception):
+class RepoCollaboratorsProviderError(Exception):
     pass
 
 
-class RepoCollaboratorProvider:
+class RepoCollaboratorsProvider:
     def __init__(SELF, CONF):
         HEADERS = {"Authorization": f"Bearer {CONF['DEST_TOKEN']}"}
         TRANSPORT = AIOHTTPTransport(url=CONF["DEST_URL"], headers=HEADERS)

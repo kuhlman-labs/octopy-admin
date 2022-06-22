@@ -2,8 +2,8 @@ import aiohttp
 import asyncio
 import csv
 
-URL_SLUG = "ghes.kuhlman-labs.io"
-TOKEN = "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"
+URL_SLUG = ""
+TOKEN = ""
 URL = "https://" + URL_SLUG + "/api/v3/search/code"
 HEADERS={"Authorization": "Bearer " + TOKEN}
 CSV_FILE = "test.csv"
