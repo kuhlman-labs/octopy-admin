@@ -39,4 +39,4 @@ class RepoCollaboratorsProvider:
         try:
             return SELF._client.execute(QUERY, variable_values=VARIABLE_VALUES)
         except TransportQueryError as ERR:
-            raise RepoCollaboratorProviderError(ERR.errors[0]["message"])
+            raise RepoCollaboratorsProviderError(ERR.errors[0]["message"])
