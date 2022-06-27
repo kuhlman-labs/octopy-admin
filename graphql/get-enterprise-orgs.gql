@@ -1,0 +1,17 @@
+query getEnterpiseOrgs($slug: String!, $orgcursor: String) {
+	enterprise(slug: $slug) {
+		name
+		url
+		organizations(first: 100, after: $orgcursor) {
+			edges {
+				node{
+					name
+				}
+			}
+			pageInfo {
+				hasNextPage
+				endCursor
+			}
+		}
+	}
+}

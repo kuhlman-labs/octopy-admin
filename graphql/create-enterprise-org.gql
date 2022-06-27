@@ -1,0 +1,15 @@
+mutation createEnterpriseOrg($organization: CreateEnterpriseOrganizationInput!){
+	createEnterpriseOrganization(input:$organization)
+	{
+		enterprise{
+			id
+			name
+		}
+		organization{
+			login
+			name
+			url
+		}
+		
+	}		
+}

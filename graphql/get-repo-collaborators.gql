@@ -1,4 +1,4 @@
-query RepoCollaborators($owner: String!, $name: String!, $collabcursor: String) {
+query getRepoCollaborators($owner: String!, $name: String!, $collabcursor: String) {
 	repository(owner:$owner, name:$name) {
 		nameWithOwner
 		url
