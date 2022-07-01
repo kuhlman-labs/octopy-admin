@@ -3,11 +3,11 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
 
 
-class GitHubProviderError(Exception):
+class GitHubGQLProviderError(Exception):
     pass
 
 
-class GitHubProvider:
+class GitHubGQLProvider:
     def __init__(SELF, CONF):
         HEADERS = {"Authorization": f"Bearer {CONF['GQL_API_TOKEN']}"}
         TRANSPORT = AIOHTTPTransport(url=CONF["GQL_API_URL"], headers=HEADERS)
@@ -57,6 +57,36 @@ class GitHubProvider:
             if not NEXT_PAGE:
                 return
 
+    def test_get_enterprise_orgs(SELF, ENTERPRISE):
+        QUERY = SELF._load_query("graphql/get-enterprise-orgs.gql")
+        PARAMS = {"slug": ENTERPRISE, "cursor": None}
+        return SELF._paginate_results(QUERY, PARAMS)
+    
+    def _get_page_info(SELF, RESULTS):
+        if not RESULTS.get("pageInfo"):
+            for key, item in RESULTS.items():
+                if isinstance(item, dict):
+                    if not item.get("pageInfo"):
+                        RESULTS = item
+                        return SELF._get_page_info(RESULTS)
+                    else:
+                        return item["pageInfo"]
+        else:
+            return RESULTS.get("pageInfo")
+
+    
+    def _paginate_results(SELF, QUERY, PARAMS):
+        CURSOR = None
+        while True:
+            PARAMS["cursor"] = CURSOR
+            RESULTS = SELF._execute(QUERY, PARAMS)
+            PAGE_INFO = SELF._get_page_info(RESULTS)
+            NEXT_PAGE = PAGE_INFO.get("hasNextPage")
+            CURSOR = PAGE_INFO.get("endCursor")
+            yield RESULTS
+            if not NEXT_PAGE:
+                return
+
     def _load_query(SELF, PATH):
         with open(PATH) as F:
             return gql(F.read())
@@ -65,4 +95,4 @@ class GitHubProvider:
         try:
             return SELF._client.execute(QUERY, variable_values=PARAMS)
         except TransportQueryError as ERR:
-            raise GitHubProviderError(ERR.errors[0]["message"])
+            raise GitHubGQLProviderError(ERR.errors[0]["message"])

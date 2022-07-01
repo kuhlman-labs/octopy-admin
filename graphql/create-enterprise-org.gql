@@ -6,6 +6,7 @@ mutation createEnterpriseOrg($organization: CreateEnterpriseOrganizationInput!){
 			name
 		}
 		organization{
+            id
 			login
 			name
 			url

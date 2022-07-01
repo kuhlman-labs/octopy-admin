@@ -1,2 +1,4 @@
 gql
 aiohttp
+python-dotenv
+requests

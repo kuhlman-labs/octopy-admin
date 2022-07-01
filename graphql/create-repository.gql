@@ -1,0 +1,9 @@
+mutation createRepository($repository: CreateRepositoryInput!){
+	createRepository(input:$repository){
+		repository{
+			id
+			name
+			url
+		}
+	}
+}
