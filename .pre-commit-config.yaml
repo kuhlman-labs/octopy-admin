@@ -26,3 +26,9 @@ repos:
         language: python
         types: [python]
         args: ["--line-length=120"]
+      - id: export-requirements
+        name: Export requeriments.txt
+        language: system
+        pass_filenames: false
+        entry: poetry export --without-hashes -o requirements.txt
+        files: ^(pyproject.toml|poetry.lock)$
