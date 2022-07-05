@@ -1,32 +1,31 @@
 import requests
 
+
 class GitHubConstructorRestError(Exception):
     pass
 
-class GitHubRestConstructor:
-    def __init__(SELF, CONF):
-        SELF.HEADERS = {"Authorization": f"Bearer {CONF['GQL_API_TOKEN']}"}
-        SELF.BASE_URL = "https://"+ CONF["URL_SLUG"] + "/api/v3/"
-    
-    def create_user(SELF, USER):
-        URL = SELF.BASE_URL + "admin/users"
-        PAYLOAD = {
-            "login": USER["login"],
-            "email": USER["email"]
-        }
-        RESPONSE = SELF._execute(URL, PAYLOAD)
-        return print(RESPONSE.json())
 
-    def _execute(SELF, URL, PAYLOAD):
+class GitHubRestConstructor:
+    def __init__(self, conf):
+        self.headers = {"Authorization": f"Bearer {conf['GQL_API_TOKEN']}"}
+        self.base_url = "https://" + conf["URL_SLUG"] + "/api/v3/"
+
+    def create_user(self, user):
+        url = self.base_url + "admin/users"
+        payload = {"login": user["login"], "email": user["email"]}
+        response = self._execute(url, payload)
+        return print(response.json())
+
+    def _execute(self, url, payload):
         try:
-            RESPONSE = requests.request("POST", URL, json=PAYLOAD, headers=SELF.HEADERS)
-            RESPONSE.raise_for_status()
-            return RESPONSE                   
-        except requests.exceptions.Timeout as ERRTIMEOUT:
-                raise GitHubConstructorRestError(ERRTIMEOUT)
-        except requests.exceptions.HTTPError as ERRHTTP:
-                raise GitHubConstructorRestError(ERRHTTP)
-        except requests.exceptions.TooManyRedirects as ERRREDIRECT:
-                raise GitHubConstructorRestError(ERRREDIRECT)
-        except requests.exceptions.RequestException as ERR:
-                raise GitHubConstructorRestError(ERR)
+            response = requests.request("POST", url, json=payload, headers=self.headers)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.Timeout as errtimeout:
+            raise GitHubConstructorRestError(errtimeout)
+        except requests.exceptions.HTTPError as errhttp:
+            raise GitHubConstructorRestError(errhttp)
+        except requests.exceptions.TooManyRedirects as errredirect:
+            raise GitHubConstructorRestError(errredirect)
+        except requests.exceptions.RequestException as err:
+            raise GitHubConstructorRestError(err)

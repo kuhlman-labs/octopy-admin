@@ -1,97 +1,95 @@
-from gql import gql, Client
+from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
+
 
 class GitHubGQLProviderError(Exception):
     pass
 
 
 class GitHubGQLProvider:
-    def __init__(SELF, CONF):
-        HEADERS = {"Authorization": f"Bearer {CONF['GQL_API_TOKEN']}"}
-        TRANSPORT = AIOHTTPTransport(url=CONF["GQL_API_URL"], headers=HEADERS)
-        SELF._client = Client(transport=TRANSPORT)
+    def __init__(self, conf):
+        headers = {"Authorization": f"Bearer {conf['GQL_API_TOKEN']}"}
+        transport = AIOHTTPTransport(url=conf["GQL_API_URL"], headers=headers)
+        self._client = Client(transport=transport)
 
-    def get_enterprise_orgs(SELF, ENTERPRISE):
-        QUERY = SELF._load_query("graphql/get-enterprise-orgs.gql")
-        CURSOR = None
+    def get_enterprise_orgs(self, enterprise):
+        query = self._load_query("graphql/get-enterprise-orgs.gql")
+        cursor = None
         while True:
-            PARAMS = {"slug": ENTERPRISE, "orgcursor": CURSOR}
-            RESULT = SELF._execute(QUERY, PARAMS)
-            CURSOR = RESULT["enterprise"]["organizations"]["pageInfo"]["endCursor"]
-            NEXT_PAGE = RESULT["enterprise"]["organizations"]["pageInfo"]["hasNextPage"]
-            ORGS = RESULT["enterprise"]["organizations"]["edges"]
-            for ORG in ORGS:
-                yield ORG["node"]
-            if not NEXT_PAGE:
+            params = {"slug": enterprise, "orgcursor": cursor}
+            result = self._execute(query, params)
+            cursor = result["enterprise"]["organizations"]["pageInfo"]["endCursor"]
+            next_page = result["enterprise"]["organizations"]["pageInfo"]["hasNextPage"]
+            orgs = result["enterprise"]["organizations"]["edges"]
+            for org in orgs:
+                yield org["node"]
+            if not next_page:
                 return
 
-    def get_org_repos(SELF, ORG):
-        QUERY = SELF._load_query("graphql/get-org-repos.gql")
-        CURSOR = None
+    def get_org_repos(self, org):
+        query = self._load_query("graphql/get-org-repos.gql")
+        cursor = None
         while True:
-            PARAMS = {"organization": ORG, "repocursor": CURSOR}
-            RESULT = SELF._execute(QUERY, PARAMS)
-            CURSOR = RESULT["organization"]["repositories"]["pageInfo"]["endCursor"]
-            NEXT_PAGE = RESULT["organization"]["repositories"]["pageInfo"][
-                "hasNextPage"
-            ]
-            REPOS = RESULT["organization"]["repositories"]["edges"]
-            for REPO in REPOS:
-                yield REPO["node"]
-            if not NEXT_PAGE:
+            params = {"organization": org, "repocursor": cursor}
+            result = self._execute(query, params)
+            cursor = result["organization"]["repositories"]["pageInfo"]["endCursor"]
+            next_page = result["organization"]["repositories"]["pageInfo"]["hasNextPage"]
+            repos = result["organization"]["repositories"]["edges"]
+            for repo in repos:
+                yield repo["node"]
+            if not next_page:
                 return
 
-    def get_repo_collaborators(SELF, ORG, REPO):
-        QUERY = SELF._load_query("graphql/get-repo-collaborators.gql")
-        CURSOR = None
+    def get_repo_collaborators(self, org, repo):
+        query = self._load_query("graphql/get-repo-collaborators.gql")
+        cursor = None
         while True:
-            PARAMS = {"owner": ORG, "name": REPO, "collabcursor": CURSOR}
-            RESULT = SELF._execute(QUERY, PARAMS)
-            CURSOR = RESULT["repository"]["collaborators"]["pageInfo"]["endCursor"]
-            NEXT_PAGE = RESULT["repository"]["collaborators"]["pageInfo"]["hasNextPage"]
-            COLLABORATORS = RESULT["repository"]["collaborators"]["edges"]
-            for COLLABORATOR in COLLABORATORS:
-                yield COLLABORATOR
-            if not NEXT_PAGE:
+            params = {"owner": org, "name": repo, "collabcursor": cursor}
+            result = self._execute(query, params)
+            cursor = result["repository"]["collaborators"]["pageInfo"]["endCursor"]
+            next_page = result["repository"]["collaborators"]["pageInfo"]["hasNextPage"]
+            collaborators = result["repository"]["collaborators"]["edges"]
+            for collaborator in collaborators:
+                yield collaborator
+            if not next_page:
                 return
 
-    def test_get_enterprise_orgs(SELF, ENTERPRISE):
-        QUERY = SELF._load_query("graphql/get-enterprise-orgs.gql")
-        PARAMS = {"slug": ENTERPRISE, "cursor": None}
-        return SELF._paginate_results(QUERY, PARAMS)
-    
-    def _get_page_info(SELF, RESULTS):
-        if not RESULTS.get("pageInfo"):
-            for key, item in RESULTS.items():
+    def test_get_enterprise_orgs(self, enterprise):
+        query = self._load_query("graphql/get-enterprise-orgs.gql")
+        params = {"slug": enterprise, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def _get_page_info(self, results):
+        if not results.get("pageInfo"):
+            for key, item in results.items():
                 if isinstance(item, dict):
                     if not item.get("pageInfo"):
-                        RESULTS = item
-                        return SELF._get_page_info(RESULTS)
+                        results = item
+                        return self._get_page_info(results)
                     else:
                         return item["pageInfo"]
         else:
-            return RESULTS.get("pageInfo")
+            return results.get("pageInfo")
 
-    
-    def _paginate_results(SELF, QUERY, PARAMS):
-        CURSOR = None
+    def _paginate_results(self, query, params):
+        cursor = None
         while True:
-            PARAMS["cursor"] = CURSOR
-            RESULTS = SELF._execute(QUERY, PARAMS)
-            PAGE_INFO = SELF._get_page_info(RESULTS)
-            NEXT_PAGE = PAGE_INFO.get("hasNextPage")
-            CURSOR = PAGE_INFO.get("endCursor")
-            yield RESULTS
-            if not NEXT_PAGE:
+            params["cursor"] = cursor
+            results = self._execute(query, params)
+            page_info = self._get_page_info(results)
+            next_page = page_info.get("hasNextPage")
+            cursor = page_info.get("endCursor")
+            yield results
+            if not next_page:
                 return
 
-    def _load_query(SELF, PATH):
-        with open(PATH) as F:
-            return gql(F.read())
+    def _load_query(self, path):
+        with open(path) as f:
+            return gql(f.read())
 
-    def _execute(SELF, QUERY, PARAMS):
+    def _execute(self, query, params):
         try:
-            return SELF._client.execute(QUERY, variable_values=PARAMS)
-        except TransportQueryError as ERR:
-            raise GitHubGQLProviderError(ERR.errors[0]["message"])
+            return self._client.execute(query, variable_values=params)
+        except TransportQueryError as err:
+            raise GitHubGQLProviderError(err.errors[0]["message"])

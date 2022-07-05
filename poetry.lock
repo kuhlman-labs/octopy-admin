@@ -462,7 +462,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 [[package]]
 name = "yarl"
 version = "1.7.2"
-description = "Yet another URL library"
+description = "Yet another url library"
 category = "main"
 optional = false
 python-versions = ">=3.6"

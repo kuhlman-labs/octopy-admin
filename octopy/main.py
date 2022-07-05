@@ -1,31 +1,29 @@
 #!/usr/bin/python3
 
 from dotenv import dotenv_values
-from github_gql_provider import GitHubGQLProvider, GitHubGQLProviderError
 from github_gql_constructor import GitHubGQLConstructor, GitHubGQLConstructorError
-from github_rest_contructor import GitHubRestConstructor, GitHubConstructorRestError
+from github_gql_provider import GitHubGQLProvider, GitHubGQLProviderError
+from github_rest_contructor import GitHubConstructorRestError, GitHubRestConstructor
 
-CONF = dotenv_values()
-GITHUB_PROVIDER = GitHubGQLProvider(CONF)
-GITHUB_CONSTRUCTOR = GitHubGQLConstructor(CONF)
-GITHUB_REST_CONSTRUCTOR = GitHubRestConstructor(CONF)
-
-try:
-    for REPO in GITHUB_PROVIDER.get_org_repos("Engineering"):
-        print(REPO)
-    for COLLABORATOR in GITHUB_PROVIDER.get_repo_collaborators(
-        "Engineering", "platform"
-    ):
-        print(COLLABORATOR)
-    # for ORG in GITHUB_PROVIDER.get_enterprise_orgs("GitHub"):
-    #    print(ORG)
-    for ORG in GITHUB_PROVIDER.test_get_enterprise_orgs("GitHub"):
-        print(ORG)
-except GitHubGQLProviderError as ERR:
-    print(ERR)
+conf = dotenv_values()
+github_gql_provider = GitHubGQLProvider(conf)
+github_gql_constructor = GitHubGQLConstructor(conf)
+github_rest_constructor = GitHubRestConstructor(conf)
 
 try:
-    GITHUB_CONSTRUCTOR.add_enterprise_org(
+    for repo in github_gql_provider.get_org_repos("Engineering"):
+        print(repo)
+    for collaborator in github_gql_provider.get_repo_collaborators("Engineering", "platform"):
+        print(collaborator)
+    # for org in github_gql_provider.get_enterprise_orgs("GitHub"):
+    #    print(org)
+    for org in github_gql_provider.test_get_enterprise_orgs("GitHub"):
+        print(org)
+except GitHubGQLProviderError as err:
+    print(err)
+
+try:
+    github_gql_constructor.add_enterprise_org(
         {
             "adminLogins": ["kuhlman-labs"],
             "login": "testorg2",
@@ -34,18 +32,16 @@ try:
             "billingEmail": "brett@kuhlman-labs.io",
         }
     )
-    GITHUB_CONSTRUCTOR.add_repository(
+    github_gql_constructor.add_repository(
         {
             "name": "testrepo1",
             "visibility": "PUBLIC",
         }
     )
-except GitHubGQLConstructorError as ERR:
-    print(ERR)
+except GitHubGQLConstructorError as err:
+    print(err)
 
 try:
-    GITHUB_REST_CONSTRUCTOR.create_user(
-        {"login": "testuser3", "email": "testuser3@kuhlman-labs.io"}
-    )
-except GitHubConstructorRestError as ERR:
-    print(ERR)
+    github_rest_constructor.create_user({"login": "testuser3", "email": "testuser3@kuhlman-labs.io"})
+except GitHubConstructorRestError as err:
+    print(err)

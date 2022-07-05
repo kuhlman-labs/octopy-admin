@@ -1,33 +1,35 @@
-import aiohttp
 import asyncio
 import csv
 
+import aiohttp
+
 URL_SLUG = ""
 TOKEN = ""
-URL = "https://" + URL_SLUG + "/api/v3/search/code"
-HEADERS={"Authorization": "Bearer " + TOKEN}
+url = "https://" + URL_SLUG + "/api/v3/search/code"
+headers = {"Authorization": "Bearer " + TOKEN}
 CSV_FILE = "test.csv"
 REPO_LIST = []
 
 with open(CSV_FILE, newline="") as CSVFILE:
-    REPOS = csv.reader(CSVFILE, delimiter=" ", quotechar="|")
-    for REPO in REPOS:
-        REPO_LIST.append(REPO)
+    repos = csv.reader(CSVFILE, delimiter=" ", quotechar="|")
+    for repo in repos:
+        REPO_LIST.append(repo)
+
 
 async def main():
-    PARAMS = {"q":"filename:README filename:main.py repo:kuhlman-labs/test2","per_page":"100"}
-    for REPO in REPO_LIST:
-        PARAMS.update(q="filename:README filename:main.py repo:" + REPO[0])
-        print(PARAMS)
+    params = {"q": "filename:README filename:main.py repo:kuhlman-labs/test2", "per_page": "100"}
+    for repo in REPO_LIST:
+        params.update(q="filename:README filename:main.py repo:" + repo[0])
+        print(params)
 
         async with aiohttp.ClientSession() as session:
-            async with session.get(URL, headers=HEADERS, params=PARAMS) as RESPONSE:
+            async with session.get(url, headers=headers, params=params) as response:
 
-                print("Status:", RESPONSE.status)
-                print("Content-type:", RESPONSE.headers['content-type'])
+                print("Status:", response.status)
+                print("Content-type:", response.headers["content-type"])
 
-                print(await RESPONSE.text())
-            
+                print(await response.text())
+
 
 LOOP = asyncio.get_event_loop()
 LOOP.run_until_complete(main())

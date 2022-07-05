@@ -1,4 +1,4 @@
-from gql import gql, Client
+from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
 
@@ -8,29 +8,29 @@ class GitHubGQLConstructorError(Exception):
 
 
 class GitHubGQLConstructor:
-    def __init__(SELF, CONF):
-        HEADERS = {"Authorization": f"Bearer {CONF['GQL_API_TOKEN']}"}
-        TRANSPORT = AIOHTTPTransport(url=CONF["GQL_API_URL"], headers=HEADERS)
-        SELF._client = Client(transport=TRANSPORT)
+    def __init__(self, conf):
+        headers = {"Authorization": f"Bearer {conf['GQL_API_TOKEN']}"}
+        transport = AIOHTTPTransport(url=conf["GQL_API_URL"], headers=headers)
+        self._client = Client(transport=transport)
 
-    def _load_query(SELF, PATH):
-        with open(PATH) as F:
-            return gql(F.read())
+    def _load_query(self, path):
+        with open(path) as f:
+            return gql(f.read())
 
-    def _execute(SELF, QUERY, PARAMS):
+    def _execute(self, query, params):
         try:
-            return SELF._client.execute(QUERY, variable_values=PARAMS)
-        except TransportQueryError as ERR:
-            raise GitHubGQLConstructorError(ERR.errors[0]["message"])
+            return self._client.execute(query, variable_values=params)
+        except TransportQueryError as err:
+            raise GitHubGQLConstructorError(err.errors[0]["message"])
 
-    def add_enterprise_org(SELF, ORGANIZATION):
-        PARAMS = {"organization": ORGANIZATION}
-        QUERY = SELF._load_query("graphql/create-enterprise-org.gql")
-        RESULT = SELF._execute(QUERY, PARAMS)
-        return print(RESULT)
-    
-    def add_repository(SELF, REPOSIOTRY):
-        PARAMS = {"repository": REPOSIOTRY}
-        QUERY = SELF._load_query("graphql/create-repository.gql")
-        RESULT = SELF._execute(QUERY, PARAMS)
-        return print(RESULT)
+    def add_enterprise_org(self, organization):
+        params = {"organization": organization}
+        query = self._load_query("graphql/create-enterprise-org.gql")
+        result = self._execute(query, params)
+        return print(result)
+
+    def add_repository(self, repository):
+        params = {"repository": repository}
+        query = self._load_query("graphql/create-repository.gql")
+        result = self._execute(query, params)
+        return print(result)
