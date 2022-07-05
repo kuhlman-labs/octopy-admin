@@ -17,7 +17,7 @@ try:
         "Engineering", "platform"
     ):
         print(COLLABORATOR)
-    #for ORG in GITHUB_PROVIDER.get_enterprise_orgs("GitHub"):
+    # for ORG in GITHUB_PROVIDER.get_enterprise_orgs("GitHub"):
     #    print(ORG)
     for ORG in GITHUB_PROVIDER.test_get_enterprise_orgs("GitHub"):
         print(ORG)
@@ -44,6 +44,8 @@ except GitHubGQLConstructorError as ERR:
     print(ERR)
 
 try:
-    GITHUB_REST_CONSTRUCTOR.create_user({"login": "testuser3", "email": "testuser3@kuhlman-labs.io"})
+    GITHUB_REST_CONSTRUCTOR.create_user(
+        {"login": "testuser3", "email": "testuser3@kuhlman-labs.io"}
+    )
 except GitHubConstructorRestError as ERR:
     print(ERR)
