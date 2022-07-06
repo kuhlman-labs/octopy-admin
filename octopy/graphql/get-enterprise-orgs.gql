@@ -1,18 +1,19 @@
 query getEnterpiseOrgs($slug: String!, $cursor: String) {
-	enterprise(slug: $slug) {
-		name
-		url
-		organizations(first: 1, after: $cursor) {
-			nodes {
-				name
-				login
-				url
-				id
-			}
-			pageInfo {
-				hasNextPage
-				endCursor
-			}
-		}
-	}
+  enterprise(slug: $slug) {
+    name
+    url
+    organizations(first: 100, after: $cursor) {
+      totalCount
+      nodes {
+        name
+        login
+        url
+        id
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
 }

@@ -11,14 +11,11 @@ github_gql_constructor = GitHubGQLConstructor(conf)
 github_rest_constructor = GitHubRestConstructor(conf)
 
 try:
-    for repo in github_gql_provider.get_org_repos("Engineering"):
-        print(repo)
-    for collaborator in github_gql_provider.get_repo_collaborators("Engineering", "platform"):
-        print(collaborator)
-    # for org in github_gql_provider.get_enterprise_orgs("GitHub"):
-    #    print(org)
-    for org in github_gql_provider.test_get_enterprise_orgs("GitHub"):
-        print(org)
+    organizations = github_gql_provider.get_enterprise_orgs("GitHub")
+    for organization in organizations:
+        for org in organization["enterprise"]["organizations"]["nodes"]:
+            print(org["name"])
+
 except GitHubGQLProviderError as err:
     print(err)
 

@@ -1,19 +1,19 @@
-query getOrgRepos($organization: String!, $repocursor: String){
-				organization(login:$organization){
-					repositories(first: 100, after: $repocursor){
-						totalCount
-						edges {
-							node {
-                                name
-								nameWithOwner
-								url
-								visibility
-                                }
-							}
-                        pageInfo {
-							endCursor
-							hasNextPage
-							}
-						}
-                    }
-				}
+query getOrgRepos($organization: String!, $cursor: String) {
+  organization(login: $organization) {
+    repositories(first: 100, after: $cursor) {
+      totalCount
+      edges {
+        node {
+          name
+          nameWithOwner
+          url
+          visibility
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

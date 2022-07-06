@@ -1,19 +1,20 @@
-query getRepoCollaborators($owner: String!, $name: String!, $collabcursor: String) {
-	repository(owner:$owner, name:$name) {
-		nameWithOwner
-		url
-		visibility
-		collaborators(first: 100, after: $collabcursor){
-			edges {
-				permission
-				node{
-					login
-				}
-			}
-            pageInfo{
-                hasNextPage
-                endCursor
-            }
-		}
-	}
+query getRepoCollaborators($owner: String!, $name: String!, $cursor: String) {
+  repository(owner: $owner, name: $name) {
+    nameWithOwner
+    url
+    visibility
+    collaborators(first: 100, after: $cursor) {
+      totalCount
+      edges {
+        permission
+        node {
+          login
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
 }
