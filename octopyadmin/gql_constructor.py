@@ -15,7 +15,10 @@ class GitHubGQLConstructor:
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
     def _load_query(self, path):
-        with open(path) as f:
+        absolute_path = os.path.dirname(__file__)
+        relative_path = path
+        full_path = os.path.join(absolute_path, relative_path)
+        with open(full_path) as f:
             return gql(f.read())
 
     def _execute(self, query, params):
@@ -26,7 +29,7 @@ class GitHubGQLConstructor:
 
     def add_enterprise_org(self, organization):
         params = {"organization": organization}
-        query = self._load_query("gql_queries/create-enterprise-org.gql")
+        query = self._load_query(os.path.abspath("gql_queries/create-enterprise-org.gql"))
         result = self._execute(query, params)
         return print(result)
 

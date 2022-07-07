@@ -4,7 +4,6 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
 import os
 
-
 class GitHubGqlProviderError(Exception):
     pass
 
@@ -77,7 +76,10 @@ class GitHubGqlProvider:
                 return
 
     def _load_query(self, path):
-        with open(path) as f:
+        absolute_path = os.path.dirname(__file__)
+        relative_path = path
+        full_path = os.path.join(absolute_path, relative_path)
+        with open(full_path) as f:
             return gql(f.read())
 
     def _execute(self, query, params):
