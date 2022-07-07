@@ -2,20 +2,21 @@ from gql import Client, gql
 from gql.dsl import DSLQuery, DSLSchema, dsl_gql, DSLVariableDefinitions
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
+import os
 
 
-class GitHubGQLProviderError(Exception):
+class GitHubGqlProviderError(Exception):
     pass
 
 
-class GitHubGQLProvider:
-    def __init__(self, conf):
-        headers = {"Authorization": f"Bearer {conf['GQL_API_TOKEN']}"}
-        transport = AIOHTTPTransport(url=conf["GQL_API_URL"], headers=headers)
+class GitHubGqlProvider:
+    def __init__(self):
+        headers = {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
+        transport = AIOHTTPTransport(url=os.environ["GQL_API_URL"], headers=headers)
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
     def get_enterprise_orgs(self, enterprise):
-        query = self._load_query("graphql/get-enterprise-orgs.gql")
+        query = self._load_query("gql_queries/get-enterprise-orgs.gql")
         params = {"slug": enterprise, "cursor": None}
         return self._paginate_results(query, params)
     
@@ -42,12 +43,12 @@ class GitHubGQLProvider:
         return self._paginate_results(query, params)
 
     def get_org_repos(self, org):
-        query = self._load_query("graphql/get-org-repos.gql")
+        query = self._load_query("gql_queries/get-org-repos.gql")
         params = {"organization": org, "cursor": None}
         return self._paginate_results(query, params)
 
     def get_repo_collaborators(self, org, repo):
-        query = self._load_query("graphql/get-repo-collaborators.gql")
+        query = self._load_query("gql_queries/get-repo-collaborators.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
 
@@ -83,6 +84,6 @@ class GitHubGQLProvider:
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as err:
-            raise GitHubGQLProviderError(err.errors[0]["message"])
+            raise GitHubGqlProviderError(err.errors[0]["message"])
         except TransportServerError as errserver:
-            raise GitHubGQLProviderError("Server responded with a " + str(errserver.code) + " status code")
+            raise GitHubGqlProviderError("Server responded with a " + str(errserver.code) + " status code")

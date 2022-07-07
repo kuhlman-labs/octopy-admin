@@ -1,6 +1,7 @@
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError
+import os
 
 
 class GitHubGQLConstructorError(Exception):
@@ -8,10 +9,10 @@ class GitHubGQLConstructorError(Exception):
 
 
 class GitHubGQLConstructor:
-    def __init__(self, conf):
-        headers = {"Authorization": f"Bearer {conf['GQL_API_TOKEN']}"}
-        transport = AIOHTTPTransport(url=conf["GQL_API_URL"], headers=headers)
-        self._client = Client(transport=transport)
+    def __init__(self):
+        headers = {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
+        transport = AIOHTTPTransport(url=os.environ["GQL_API_URL"], headers=headers)
+        self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
     def _load_query(self, path):
         with open(path) as f:
@@ -25,12 +26,12 @@ class GitHubGQLConstructor:
 
     def add_enterprise_org(self, organization):
         params = {"organization": organization}
-        query = self._load_query("graphql/create-enterprise-org.gql")
+        query = self._load_query("gql_queries/create-enterprise-org.gql")
         result = self._execute(query, params)
         return print(result)
 
     def add_repository(self, repository):
         params = {"repository": repository}
-        query = self._load_query("graphql/create-repository.gql")
+        query = self._load_query("gql_queries/create-repository.gql")
         result = self._execute(query, params)
         return print(result)

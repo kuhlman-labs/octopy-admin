@@ -1,10 +1,10 @@
-# Octopy
+# Octopy Admin
 
-Octopy is a python library for interacting with the GitHub API.
+Octopy Admin is a python library for interacting with the GitHub API.
 
 ## Installation
 
-Octopy uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
+Octopy Admin uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
 
 1.Install project depenencies.
 
