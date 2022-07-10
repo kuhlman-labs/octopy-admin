@@ -7,47 +7,23 @@ import pandas as pd
 config = load_dotenv()
 gql = GitHubGQLProvider()
 
-def get_org_list(enterprise):
-    org_list = list()
+def collaborator_permission_report(enterprise):
+    print(f"Getting orgs for the {enterprise} enterprise.")
+    orgs = gql.get_org_list(enterprise)
+    print(f"Got {len(orgs)} orgs.")
+    df = pd.DataFrame()
     try:
-        org_results = gql.get_enterprise_orgs(enterprise)
-        for organizations in org_results:
-            for org in organizations["enterprise"]["organizations"]["nodes"]:
-                org_list.append(org.get("name"))
+        for org in orgs:
+            print(f"Getting repos for the {org} organization.")
+            repos = gql.get_repo_list(org)
+            print(f"Got {len(repos)} repos.")
+            for repo in repos:
+                print (f"Getting collaborators for the {org}/{repo} repository.")
+                collaborators = gql.get_collaborators_permission_list(org, repo)
+                print(f"Got {len(collaborators)} collaborators.")
+                df = pd.concat([df, pd.DataFrame.from_records([{ 'org': org, 'repo': repo, 'collaborators':collaborators}])], ignore_index=True)
     except GitHubGQLProviderError as err:
         print(err)
-    return org_list
+    return df.to_csv("collaborator-permission-report.csv")
 
-def get_repo_list(org):
-    repo_list = list()
-    try:
-        repo_results = gql.get_org_repos(org)
-        for repositories in repo_results:
-            for repo in repositories["organization"]["repositories"]["edges"]:
-                repo_list.append(repo.get("node").get("name"))
-    except GitHubGQLProviderError as err:
-        print(err)
-    return repo_list
-
-def get_collaborator_permission_list(org, repo):
-    collaborator_list = list()
-    try:
-        collaborator_results = gql.get_repo_collaborators(org, repo)
-        for collaborators in collaborator_results:
-            for collaborator in collaborators["repository"]["collaborators"]["edges"]:
-                collaborator_list.append([collaborator.get("node").get("login"), collaborator.get("permission")])
-    except GitHubGQLProviderError as err:
-        print(err)
-    return collaborator_list
-    
-
-orgs = get_org_list("GitHub")
-df = pd.DataFrame()
-for org in orgs:
-    repos = get_repo_list(org)
-    for repo in repos:
-        collaborators = get_collaborator_permission_list(org, repo)
-        for collaborator in collaborators:
-            df = pd.concat([df, pd.DataFrame.from_records([{ 'org': org, 'repo': repo, 'username':collaborator[0], 'permission': collaborator[1] }])], ignore_index=True)
-
-df.to_csv("collaborator-permission-report.csv")
+collaborator_permission_report("GitHub")

@@ -19,7 +19,18 @@ class GitHubGQLProvider:
         params = {"slug": enterprise, "cursor": None}
         return self._paginate_results(query, params)
     
-    def test(self, enterprise):
+    def get_org_list(self, enterprise):
+        org_list = list()
+        try:
+            org_results = self.get_enterprise_orgs(enterprise)
+            for organizations in org_results:
+                for org in organizations.get("enterprise").get("organizations").get("nodes"):
+                    org_list.append(org.get("name"))
+        except GitHubGQLProviderError as err:
+            print(err)
+        return org_list
+    
+    def _test_get_enterprise_orgs(self, enterprise):
         params = {"slug": enterprise, "cursor": None}
         ds = DSLSchema(self._client.schema)
         var= DSLVariableDefinitions()        
@@ -46,10 +57,32 @@ class GitHubGQLProvider:
         params = {"organization": org, "cursor": None}
         return self._paginate_results(query, params)
 
+    def get_repo_list(self, org):
+        repo_list = list()
+        try:
+            repo_results = self.get_org_repos(org)
+            for repositories in repo_results:
+                for repo in repositories.get("organization").get("repositories").get("edges"):
+                    repo_list.append(repo.get("node").get("name"))
+        except GitHubGQLProviderError as err:
+            print(err)
+        return repo_list
+
     def get_repo_collaborators(self, org, repo):
         query = self._load_query("gql_queries/get-repo-collaborators.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
+
+    def get_collaborators_permission_list(self, org, repo):
+        collaborator_list = list()
+        try:
+            collaborator_results = self.get_repo_collaborators(org, repo)
+            for collaborators in collaborator_results:
+                for collaborator in collaborators.get("repository").get("collaborators").get("edges"):
+                    collaborator_list.append((collaborator.get("node").get("login"), collaborator.get("permission")))
+        except GitHubGQLProviderError as err:
+            print(err)
+        return collaborator_list
 
     def _get_page_info(self, results):
         if results.get("pageInfo") is None:
