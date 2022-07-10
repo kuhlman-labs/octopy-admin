@@ -61,3 +61,11 @@ jobs:
       #----------------------------------------------
       - name: Run report
         run: poetry run python reports/${{ inputs.report_name  }}
+      #----------------------------------------------
+      #              upload report
+      #----------------------------------------------
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: ./**report.csv
