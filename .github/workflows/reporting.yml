@@ -60,4 +60,4 @@ jobs:
       #              run report
       #----------------------------------------------
       - name: Run report
-        run: poetry run python reports/{{ inputs.report_name}}
+        run: poetry run python reports/${{ inputs.report_name  }}
