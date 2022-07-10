@@ -11,7 +11,7 @@ on:
         - collaborator_permission_report.py
 env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
-  GQL_API_URL: https://api.github.com/graphql
+  GQL_API_URL: https://ghes.kuhlman-labs.io/api/graphql
 
 jobs:
   report:
