@@ -4,14 +4,14 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
 import os
 
-class GitHubGqlProviderError(Exception):
+class GitHubGQLProviderError(Exception):
     pass
 
 
-class GitHubGqlProvider:
+class GitHubGQLProvider:
     def __init__(self):
-        headers = {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
-        transport = AIOHTTPTransport(url=os.environ["GQL_API_URL"], headers=headers)
+        headers = {"Authorization": f"Bearer {os.environ.get('API_TOKEN')}"}
+        transport = AIOHTTPTransport(url=os.environ.get('GQL_API_URL'), headers=headers)
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
     def get_enterprise_orgs(self, enterprise):
@@ -52,14 +52,14 @@ class GitHubGqlProvider:
         return self._paginate_results(query, params)
 
     def _get_page_info(self, results):
-        if not results.get("pageInfo"):
+        if results.get("pageInfo") is None:
             for key, item in results.items():
                 if isinstance(item, dict):
-                    if not item.get("pageInfo"):
+                    if item.get("pageInfo") is None:
                         results = item
                         return self._get_page_info(results)
                     else:
-                        return item["pageInfo"]
+                        return item.get("pageInfo")
         else:
             return results.get("pageInfo")
 
@@ -69,8 +69,8 @@ class GitHubGqlProvider:
             params["cursor"] = cursor
             results = self._execute(query, params)
             page_info = self._get_page_info(results)
-            next_page = page_info["hasNextPage"]
-            cursor = page_info["endCursor"]
+            next_page = page_info.get("hasNextPage")
+            cursor = page_info.get("endCursor")
             yield results
             if not next_page:
                 return
@@ -86,6 +86,6 @@ class GitHubGqlProvider:
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as err:
-            raise GitHubGqlProviderError(err.errors[0]["message"])
+            raise GitHubGQLProviderError(err.errors[0]["message"])
         except TransportServerError as errserver:
-            raise GitHubGqlProviderError("Server responded with a " + str(errserver.code) + " status code")
+            raise GitHubGQLProviderError(f"Server responded with a {str(errserver.code)} status code")

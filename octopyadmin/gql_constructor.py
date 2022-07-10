@@ -1,6 +1,6 @@
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
-from gql.transport.exceptions import TransportQueryError
+from gql.transport.exceptions import TransportQueryError, TransportServerError
 import os
 
 
@@ -10,8 +10,8 @@ class GitHubGQLConstructorError(Exception):
 
 class GitHubGQLConstructor:
     def __init__(self):
-        headers = {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
-        transport = AIOHTTPTransport(url=os.environ["GQL_API_URL"], headers=headers)
+        headers = {"Authorization": f"Bearer {os.environ.get('API_TOKEN')}"}
+        transport = AIOHTTPTransport(url=os.environ.get("GQL_API_URL"), headers=headers)
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
     def _load_query(self, path):
@@ -26,10 +26,12 @@ class GitHubGQLConstructor:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as err:
             raise GitHubGQLConstructorError(err.errors[0]["message"])
+        except TransportServerError as errserver:
+            raise GitHubGQLConstructorError(f"Server responded with a {str(errserver.code)} status code")
 
     def add_enterprise_org(self, organization):
         params = {"organization": organization}
-        query = self._load_query(os.path.abspath("gql_queries/create-enterprise-org.gql"))
+        query = self._load_query("gql_queries/create-enterprise-org.gql")
         result = self._execute(query, params)
         return print(result)
 
