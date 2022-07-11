@@ -1,10 +1,10 @@
-# Octopy Admin
+# Octopy
 
-Octopy Admin is a python library for interacting with the GitHub API.
+Octopy is a python library for interacting with the GitHub API.
 
 ## Installation
 
-Octopy Admin uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
+Octopy uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
 
 1.Install project depenencies.
 
@@ -18,24 +18,13 @@ poetry install
 poetry run pre-commit install
 ```
 
-You are ready to rock.
+3. Creat a `.env` file at the root of the repo and set value for `API_TOKEN`. If running against GHES, set values for `GQL_API_URL` and `REST_API_URL` endpoints, if these values are not set it defaults to the .com endpoints.
 
-## Usage
-
-TBD
-
-```python
-import toml
-APP_CONFIG = toml.load("pyproject.toml")["app"]
-
-app_name = APP_CONFIG['APP_NAME']
+ex.
+```bash
+GQL_API_URL=https://yourghesdomain.com/api/graphql
+REST_API_URL=https://yourghesdomain.com/api/v3
+API_TOKEN=ghp_xxx
 ```
 
-Also you can add app secrets directly to the `.env` file and read it anywhere from your project with the help of Python's built in `os` module.
-
-```python
-import os
-secret = os.environ['APP_SECRET']
-```
-
-This is possible because we've loaded the env file from our `main.py` module. If you are replacing this module, be sure to load it again.
+You are ready to rock!
