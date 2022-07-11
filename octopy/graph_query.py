@@ -1,3 +1,4 @@
+import asyncio
 from gql import Client, gql
 from gql.dsl import DSLQuery, DSLSchema, dsl_gql, DSLVariableDefinitions
 from gql.transport.aiohttp import AIOHTTPTransport
@@ -59,7 +60,7 @@ class GraphQueryProvider(GraphQuery):
                 return
     
     def get_enterprise_orgs(self, enterprise):
-        query = self._load_query("gql_queries/get-enterprise-orgs.gql")
+        query = self._load_query("gql_files/get-enterprise-orgs.gql")
         params = {"slug": enterprise, "cursor": None}
         return self._paginate_results(query, params)
     
@@ -73,31 +74,9 @@ class GraphQueryProvider(GraphQuery):
         except GraphQueryError as err:
             print(err)
         return org_list
-    
-    def _test_get_enterprise_orgs(self, enterprise):
-        params = {"slug": enterprise, "cursor": None}
-        ds = DSLSchema(self._client.schema)
-        var= DSLVariableDefinitions()        
-        op = DSLQuery(
-                ds.Query.enterprise.args(slug=var.slug).select(
-                    ds.Enterprise.name,
-                    ds.Enterprise.organizations.args(first=1, after=var.cursor).select(
-                        ds.OrganizationConnection.pageInfo.select(
-                            ds.PageInfo.hasNextPage,
-                            ds.PageInfo.endCursor
-                        ),
-                        ds.OrganizationConnection.nodes.select(
-                            ds.Organization.name,
-                    )  
-                )
-            )
-        )
-        op.variable_definitions = var
-        query = dsl_gql(op)       
-        return self._paginate_results(query, params)
 
     def get_org_repos(self, org):
-        query = self._load_query("gql_queries/get-org-repos.gql")
+        query = self._load_query("gql_files/get-org-repos.gql")
         params = {"organization": org, "cursor": None}
         return self._paginate_results(query, params)
 
@@ -113,7 +92,7 @@ class GraphQueryProvider(GraphQuery):
         return repo_list
 
     def get_repo_collaborators(self, org, repo):
-        query = self._load_query("gql_queries/get-repo-collaborators.gql")
+        query = self._load_query("gql_files/get-repo-collaborators.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
 
@@ -134,12 +113,12 @@ class GraphQueryConstructor(GraphQuery):
 
     def add_enterprise_org(self, organization):
         params = {"organization": organization}
-        query = self._load_query("gql_queries/create-enterprise-org.gql")
+        query = self._load_query("gql_files/create-enterprise-org.gql")
         result = self._execute(query, params)
         return print(result)
 
     def add_repository(self, repository):
         params = {"repository": repository}
-        query = self._load_query("gql_queries/create-repository.gql")
+        query = self._load_query("gql_files/create-repository.gql")
         result = self._execute(query, params)
         return print(result)
