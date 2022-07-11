@@ -1,11 +1,11 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-from octopyadmin.gql_provider import GitHubGQLProvider, GitHubGQLProviderError
+from octopy.graph_query import GraphQueryProvider, GraphQueryError
 from dotenv import load_dotenv
 import pandas as pd
 
 config = load_dotenv()
-gql = GitHubGQLProvider()
+gql = GraphQueryProvider()
 
 def collaborator_permission_report(enterprise):
     print(f"Getting orgs for the {enterprise} enterprise.")
@@ -22,7 +22,7 @@ def collaborator_permission_report(enterprise):
                 collaborators = gql.get_collaborators_permission_list(org, repo)
                 print(f"Got {len(collaborators)} collaborators.")
                 df = pd.concat([df, pd.DataFrame.from_records([{ 'org': org, 'repo': repo, 'collaborators':collaborators}])], ignore_index=True)
-    except GitHubGQLProviderError as err:
+    except GraphQueryError as err:
         print(err)
     return df.to_csv("collaborator-permission-report.csv")
 
