@@ -5,25 +5,49 @@ from dotenv import load_dotenv
 import pandas as pd
 
 config = load_dotenv()
-gql = GraphQueryResponseTransmuter()
+graphquery = GraphQueryResponseTransmuter()
 
-def collaborator_permission_report(enterprise):
-    print(f"Getting orgs for the {enterprise} enterprise.")
-    orgs = gql.get_org_list(enterprise)
-    print(f"Got {len(orgs)} orgs.")
+def enterpise_collaborator_permission_report(enterprise):
     df = pd.DataFrame()
     try:
+        print(f"Getting orgs for the {enterprise} enterprise.")
+        orgs = graphquery.get_org_list(enterprise)
+        print(f"Got {len(orgs)} orgs.")
         for org in orgs:
             print(f"Getting repos for the {org} organization.")
-            repos = gql.get_repo_list(org)
+            repos = graphquery.get_repo_list(org)
             print(f"Got {len(repos)} repos.")
             for repo in repos:
                 print (f"Getting collaborators for the {org}/{repo} repository.")
-                collaborators = gql.get_collaborators_permission_list(org, repo)
+                collaborators = graphquery.get_collaborators_permission_list(org, repo)
                 print(f"Got {len(collaborators)} collaborators.")
                 df = pd.concat([df, pd.DataFrame.from_records([{ 'org': org, 'repo': repo, 'collaborators':collaborators}])], ignore_index=True)
     except GraphRequestError as err:
         print(err)
-    return df.to_csv("collaborator-permission-report.csv")
+    return df.to_csv("enterprise-collaborator-permission-report.csv")
 
-collaborator_permission_report("GitHub")
+def org_collaborator_permission_report(org):
+    df = pd.DataFrame()
+    try:
+        print(f"Getting repos for the {org} organization.")
+        repos = graphquery.get_repo_list(org)
+        print(f"Got {len(repos)} repos.")
+        for repo in repos:
+            print (f"Getting collaborators for the {org}/{repo} repository.")
+            collaborators = graphquery.get_collaborators_permission_list(org, repo)
+            print(f"Got {len(collaborators)} collaborators.")
+            df = pd.concat([df, pd.DataFrame.from_records([{ 'org': org, 'repo': repo, 'collaborators':collaborators}])], ignore_index=True)
+    except GraphRequestError as err:
+        print(err)
+    return df.to_csv("org-collaborator-permission-report.csv")
+
+def repo_collaborator_permission_report(org, repo):
+    df = pd.DataFrame()
+    try:
+        print (f"Getting collaborators for the {repo} repository.")
+        collaborators = graphquery.get_collaborators_permission_list(org, repo)
+        print(f"Got {len(collaborators)} collaborators.")
+        df = pd.concat([df, pd.DataFrame.from_records([{ 'repo': repo, 'collaborators':collaborators}])], ignore_index=False)
+    except GraphRequestError as err:
+        print(err)
+    return df.to_csv("repo-collaborator-permission-report.csv")
