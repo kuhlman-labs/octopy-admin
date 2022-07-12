@@ -1,16 +1,20 @@
+import os
+
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
-import os
+
 
 class GraphRequest:
     def __init__(self):
         if os.environ.get("API_TOKEN") is None:
             raise GraphRequestError("API_TOKEN environment variable is not set")
         headers = {"Authorization": f"Bearer {os.environ.get('API_TOKEN')}"}
-        transport = AIOHTTPTransport(url=os.environ.get("GQL_API_URL", r'https://api.github.com/graphql'), headers=headers)
+        transport = AIOHTTPTransport(
+            url=os.environ.get("GQL_API_URL", r"https://api.github.com/graphql"), headers=headers
+        )
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
-    
+
     def _load_query(self, path):
         absolute_path = os.path.dirname(__file__)
         relative_path = path
@@ -26,8 +30,10 @@ class GraphRequest:
         except TransportServerError as errserver:
             raise GraphRequestError(f"Server responded with a {str(errserver.code)} status code")
 
+
 class GraphRequestError(Exception):
     pass
+
 
 class GraphQueryProvider(GraphRequest):
     def __init__(self):
@@ -56,7 +62,7 @@ class GraphQueryProvider(GraphRequest):
             yield results
             if not next_page:
                 return
-    
+
     def get_enterprise_orgs(self, enterprise):
         query = self._load_query("gql_files/get-enterprise-orgs.gql")
         params = {"slug": enterprise, "cursor": None}
@@ -71,6 +77,7 @@ class GraphQueryProvider(GraphRequest):
         query = self._load_query("gql_files/get-repo-collaborators.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
+
 
 class GraphMutationProducer(GraphRequest):
     def __init__(self):
@@ -88,6 +95,7 @@ class GraphMutationProducer(GraphRequest):
         result = self._execute(query, params)
         return print(result)
 
+
 class GraphQueryResponseTransmuter(GraphQueryProvider):
     def __init__(self):
         super().__init__()
@@ -102,7 +110,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         except GraphRequestError as err:
             print(err)
         return org_list
-    
+
     def get_repo_list(self, org):
         repo_list = list()
         try:
