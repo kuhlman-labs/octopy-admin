@@ -40,6 +40,7 @@ class RestPostProducer(RestRequest):
         response = self._execute(self._method, url, payload)
         return print(response.json())
 
+
 class RestPatchProducer(RestRequest):
     def __init__(self):
         super().__init__()
@@ -50,12 +51,13 @@ class RestPatchProducer(RestRequest):
         payload = {"url": new_url}
         response = self._execute(self._method, url, payload)
         return print(response.json())
-    
+
     def update_org_webhook_url(self, owner, hook_id, new_url):
         url = self._base_url + f"/orgs/{owner}/hooks/{hook_id}/config"
         payload = {"url": new_url}
         response = self._execute(self._method, url, payload)
         return print(response.json())
+
 
 class RestGetProvider(RestRequest):
     def __init__(self):
@@ -106,12 +108,12 @@ class RestGetProvider(RestRequest):
         url = self._base_url + f"/orgs/{org}/hooks"
         response = self._execute(self._method, url, None)
         return response.json()
-    
+
     def get_repo_webhook(self, owner, repo, hook_id):
         url = self._base_url + f"/repos/{owner}/{repo}/hooks/{hook_id}"
         response = self._execute(self._method, url, None)
         return print(response.json())
-    
+
     def get_org_webhook(self, org, hook_id):
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}"
         response = self._execute(self._method, url, None)
