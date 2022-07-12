@@ -1,6 +1,6 @@
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-from octopy.graph_query import GraphQueryProvider, GraphQueryError
+from octopy.graph_query import GraphQueryProvider, GraphRequestError
 from dotenv import load_dotenv
 load_dotenv()
 
