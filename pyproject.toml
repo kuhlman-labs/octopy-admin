@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "octopy_admin"
+name = "octopy"
 version = "0.1.0"
-description = ""
+description = "OctoPy is a python library for interacting with the GitHub API."
 authors = ["Brett Kuhlman <kuhlman-labs@github.com>"]
 
 [tool.poetry.dependencies]
