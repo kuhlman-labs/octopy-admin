@@ -1,0 +1,9 @@
+site_name: OctoPy
+site_url: https://kuhlman-labs.github.io/octopy/
+nav:
+    - Home: index.md
+    - Reference: reference.md
+theme: readthedocs
+plugins:
+    - search
+    - mkdocstrings
