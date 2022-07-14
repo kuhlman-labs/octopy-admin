@@ -30,7 +30,7 @@ class RestRequest:
     def _execute(self, method, url, payload):
         """
         Execute a request.
-        
+
         Attributes:
             method (str): HTTP method.
             url (str): URL.
@@ -63,9 +63,9 @@ class RestPostProducer(RestRequest):
 
     def create_user(self, login, email):
         """
-        Create a user. It is only available to authenticated site administrators. 
+        Create a user. It is only available to authenticated site administrators.
         Normal users will receive a 403 response if they try to access it.
-        
+
         Attributes:
             login (str): Login name.
             email (str): Email address.
@@ -73,7 +73,8 @@ class RestPostProducer(RestRequest):
         url = self._base_url + "/admin/users"
         payload = {"login": login, "email": email}
         response = self._execute(self._method, url, payload)
-        return response    
+        return response
+
 
 class RestDelete(RestRequest):
     def __init__(self, rest_api_url=None, api_token=None):
@@ -88,13 +89,13 @@ class RestDelete(RestRequest):
 
     def delete_user(self, username):
         """
-        Delete a user. It is only available to authenticated site administrators. 
+        Delete a user. It is only available to authenticated site administrators.
         Normal users will receive a 403 response if they try to access it.
-        
+
         Attributes:
             username (str): The User login to delete.
         """
-        url = self._base_url + f"/admin/users/{username}" 
+        url = self._base_url + f"/admin/users/{username}"
         response = self._execute(self._method, url, None)
         return response
 
@@ -103,6 +104,7 @@ class RestPatchProducer(RestRequest):
     """
     Initialize the REST client.
     """
+
     def __init__(self):
         super().__init__()
         self._method = "Patch"
@@ -110,7 +112,7 @@ class RestPatchProducer(RestRequest):
     def update_repo_webhook_config(self, owner, repo, hook_id, config):
         """
         Update a repository webhook URL.
-        
+
         Attributes:
             owner (str): Repository owner.
             repo (str): Repository name.
@@ -125,7 +127,7 @@ class RestPatchProducer(RestRequest):
     def update_org_webhook_config(self, owner, hook_id, config):
         """
         Update an organization webhook URL.
-        
+
         Attributes:
             owner (str): Organization name.
             hook_id (str): Webhook ID.
@@ -141,7 +143,7 @@ class RestGetProvider(RestRequest):
     def __init__(self):
         """
         Initialize the REST client.
-        
+
         Attributes:
             method (str): HTTP method.
         """
@@ -151,7 +153,7 @@ class RestGetProvider(RestRequest):
     def get_user(self, user):
         """
         Get a user.
-        
+
         Attributes:
             user (str): User name.
         """
@@ -162,7 +164,7 @@ class RestGetProvider(RestRequest):
     def get_org(self, org):
         """
         Get an organization.
-        
+
         Attributes:
             org (str): Organization name.
         """
@@ -173,7 +175,7 @@ class RestGetProvider(RestRequest):
     def get_repo(self, owner, repo):
         """
         Get a repository.
-        
+
         Attributes:
             owner (str): Repository owner.
             repo (str): Repository name.
@@ -185,7 +187,7 @@ class RestGetProvider(RestRequest):
     def get_repo_list(self, owner):
         """
         Get a list of repositories.
-        
+
         Attributes:
             owner (str): Repository owner.
         """
@@ -196,7 +198,7 @@ class RestGetProvider(RestRequest):
     def get_collaborators(self, owner, repo):
         """
         Get a list of collaborators for a repository.
-        
+
         Attributes:
             owner (str): Repository owner.
             repo (str): Repository name.
@@ -208,7 +210,7 @@ class RestGetProvider(RestRequest):
     def get_collaborator_permission(self, owner, repo, user):
         """
         Get a collaborator's permission.
-        
+
         Attributes:
             owner (str): Repository owner.
             repo (str): Repository name.
@@ -221,7 +223,7 @@ class RestGetProvider(RestRequest):
     def get_repo_webhook_list(self, owner, repo):
         """
         Get a list of webhooks for a repository.
-        
+
         Attributes:
             owner (str): Repository owner.
             repo (str): Repository name.
@@ -233,7 +235,7 @@ class RestGetProvider(RestRequest):
     def get_org_webhook_list(self, org):
         """
         Get a list of webhooks for an organization.
-        
+
         Attributes:
             org (str): Organization name.
         """
@@ -244,9 +246,9 @@ class RestGetProvider(RestRequest):
     def get_repo_webhook(self, owner, repo, hook_id):
         """
         Get a webhook for a repository.
-        
+
         Attributes:
-        
+
             owner (str): Repository owner.
             repo (str): Repository name.
             hook_id (str): Webhook ID.
@@ -258,7 +260,7 @@ class RestGetProvider(RestRequest):
     def get_org_webhook(self, org, hook_id):
         """
         Get a webhook for an organization.
-        
+
         Attributes:
             org (str): Organization name.
             hook_id (str): Webhook ID.

@@ -20,9 +20,10 @@ def replace_string_in_org_webhooks_url(org, string_to_replace, new_string):
             if string_to_replace in webhook_url:
                 new_webhook_url = webhook_url.replace(string_to_replace, new_string)
                 print(f"Updating webhook url: {webhook_url} -> {new_webhook_url}")
-                restpatch.update_org_webhook_config(org, webhook.get("id"), {"url":new_webhook_url})
+                restpatch.update_org_webhook_config(org, webhook.get("id"), {"url": new_webhook_url})
     except RestRequestError as err:
         print(err)
+
 
 def replace_string_in_repo_webhooks_url(org, repo, string_to_replace, new_string):
     try:
@@ -32,6 +33,6 @@ def replace_string_in_repo_webhooks_url(org, repo, string_to_replace, new_string
             if string_to_replace in webhook_url:
                 new_webhook_url = webhook_url.replace(string_to_replace, new_string)
                 print(f"Updating webhook url: {webhook_url} -> {new_webhook_url}")
-                restpatch.update_repo_webhook_config(org, repo, webhook.get("id"), {"url":new_webhook_url})
+                restpatch.update_repo_webhook_config(org, repo, webhook.get("id"), {"url": new_webhook_url})
     except RestRequestError as err:
         print(err)

@@ -45,9 +45,7 @@ class GraphRequest:
         except TransportQueryError as errquery:
             raise GraphRequestError(errquery.errors[0].get("message"))
         except TransportServerError as errserver:
-            raise GraphRequestError(
-                f"Server responded with a {str(errserver.code)} status code"
-            )
+            raise GraphRequestError(f"Server responded with a {str(errserver.code)} status code")
 
 
 class GraphRequestError(Exception):
@@ -61,7 +59,7 @@ class GraphQueryProvider(GraphRequest):
     def _get_page_info(self, results):
         """
         This module returns a dictionary of the page info from a GraphQL query.
-        
+
         Attributes:
             results (dict): The results of a GraphQL query.
         """
@@ -79,7 +77,7 @@ class GraphQueryProvider(GraphRequest):
     def _paginate_results(self, query, params):
         """
         This module returns a generator that will yield a dictionary of all results from a GraphQL query.
-        
+
         Attributes:
             query (str): The GraphQL query.
             params (dict): The parameters to pass to the query.
@@ -96,7 +94,7 @@ class GraphQueryProvider(GraphRequest):
                 return
 
     def get_enterprise_orgs(self, enterprise):
-        """ 
+        """
         This module returns a generator that will yield a dictionary of all organizations in an Enterprise.
 
         Attributes:
@@ -110,7 +108,7 @@ class GraphQueryProvider(GraphRequest):
     def get_org_repos(self, org):
         """
         This module returns a generator that will yield a dictionary of all repositories in an organization.
-        
+
         Attributes:
             org (str): The name of the Organization.
         """
@@ -121,7 +119,7 @@ class GraphQueryProvider(GraphRequest):
     def get_repo_collaborators(self, org, repo):
         """
         This module returns a generator that will yield a dictionary of all collaborators in a repository.
-        
+
         Attributes:
             org (str): The name of the Organization.
             repo (str): The name of the Repository.
@@ -141,7 +139,7 @@ class GraphMutationProducer(GraphRequest):
     def add_enterprise_org(self, organization):
         """
         This module adds an Enterprise organization to the GitHub Enterprise.
-        
+
         Attributes:
             organization (str): The name of the Organization.
         """
@@ -155,7 +153,7 @@ class GraphMutationProducer(GraphRequest):
         This module adds a repository to the GitHub Enterprise.
 
         Attributes:
-            repository (str): The name of the Repository.        
+            repository (str): The name of the Repository.
         """
         params = {"repository": repository}
         query = self._load_query("gql_files/create-repository.gql")
@@ -170,7 +168,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
     def get_org_list(self, enterprise):
         """
         This module returns a list of all organizations in an Enterprise.
-        
+
         Attributes:
             enterprise (str): The name of the Enterprise.
         """
@@ -178,9 +176,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         try:
             org_results = self.get_enterprise_orgs(enterprise)
             for organizations in org_results:
-                for org in (
-                    organizations.get("enterprise").get("organizations").get("nodes")
-                ):
+                for org in organizations.get("enterprise").get("organizations").get("nodes"):
                     org_list.append(org.get("name"))
         except GraphRequestError as err:
             print(err)
@@ -188,8 +184,8 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
 
     def get_repo_list(self, org):
         """
-        This module returns a list of all repositories in an organization.        
-        
+        This module returns a list of all repositories in an organization.
+
         Attributes:
             org (str): The name of the Organization.
         """
@@ -197,9 +193,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         try:
             repo_results = self.get_org_repos(org)
             for repositories in repo_results:
-                for repo in (
-                    repositories.get("organization").get("repositories").get("edges")
-                ):
+                for repo in repositories.get("organization").get("repositories").get("edges"):
                     repo_list.append(repo.get("node").get("name"))
         except GraphRequestError as err:
             print(err)
@@ -208,7 +202,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
     def get_collaborators_permission_list(self, org, repo):
         """
         This module returns a list of tuples of all collaborators in a repository with their permission level.
-        
+
         Attributes:
             org (str): The name of the Organization.
             repo (str): The name of the Repository.
@@ -217,9 +211,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         try:
             collaborator_results = self.get_repo_collaborators(org, repo)
             for collaborators in collaborator_results:
-                for collaborator in (
-                    collaborators.get("repository").get("collaborators").get("edges")
-                ):
+                for collaborator in collaborators.get("repository").get("collaborators").get("edges"):
                     collaborator_list.append(
                         (
                             collaborator.get("node").get("login"),
