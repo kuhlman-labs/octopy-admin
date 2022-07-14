@@ -4,8 +4,12 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import dotenv_values, load_dotenv
 
-from octopy.rest_query import (RestDelete, RestGetProvider, RestPatchProducer,
-                               RestPostProducer)
+from octopy.rest_query import (
+    RestDelete,
+    RestGetProvider,
+    RestPatchProducer,
+    RestPostProducer,
+)
 
 load_dotenv()
 config = dotenv_values(".env.ghes")
