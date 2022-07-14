@@ -8,7 +8,7 @@ class RestRequestError(Exception):
 
 
 class RestRequest:
-    def __init__(self):
+    def __init__(self, rest_api_url=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
 
@@ -18,10 +18,14 @@ class RestRequest:
             API_TOKEN (str): GitHub API token.
             REST_API_URL (str): GitHub REST API URL.
         """
-        if os.environ.get("API_TOKEN") is None:
-            raise RestRequestError("API_TOKEN environment variable is not set")
-        self._headers = {"Authorization": f"Bearer {os.environ.get('API_TOKEN')}"}
-        self._base_url = os.environ.get("REST_API_URL", r"https://api.github.com")
+        if api_token is None:
+            api_token = os.environ.get("API_TOKEN")
+            if os.environ.get("API_TOKEN") is None:
+                raise RestRequestError("API_TOKEN environment variable is not set")
+        self._headers = {"Authorization": f"Bearer {api_token}"}
+        if rest_api_url is None:
+            rest_api_url = os.environ.get("REST_API_URL", r"https://api.github.com")
+        self._base_url = rest_api_url
 
     def _execute(self, method, url, payload):
         """
@@ -47,27 +51,52 @@ class RestRequest:
 
 
 class RestPostProducer(RestRequest):
-    def __init__(self):
+    def __init__(self, rest_api_url=None, api_token=None):
         """
         Initialize the REST client.
 
         Attributes:
             method (str): HTTP method.
         """
-        super().__init__()
+        super().__init__(rest_api_url, api_token)
         self._method = "Post"
 
-    def create_user(self, user):
+    def create_user(self, login, email):
         """
-        Create a user.
+        Create a user. It is only available to authenticated site administrators. 
+        Normal users will receive a 403 response if they try to access it.
         
         Attributes:
-            user (dict): User data.
+            login (str): Login name.
+            email (str): Email address.
         """
         url = self._base_url + "/admin/users"
-        payload = {"login": user.get("login"), "email": user.get("email")}
+        payload = {"login": login, "email": email}
         response = self._execute(self._method, url, payload)
-        return response.json()
+        return response    
+
+class RestDelete(RestRequest):
+    def __init__(self, rest_api_url=None, api_token=None):
+        """
+        Initialize the REST client.
+
+        Attributes:
+            method (str): HTTP method.
+        """
+        super().__init__(rest_api_url, api_token)
+        self._method = "Delete"
+
+    def delete_user(self, username):
+        """
+        Delete a user. It is only available to authenticated site administrators. 
+        Normal users will receive a 403 response if they try to access it.
+        
+        Attributes:
+            username (str): The User login to delete.
+        """
+        url = self._base_url + f"/admin/users/{username}" 
+        response = self._execute(self._method, url, None)
+        return response
 
 
 class RestPatchProducer(RestRequest):
@@ -78,7 +107,7 @@ class RestPatchProducer(RestRequest):
         super().__init__()
         self._method = "Patch"
 
-    def update_repo_webhook_url(self, owner, repo, hook_id, new_url):
+    def update_repo_webhook_config(self, owner, repo, hook_id, config):
         """
         Update a repository webhook URL.
         
@@ -89,11 +118,11 @@ class RestPatchProducer(RestRequest):
             new_url (str): New webhook URL.
         """
         url = self._base_url + f"/repos/{owner}/{repo}/hooks/{hook_id}/config"
-        payload = {"url": new_url}
+        payload = config
         response = self._execute(self._method, url, payload)
-        return response.json()
+        return response
 
-    def update_org_webhook_url(self, owner, hook_id, new_url):
+    def update_org_webhook_config(self, owner, hook_id, config):
         """
         Update an organization webhook URL.
         
@@ -103,9 +132,9 @@ class RestPatchProducer(RestRequest):
             new_url (str): New webhook URL.
         """
         url = self._base_url + f"/orgs/{owner}/hooks/{hook_id}/config"
-        payload = {"url": new_url}
+        payload = config
         response = self._execute(self._method, url, payload)
-        return response.json()
+        return response
 
 
 class RestGetProvider(RestRequest):
@@ -128,7 +157,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/users/{user}"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_org(self, org):
         """
@@ -139,7 +168,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/orgs/{org}"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_repo(self, owner, repo):
         """
@@ -151,7 +180,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/repos/{owner}/{repo}"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_repo_list(self, owner):
         """
@@ -162,7 +191,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/orgs/{owner}/repos"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_collaborators(self, owner, repo):
         """
@@ -174,7 +203,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/repos/{owner}/{repo}/collaborators"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_collaborator_permission(self, owner, repo, user):
         """
@@ -185,9 +214,9 @@ class RestGetProvider(RestRequest):
             repo (str): Repository name.
             user (str): Collaborator name.
         """
-        url = self._base_url + f"/repos/{owner}/{repo}/collaborators/{user}"
+        url = self._base_url + f"/repos/{owner}/{repo}/collaborators/{user}/permission"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_repo_webhook_list(self, owner, repo):
         """
@@ -199,7 +228,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/repos/{owner}/{repo}/hooks"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_org_webhook_list(self, org):
         """
@@ -210,7 +239,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/orgs/{org}/hooks"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_repo_webhook(self, owner, repo, hook_id):
         """
@@ -224,7 +253,7 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/repos/{owner}/{repo}/hooks/{hook_id}"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
 
     def get_org_webhook(self, org, hook_id):
         """
@@ -236,4 +265,4 @@ class RestGetProvider(RestRequest):
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}"
         response = self._execute(self._method, url, None)
-        return response.json()
+        return response
