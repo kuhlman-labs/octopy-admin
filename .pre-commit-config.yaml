@@ -1,34 +1,31 @@
 repos:
-  - repo: local
-    hooks:
-      - id: autoflake
-        name: Remove unused variables and imports
-        entry: bash -c 'autoflake "$@"; git add -u' --
-        language: python
-        args:
-          [
-            "--in-place",
-            "--remove-all-unused-imports",
-            "--remove-unused-variables",
-            "--expand-star-imports",
-            "--ignore-init-module-imports",
-          ]
-        files: \.py$
+    - repo: https://github.com/psf/black
+      rev: 22.6.0
+      hooks:
       - id: black
-        name: Black Python code formatting
-        entry: bash -c 'black "$@"; git add -u' --
-        language: python
-        types: [python]
-        args: ["--line-length=120"]
-      - id: isort
-        name: Sorting import statements
-        entry: bash -c 'isort "$@"; git add -u' --
-        language: python
-        args: ["--filter-files"]
-        files: \.py$      
-      - id: export-requirements
-        name: Export requeriments.txt
-        language: system
-        pass_filenames: false
-        entry: poetry export --without-hashes -o requirements.txt
-        files: ^(pyproject.toml|poetry.lock)$
+        language_version: python3.10
+        args: [--line-length=100]
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v2.5.0
+      hooks:
+        - id: check-added-large-files
+    - repo: https://github.com/pycqa/isort
+      rev: 5.10.1
+      hooks:
+        - id: isort
+          name: isort (python)
+          args: ["--profile", "black", "--filter-files"]
+    - repo: local
+      hooks:
+        - id: pylint
+          name: pylint
+          entry: poetry run pylint octopy/
+          language: system
+          always_run: true
+          pass_filenames: false
+        - id: export-requirements
+          name: Export requeriments.txt
+          language: system
+          pass_filenames: false
+          entry: poetry export --without-hashes -o requirements.txt
+          files: ^(pyproject.toml|poetry.lock)$

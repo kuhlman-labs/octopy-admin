@@ -1,13 +1,23 @@
+"""
+This module contains the RESTQuery class.
+"""
+
 import os
 
 import requests
 
 
 class RestRequestError(Exception):
-    pass
+    """
+    Exception raised when a REST request fails.
+    """
 
 
-class RestRequest:
+class RestRequest:  # pylint: disable=too-few-public-methods
+    """
+    The following methods are used to form requests to the GitHub REST API.
+    """
+
     def __init__(self, rest_api_url=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
@@ -41,16 +51,20 @@ class RestRequest:
             response.raise_for_status()
             return response
         except requests.exceptions.Timeout as errtimeout:
-            raise RestRequestError(errtimeout)
+            raise RestRequestError from errtimeout
         except requests.exceptions.HTTPError as errhttp:
-            raise RestRequestError(errhttp)
+            raise RestRequestError from errhttp
         except requests.exceptions.TooManyRedirects as errredirect:
-            raise RestRequestError(errredirect)
+            raise RestRequestError from errredirect
         except requests.exceptions.RequestException as errexcept:
-            raise RestRequestError(errexcept)
+            raise RestRequestError from errexcept
 
 
 class RestPostProducer(RestRequest):
+    """
+    This Class is used to create POST requests.
+    """
+
     def __init__(self, rest_api_url=None, api_token=None):
         """
         Initialize the REST client.
@@ -75,8 +89,40 @@ class RestPostProducer(RestRequest):
         response = self._execute(self._method, url, payload)
         return response
 
+    def create_org(self, org_name, admin_login):
+        """
+        Create an organization. It is only available to authenticated site administrators.
+        Normal users will receive a 403 response if they try to access it.
+
+        Attributes:
+            org_name (str): Organization name.
+            admin_login (str): Login name of the administrator.
+        """
+        url = self._base_url + "/admin/orginizations"
+        payload = {"login": org_name, "admin": admin_login}
+        response = self._execute(self._method, url, payload)
+        return response
+
+    def create_org_repo(self, org_name, repo_name):
+        """
+        Creates a new repository in the specified organization.
+        The authenticated user must be a member of the organization.
+
+        Attributes:
+            org_name (str): Organization name.
+            repo_name (str): Repository name.
+        """
+        url = self._base_url + f"/orgs/{org_name}/repos"
+        payload = {"name": repo_name}
+        response = self._execute(self._method, url, payload)
+        return response
+
 
 class RestDelete(RestRequest):
+    """
+    This Class is used to create DELETE requests.
+    """
+
     def __init__(self, rest_api_url=None, api_token=None):
         """
         Initialize the REST client.
@@ -96,6 +142,23 @@ class RestDelete(RestRequest):
             username (str): The User login to delete.
         """
         url = self._base_url + f"/admin/users/{username}"
+        response = self._execute(self._method, url, None)
+        return response
+
+    def delete_repo(self, owner, repo_name):
+        """
+        Deleting a repository requires admin access.
+        If OAuth is used, the delete_repo scope is required.
+
+        If an organization owner has configured the organization
+        to prevent members from deleting organization-owned repositories,
+        you will get a 403 Forbidden response.
+
+        Attributes:
+            owner (str): The account owner of the repository. The name is not case sensitive.
+            repo_name (str): The name of the repository. The name is not case sensitive.
+        """
+        url = self._base_url + f"/orgs/{owner}/repos/{repo_name}"
         response = self._execute(self._method, url, None)
         return response
 
@@ -140,6 +203,10 @@ class RestPatchProducer(RestRequest):
 
 
 class RestGetProvider(RestRequest):
+    """
+    This Class is used to create GET requests.
+    """
+
     def __init__(self):
         """
         Initialize the REST client.

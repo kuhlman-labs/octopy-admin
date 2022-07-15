@@ -26,7 +26,12 @@ def enterpise_collaborator_permission_report(enterprise):
                 collaborators = graphquery.get_collaborators_permission_list(org, repo)
                 print(f"Got {len(collaborators)} collaborators.")
                 df = pd.concat(
-                    [df, pd.DataFrame.from_records([{"org": org, "repo": repo, "collaborators": collaborators}])],
+                    [
+                        df,
+                        pd.DataFrame.from_records(
+                            [{"org": org, "repo": repo, "collaborators": collaborators}]
+                        ),
+                    ],
                     ignore_index=True,
                 )
     except GraphRequestError as err:
@@ -45,7 +50,12 @@ def org_collaborator_permission_report(org):
             collaborators = graphquery.get_collaborators_permission_list(org, repo)
             print(f"Got {len(collaborators)} collaborators.")
             df = pd.concat(
-                [df, pd.DataFrame.from_records([{"org": org, "repo": repo, "collaborators": collaborators}])],
+                [
+                    df,
+                    pd.DataFrame.from_records(
+                        [{"org": org, "repo": repo, "collaborators": collaborators}]
+                    ),
+                ],
                 ignore_index=True,
             )
     except GraphRequestError as err:
@@ -60,7 +70,11 @@ def repo_collaborator_permission_report(org, repo):
         collaborators = graphquery.get_collaborators_permission_list(org, repo)
         print(f"Got {len(collaborators)} collaborators.")
         df = pd.concat(
-            [df, pd.DataFrame.from_records([{"repo": repo, "collaborators": collaborators}])], ignore_index=False
+            [
+                df,
+                pd.DataFrame.from_records([{"repo": repo, "collaborators": collaborators}]),
+            ],
+            ignore_index=False,
         )
     except GraphRequestError as err:
         print(err)

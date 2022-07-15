@@ -1,20 +1,33 @@
+"""
+This module contains the GraphQuery class.
+"""
 import os
+from encodings import utf_8
 
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
 
 
-class GraphRequest:
-    def __init__(self):
+class GraphRequest:  # pylint: disable=too-few-public-methods
+    """
+    This following methods are used to form requests to the GitHub GraphQL API.
+    """
+
+    def __init__(self, graph_api_url=None, api_token=None):
         """
         Initialize the GraphQL client.
         """
-        if os.environ.get("API_TOKEN") is None:
-            raise GraphRequestError("API_TOKEN environment variable is not set")
-        headers = {"Authorization": f"Bearer {os.environ.get('API_TOKEN')}"}
+        if api_token is None:
+            api_token = os.environ.get("API_TOKEN")
+            if os.environ.get("API_TOKEN") is None:
+                raise GraphRequestError("API_TOKEN environment variable is not set")
+        self._headers = {"Authorization": f"Bearer {api_token}"}
+        if graph_api_url is None:
+            graph_api_url = os.environ.get("GRAPH_API_URL", r"https://api.github.com/graphql")
+        headers = {"Authorization": f"Bearer {api_token}"}
         transport = AIOHTTPTransport(
-            url=os.environ.get("GQL_API_URL", r"https://api.github.com/graphql"),
+            url=graph_api_url,
             headers=headers,
         )
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
@@ -29,8 +42,8 @@ class GraphRequest:
         absolute_path = os.path.dirname(__file__)
         relative_path = path
         full_path = os.path.join(absolute_path, relative_path)
-        with open(full_path) as f:
-            return gql(f.read())
+        with open(full_path, encoding=utf_8) as file:
+            return gql(file.read())
 
     def _execute(self, query, params):
         """
@@ -43,18 +56,23 @@ class GraphRequest:
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as errquery:
-            raise GraphRequestError(errquery.errors[0].get("message"))
+            raise GraphRequestError(errquery.errors[0].get("message")) from errquery
         except TransportServerError as errserver:
-            raise GraphRequestError(f"Server responded with a {str(errserver.code)} status code")
+            raise GraphRequestError(
+                f"Server responded with a {str(errserver.code)} status code"
+            ) from errserver
 
 
 class GraphRequestError(Exception):
-    pass
+    """
+    Exception raised when an error occurs in the GraphRequest.
+    """
 
 
 class GraphQueryProvider(GraphRequest):
-    def __init__(self):
-        super().__init__()
+    """
+    This class is used to get the data from the GraphQL API.
+    """
 
     def _get_page_info(self, results):
         """
@@ -63,20 +81,17 @@ class GraphQueryProvider(GraphRequest):
         Attributes:
             results (dict): The results of a GraphQL query.
         """
-        if results.get("pageInfo") is None:
-            for key, item in results.items():
-                if isinstance(item, dict):
-                    if item.get("pageInfo") is None:
-                        results = item
-                        return self._get_page_info(results)
-                    else:
-                        return item.get("pageInfo")
-        else:
-            return results.get("pageInfo")
+        while results.get("pageInfo") is None:
+            for _, item in results.items():
+                if item.get("pageInfo") is None:
+                    results = item
+                    return self._get_page_info(results)
+                return item.get("pageInfo")
 
     def _paginate_results(self, query, params):
         """
-        This module returns a generator that will yield a dictionary of all results from a GraphQL query.
+        This module returns a generator that will yield a dictionary
+         of all results from a GraphQL query.
 
         Attributes:
             query (str): The GraphQL query.
@@ -95,7 +110,8 @@ class GraphQueryProvider(GraphRequest):
 
     def get_enterprise_orgs(self, enterprise):
         """
-        This module returns a generator that will yield a dictionary of all organizations in an Enterprise.
+        This module returns a generator that will yield a dictionary
+         of all organizations in an Enterprise.
 
         Attributes:
             enterprise (str): The name of the Enterprise.
@@ -107,7 +123,8 @@ class GraphQueryProvider(GraphRequest):
 
     def get_org_repos(self, org):
         """
-        This module returns a generator that will yield a dictionary of all repositories in an organization.
+        This module returns a generator that will yield a dictionary
+        of all repositories in an organization.
 
         Attributes:
             org (str): The name of the Organization.
@@ -118,7 +135,8 @@ class GraphQueryProvider(GraphRequest):
 
     def get_repo_collaborators(self, org, repo):
         """
-        This module returns a generator that will yield a dictionary of all collaborators in a repository.
+        This module returns a generator that will yield a dictionary
+         of all collaborators in a repository.
 
         Attributes:
             org (str): The name of the Organization.
@@ -130,11 +148,9 @@ class GraphQueryProvider(GraphRequest):
 
 
 class GraphMutationProducer(GraphRequest):
-    def __init__(self):
-        """
-        Initialize the GraphQL client.
-        """
-        super().__init__()
+    """
+    This class is used to make mutations through the GitHub GraphQL API.
+    """
 
     def add_enterprise_org(self, organization):
         """
@@ -162,8 +178,9 @@ class GraphMutationProducer(GraphRequest):
 
 
 class GraphQueryResponseTransmuter(GraphQueryProvider):
-    def __init__(self):
-        super().__init__()
+    """
+    This class is used to transform the data from the GraphQL API.
+    """
 
     def get_org_list(self, enterprise):
         """
@@ -172,7 +189,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         Attributes:
             enterprise (str): The name of the Enterprise.
         """
-        org_list = list()
+        org_list = []
         try:
             org_results = self.get_enterprise_orgs(enterprise)
             for organizations in org_results:
@@ -189,7 +206,7 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
         Attributes:
             org (str): The name of the Organization.
         """
-        repo_list = list()
+        repo_list = []
         try:
             repo_results = self.get_org_repos(org)
             for repositories in repo_results:
@@ -201,17 +218,20 @@ class GraphQueryResponseTransmuter(GraphQueryProvider):
 
     def get_collaborators_permission_list(self, org, repo):
         """
-        This module returns a list of tuples of all collaborators in a repository with their permission level.
+        This module returns a list of tuples of all collaborators
+        in a repository with their permission level.
 
         Attributes:
             org (str): The name of the Organization.
             repo (str): The name of the Repository.
         """
-        collaborator_list = list()
+        collaborator_list = []
         try:
             collaborator_results = self.get_repo_collaborators(org, repo)
             for collaborators in collaborator_results:
-                for collaborator in collaborators.get("repository").get("collaborators").get("edges"):
+                for collaborator in (
+                    collaborators.get("repository").get("collaborators").get("edges")
+                ):
                     collaborator_list.append(
                         (
                             collaborator.get("node").get("login"),

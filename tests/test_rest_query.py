@@ -72,14 +72,19 @@ def test_get_org_webhook():
 
 def test_update_repo_webhook_config():
     response = restpatch.update_repo_webhook_config(
-        owner="Outer-Planets-Alliance", repo="test", hook_id="368519137", config={"url": "https://example.com/webhook"}
+        owner="Outer-Planets-Alliance",
+        repo="test",
+        hook_id="368519137",
+        config={"url": "https://example.com/webhook"},
     )
     assert response.status_code == 200
 
 
 def test_update_org_webhook_config():
     response = restpatch.update_org_webhook_config(
-        owner="Outer-Planets-Alliance", hook_id="340083281", config={"url": "https://example.com/webhook"}
+        owner="Outer-Planets-Alliance",
+        hook_id="340083281",
+        config={"url": "https://example.com/webhook"},
     )
     assert response.status_code == 200
 
