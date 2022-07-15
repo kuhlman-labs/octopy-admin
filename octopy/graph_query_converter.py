@@ -70,3 +70,31 @@ class GraphQueryConverter(GraphQuery):
         except GraphRequestError as err:
             print(err)
         return collaborator_list
+
+    def get_repo_branch_protection_rule_list(self, org, repo):
+        """
+        This module returns a list of all branch protection rules
+        in a repository.
+
+        Attributes:
+            org (str): The name of the Organization.
+            repo (str): The name of the Repository.
+        """
+        branch_protection_rule_list = []
+        try:
+            branch_protection_rule_results = self.get_repo_branch_protection_rules(org, repo)
+
+            for branch_protection_rules in branch_protection_rule_results:
+                for branch_protection_rule in (
+                    branch_protection_rules.get("repository")
+                    .get("branchProtectionRules")
+                    .get("nodes")
+                ):
+                    rules = []
+                    for key, item in branch_protection_rule.items():
+                        if item:
+                            rules.append(f"{key}: {item}")
+                    branch_protection_rule_list.append(rules)
+        except GraphRequestError as err:
+            print(err)
+        return branch_protection_rule_list

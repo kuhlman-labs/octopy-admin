@@ -81,3 +81,16 @@ class GraphQuery(GraphRequest):
         query = self._load_query("gql_files/get-repo-collaborators.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
+
+    def get_repo_branch_protection_rules(self, org, repo):
+        """
+        This module returns a generator that will yield a dictionary
+         of all branch protection rules in a repository.
+
+        Attributes:
+            org (str): The name of the Organization.
+            repo (str): The name of the Repository.
+        """
+        query = self._load_query("gql_files/get-repo-branch-protection-rules.gql")
+        params = {"owner": org, "name": repo, "cursor": None}
+        return self._paginate_results(query, params)

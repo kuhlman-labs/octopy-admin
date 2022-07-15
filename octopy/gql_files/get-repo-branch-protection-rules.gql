@@ -1,0 +1,30 @@
+query RepoBranchRules($owner: String!, $name: String!, $cursor: String) {
+	repository(owner:$owner, name:$name) {
+		nameWithOwner
+		branchProtectionRules(first:100, after: $cursor) {
+			totalCount
+			nodes {
+				pattern
+				allowsDeletions
+				allowsForcePushes
+				dismissesStaleReviews
+				isAdminEnforced
+				requiredApprovingReviewCount
+				requiredStatusCheckContexts
+				requiresApprovingReviews
+				requiresCodeOwnerReviews
+				requiresCommitSignatures
+				requiresConversationResolution
+				requiresLinearHistory
+				requiresStatusChecks
+				requiresStrictStatusChecks
+				restrictsPushes
+				restrictsReviewDismissals
+			}
+			pageInfo{
+				hasNextPage
+				endCursor
+			}
+		}
+	}
+}
