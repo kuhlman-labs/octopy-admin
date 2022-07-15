@@ -1,6 +1,6 @@
 # Documentation for the `graph_query` module.
 
-::: octopy.graph_query.GraphRequest
+::: octopy.graph_request.GraphRequest
     handler: python
     options:
       members:
@@ -10,7 +10,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_query.GraphQueryProvider
+::: octopy.graph_query.GraphQuery
     handler: python
     options:
       members:
@@ -20,7 +20,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_query.GraphMutationProducer
+::: octopy.graph_mutation.GraphMutation
     handler: python
     options:
       members:
@@ -29,7 +29,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_query.GraphQueryResponseTransmuter
+::: octopy.graph_query_converter.GraphQueryConverter
     handler: python
     options:
       members:

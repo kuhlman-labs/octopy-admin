@@ -5,10 +5,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 import pandas as pd
 from dotenv import load_dotenv
 
-from octopy.graph_query import GraphQueryResponseTransmuter, GraphRequestError
+from octopy.graph_query_converter import GraphQueryConverter, GraphRequestError
 
 config = load_dotenv()
-graphquery = GraphQueryResponseTransmuter()
+graphquery = GraphQueryConverter()
 
 
 def enterpise_collaborator_permission_report(enterprise):
