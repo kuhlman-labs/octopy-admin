@@ -8,7 +8,7 @@ on:
         description: 'Report'
         required: true
         type: choice
-        default: collabborator_permsission_report.py
+        default: collaborator_permission_report.py
         options:
           - collaborator_permission_report.py
           - repo_branch_protection_report.py
