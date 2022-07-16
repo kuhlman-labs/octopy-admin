@@ -9,9 +9,9 @@ on:
         required: true
         type: choice
         default: collaborator_permission_report.py
-        options:
-          - collaborator_permission_report.py
-          - repo_branch_protection_report.py
+        options: [collaborator_permission_report.py,
+                  repo_branch_protection_report.py]
+
 env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
 
