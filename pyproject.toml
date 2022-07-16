@@ -1,22 +1,14 @@
 [tool.poetry]
 name = "octopy"
 version = "0.1.0"
-description = "OctoPy is a python library for interacting with the GitHub API."
+description = "OctoPy is a python library for interacting with the GitHub GraphQL and REST APIs."
 authors = ["Brett Kuhlman <kuhlman-labs@github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = ">=3.8,<4.0"
 gql = "^3.4.0"
 aiohttp = "^3.8.1"
-python-dotenv = "^0.20.0"
 requests = "^2.28.1"
-pytest = "^7.1.2"
-black = "^22.6.0"
-pre-commit = "^2.20.0"
-autoflake = "^1.4"
-isort = "^5.10.1"
-toml = "^0.10.2"
-pandas = "^1.4.3"
 
 [tool.poetry.dev-dependencies]
 gql = "^3.4.0"
@@ -28,7 +20,6 @@ black = "^22.6.0"
 pre-commit = "^2.20.0"
 autoflake = "^1.4"
 isort = "^5.10.1"
-toml = "^0.10.2"
 pandas = "^1.4.3"
 mkdocs-material = "^8.3.9"
 mkdocstrings = "^0.19.0"
@@ -37,6 +28,9 @@ pylint = "^2.14.4"
 
 [tool.isort]
 profile = "black"
+
+[tool.pylint.format]
+max-line-length = "100"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

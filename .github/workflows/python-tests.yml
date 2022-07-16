@@ -1,6 +1,9 @@
-name: test
+name: python tests
 
 on: pull_request
+
+env:
+  API_TOKEN: ${{  secrets.API_TOKEN  }}
 
 jobs:
   test:
