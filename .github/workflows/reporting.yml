@@ -42,7 +42,7 @@ jobs:
           path: .venv
           key: >-
             venv-${{runner.os}}-${{steps.setup-python.outputs.python-version}}
-            -${{ hashFiles('**/poetry.lock') }}
+            -${{hashFiles('**/poetry.lock')}}
       # install dependencies if cache does not exist
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
@@ -52,7 +52,7 @@ jobs:
         run: poetry install --no-interaction
       # run report
       - name: Run report
-        run: poetry run python reports/${{ inputs.report_name  }}
+        run: poetry run python reports/${{  inputs.report_name  }}
       # upload report to GitHub
       - name: Upload report
         uses: actions/upload-artifact@v3
