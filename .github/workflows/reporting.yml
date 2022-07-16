@@ -13,6 +13,7 @@ on:
           - repo_branch_protection_report.py
 env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
+  REPORT_NAME: ${{  inputs.report_name  }}
 
 jobs:
   run-report:
@@ -51,7 +52,7 @@ jobs:
         run: poetry install --no-interaction
       # run report
       - name: Run report
-        run: poetry run python reports/${{ inputs.report_name  }}
+        run: poetry run python reports/$REPORT_NAME
       # upload report to GitHub
       - name: Upload report
         uses: actions/upload-artifact@v3
