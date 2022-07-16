@@ -1,3 +1,4 @@
+---
 name: Reporting
 
 on: 
@@ -14,7 +15,7 @@ env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
 
 jobs:
-  report:
+  run-report:
     runs-on: ubuntu-latest
     steps:
       #----------------------------------------------
