@@ -4,11 +4,14 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import load_dotenv
 
-from octopy.rest_query import RestGetProvider, RestPatchProducer, RestRequestError
+from octopy.rest_get import RestGet
+from octopy.rest_patch import RestPatch
+from octopy.rest_request import RestRequestError
 
 config = load_dotenv()
-restpatch = RestPatchProducer()
-restget = RestGetProvider()
+
+restpatch = RestPatch()
+restget = RestGet()
 
 
 def replace_string_in_org_webhooks_url(org, string_to_replace, new_string):

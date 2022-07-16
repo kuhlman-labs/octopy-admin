@@ -2,22 +2,14 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-from dotenv import dotenv_values, load_dotenv
+from dotenv import load_dotenv
 
-from octopy.rest_query import (
-    RestDelete,
-    RestGetProvider,
-    RestPatchProducer,
-    RestPostProducer,
-)
+from octopy.rest_get import RestGet
 
 load_dotenv()
-config = dotenv_values(".env.ghes")
 
-restquery = RestGetProvider()
-restpatch = RestPatchProducer()
-restpost = RestPostProducer(config.get("REST_API_URL"), config.get("API_TOKEN"))
-restdelete = RestDelete(config.get("REST_API_URL"), config.get("API_TOKEN"))
+
+restquery = RestGet()
 
 
 def test_get_repo_list():
@@ -68,32 +60,3 @@ def test_get_org_webhooks():
 def test_get_org_webhook():
     response = restquery.get_org_webhook("Outer-Planets-Alliance", "340083281")
     assert response.status_code == 200
-
-
-def test_update_repo_webhook_config():
-    response = restpatch.update_repo_webhook_config(
-        owner="Outer-Planets-Alliance",
-        repo="test",
-        hook_id="368519137",
-        config={"url": "https://example.com/webhook"},
-    )
-    assert response.status_code == 200
-
-
-def test_update_org_webhook_config():
-    response = restpatch.update_org_webhook_config(
-        owner="Outer-Planets-Alliance",
-        hook_id="340083281",
-        config={"url": "https://example.com/webhook"},
-    )
-    assert response.status_code == 200
-
-
-def test_create_user():
-    response = restpost.create_user(login="testuser", email="testuser@email.com")
-    assert response.status_code == 201
-
-
-def test_delete_user():
-    response = restdelete.delete_user(username="testuser")
-    assert response.status_code == 204

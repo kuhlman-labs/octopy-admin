@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 from octopy.graph_query_converter import GraphQueryConverter, GraphRequestError
 
-config = load_dotenv()
+load_dotenv()
 graphquery = GraphQueryConverter()
 
 
