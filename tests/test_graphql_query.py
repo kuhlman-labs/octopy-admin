@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-from octopy.graph_query import GraphQuery
+from octopy.graph.graph_query import GraphQuery
 
 load_dotenv()
 

@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import load_dotenv
 
-from octopy.rest_get import RestGet
+from octopy.rest.rest_get import RestGet
 
 load_dotenv()
 

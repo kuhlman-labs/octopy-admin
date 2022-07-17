@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import dotenv_values, load_dotenv
 
-from octopy.rest_patch import RestPatch
+from octopy.rest.rest_patch import RestPatch
 
 load_dotenv()
 ghes = dotenv_values(".env.ghes")
