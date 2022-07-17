@@ -4,13 +4,13 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import load_dotenv
 
-from octopy.rest_get import RestGet
-from octopy.rest_patch import RestPatch
-from octopy.rest_request import RestRequestError
+from octopy.rest.rest_get import RestGet
+from octopy.rest.rest_patch import RestPatch
+from octopy.rest.rest_request import RestRequestError
 
 config = load_dotenv()
 
-restpatch = RestPatch()
+restpatch = RestPatch
 restget = RestGet()
 
 
