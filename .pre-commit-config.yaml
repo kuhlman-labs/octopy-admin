@@ -31,6 +31,10 @@ repos:
       rev: v1.17.0
       hooks:
           - id: yamllint
+    - repo: https://github.com/rhysd/actionlint
+      rev: main
+      hooks:
+          - id: actionlint
     - repo: local
       hooks:
           - id: pylint
