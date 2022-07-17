@@ -32,7 +32,7 @@ repos:
       hooks:
           - id: yamllint
     - repo: https://github.com/rhysd/actionlint
-      rev: main
+      rev: v1.6.15
       hooks:
           - id: actionlint
     - repo: local

@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 import pandas as pd
 from dotenv import load_dotenv
 
-from octopy.graph_query_converter import GraphQueryConverter, GraphRequestError
+from octopy.graph.graph_query_converter import GraphQueryConverter, GraphRequestError
 
 load_dotenv()
 graphquery = GraphQueryConverter()
@@ -57,3 +57,6 @@ def repo_branch_protection_report(org, repo):
     except GraphRequestError as err:
         print(err)
     return df.to_csv("repo-branch-protection-report.csv")
+
+
+enterpise_repo_branch_protection_report("github")

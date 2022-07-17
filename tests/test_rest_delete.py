@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import dotenv_values
 
-from octopy.rest_delete import RestDelete
+from octopy.rest.rest_delete import RestDelete
 
 ghes = dotenv_values(".env.ghes")
 
