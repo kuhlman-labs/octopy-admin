@@ -1,0 +1,41 @@
+"""
+Render GitHub flavored markdown
+"""
+
+
+class Markdown:
+    """
+    Render GitHub flavored markdown
+    """
+
+    def __init__(self, client):
+        self._base_url = client._base_url
+        self._execute = client._execute
+
+    def render_a_markdown_document(self, **payload):
+        """
+        Render a Markdown document
+        https://docs.github.com/rest/reference/markdown#render-a-markdown-document
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/markdown"
+        response = self._execute("post", url, payload)
+        return response
+
+    def render_a_markdown_document_in_raw_mode(self, **payload):
+        """
+        Render a Markdown document in raw mode
+        https://docs.github.com/rest/reference/markdown#render-a-markdown-document-in-raw-mode
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/markdown/raw"
+        response = self._execute("post", url, payload)
+        return response
