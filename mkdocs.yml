@@ -1,6 +1,6 @@
 ---
-site_name: OctoPy
-site_url: https://kuhlman-labs.github.io/octopy/
+site_name: OctoPy Admin
+site_url: https://kuhlman-labs.github.io/octopy_admin/
 nav:
     - Home: index.md
     - Reference: reference.md

@@ -1,0 +1,379 @@
+"""
+Interact with GitHub Projects.
+"""
+
+
+class Projects:
+    """
+    Interact with GitHub Projects.
+    """
+
+    def __init__(self, client):
+        self._base_url = client._base_url
+        self._execute = client._execute
+
+    def list_organization_projects(self, org, **payload):
+        """
+        List organization projects
+        https://docs.github.com/rest/reference/projects#list-organization-projects
+        Attributes:
+        Path Parameters:
+        org
+        Payload Parameters:
+        state
+         per-page
+         page
+        """
+        url = self._base_url + f"/orgs/{org}/projects"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_an_organization_project(self, org, **payload):
+        """
+        Create an organization project
+        https://docs.github.com/rest/reference/projects#create-an-organization-project
+        Attributes:
+        Path Parameters:
+        org
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/orgs/{org}/projects"
+        response = self._execute("post", url, payload)
+        return response
+
+    def get_a_project_card(self, card_id, **payload):
+        """
+        Get a project card
+        https://docs.github.com/rest/reference/projects#get-a-project-card
+        Attributes:
+        Path Parameters:
+        card_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/cards/{card_id}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def update_an_existing_project_card(self, card_id, **payload):
+        """
+        Update an existing project card
+        https://docs.github.com/rest/reference/projects#update-a-project-card
+        Attributes:
+        Path Parameters:
+        card_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/cards/{card_id}"
+        response = self._execute("patch", url, payload)
+        return response
+
+    def delete_a_project_card(self, card_id, **payload):
+        """
+        Delete a project card
+        https://docs.github.com/rest/reference/projects#delete-a-project-card
+        Attributes:
+        Path Parameters:
+        card_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/cards/{card_id}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def move_a_project_card(self, card_id, **payload):
+        """
+        Move a project card
+        https://docs.github.com/rest/reference/projects#move-a-project-card
+        Attributes:
+        Path Parameters:
+        card_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/cards/{card_id}/moves"
+        response = self._execute("post", url, payload)
+        return response
+
+    def get_a_project_column(self, column_id, **payload):
+        """
+        Get a project column
+        https://docs.github.com/rest/reference/projects#get-a-project-column
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/{column_id}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def update_an_existing_project_column(self, column_id, **payload):
+        """
+        Update an existing project column
+        https://docs.github.com/rest/reference/projects#update-a-project-column
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/{column_id}"
+        response = self._execute("patch", url, payload)
+        return response
+
+    def delete_a_project_column(self, column_id, **payload):
+        """
+        Delete a project column
+        https://docs.github.com/rest/reference/projects#delete-a-project-column
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/{column_id}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def list_project_cards(self, column_id, **payload):
+        """
+        List project cards
+        https://docs.github.com/rest/reference/projects#list-project-cards
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+        archived_state
+         per-page
+         page
+        """
+        url = self._base_url + f"/projects/columns/{column_id}/cards"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_a_project_card(self, column_id, **payload):
+        """
+        Create a project card
+        https://docs.github.com/rest/reference/projects#create-a-project-card
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/{column_id}/cards"
+        response = self._execute("post", url, payload)
+        return response
+
+    def move_a_project_column(self, column_id, **payload):
+        """
+        Move a project column
+        https://docs.github.com/rest/reference/projects#move-a-project-column
+        Attributes:
+        Path Parameters:
+        column_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/columns/{column_id}/moves"
+        response = self._execute("post", url, payload)
+        return response
+
+    def get_a_project(self, project_id, **payload):
+        """
+        Get a project
+        https://docs.github.com/rest/reference/projects#get-a-project
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def update_a_project(self, project_id, **payload):
+        """
+        Update a project
+        https://docs.github.com/rest/reference/projects#update-a-project
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}"
+        response = self._execute("patch", url, payload)
+        return response
+
+    def delete_a_project(self, project_id, **payload):
+        """
+        Delete a project
+        https://docs.github.com/rest/reference/projects#delete-a-project
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def list_project_collaborators(self, project_id, **payload):
+        """
+        List project collaborators
+        https://docs.github.com/rest/reference/projects#list-project-collaborators
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+        affiliation
+         per-page
+         page
+        """
+        url = self._base_url + f"/projects/{project_id}/collaborators"
+        response = self._execute("get", url, payload)
+        return response
+
+    def add_project_collaborator(self, project_id, username, **payload):
+        """
+        Add project collaborator
+        https://docs.github.com/rest/reference/projects#add-project-collaborator
+        Attributes:
+        Path Parameters:
+        project_id
+        username
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}/collaborators/{username}"
+        response = self._execute("put", url, payload)
+        return response
+
+    def remove_user_as_a_collaborator(self, project_id, username, **payload):
+        """
+        Remove user as a collaborator
+        https://docs.github.com/rest/reference/projects#remove-project-collaborator
+        Attributes:
+        Path Parameters:
+        project_id
+        username
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}/collaborators/{username}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def get_project_permission_for_a_user(self, project_id, username, **payload):
+        """
+        Get project permission for a user
+        https://docs.github.com/rest/reference/projects#get-project-permission-for-a-user
+        Attributes:
+        Path Parameters:
+        project_id
+        username
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}/collaborators/{username}/permission"
+        response = self._execute("get", url, payload)
+        return response
+
+    def list_project_columns(self, project_id, **payload):
+        """
+        List project columns
+        https://docs.github.com/rest/reference/projects#list-project-columns
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+        per-page
+         page
+        """
+        url = self._base_url + f"/projects/{project_id}/columns"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_a_project_column(self, project_id, **payload):
+        """
+        Create a project column
+        https://docs.github.com/rest/reference/projects#create-a-project-column
+        Attributes:
+        Path Parameters:
+        project_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/projects/{project_id}/columns"
+        response = self._execute("post", url, payload)
+        return response
+
+    def list_repository_projects(self, owner, repo, **payload):
+        """
+        List repository projects
+        https://docs.github.com/rest/reference/projects#list-repository-projects
+        Attributes:
+        Path Parameters:
+        owner
+        repo
+        Payload Parameters:
+        state
+         per-page
+         page
+        """
+        url = self._base_url + f"/repos/{owner}/{repo}/projects"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_a_repository_project(self, owner, repo, **payload):
+        """
+        Create a repository project
+        https://docs.github.com/rest/reference/projects#create-a-repository-project
+        Attributes:
+        Path Parameters:
+        owner
+        repo
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/repos/{owner}/{repo}/projects"
+        response = self._execute("post", url, payload)
+        return response
+
+    def create_a_user_project(self, **payload):
+        """
+        Create a user project
+        https://docs.github.com/rest/reference/projects#create-a-user-project
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/user/projects"
+        response = self._execute("post", url, payload)
+        return response
+
+    def list_user_projects(self, username, **payload):
+        """
+        List user projects
+        https://docs.github.com/rest/reference/projects#list-user-projects
+        Attributes:
+        Path Parameters:
+        username
+        Payload Parameters:
+        state
+         per-page
+         page
+        """
+        url = self._base_url + f"/users/{username}/projects"
+        response = self._execute("get", url, payload)
+        return response
