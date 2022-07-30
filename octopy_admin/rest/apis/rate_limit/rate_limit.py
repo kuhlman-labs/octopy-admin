@@ -4,11 +4,15 @@ Check your current rate limit status
 
 
 class RateLimit:
+    # pylint: disable=too-few-public-methods
     """
     Check your current rate limit status
     """
 
     def __init__(self, client):
+        """
+        Initialize the RateLimit class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,6 +26,6 @@ class RateLimit:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/rate_limit"
+        url = self._base_url + "/rate_limit"
         response = self._execute("get", url, payload)
         return response

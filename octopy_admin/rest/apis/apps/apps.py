@@ -4,11 +4,15 @@ Information for integrations and installations.
 
 
 class Apps:
+    # pylint: disable=too-many-public-methods
     """
     Information for integrations and installations.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Apps class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +26,7 @@ class Apps:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/app"
+        url = self._base_url + "/app"
         response = self._execute("get", url, payload)
         return response
 
@@ -50,7 +54,7 @@ class Apps:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/app/hook/config"
+        url = self._base_url + "/app/hook/config"
         response = self._execute("get", url, payload)
         return response
 
@@ -64,7 +68,7 @@ class Apps:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/app/hook/config"
+        url = self._base_url + "/app/hook/config"
         response = self._execute("patch", url, payload)
         return response
 
@@ -79,7 +83,7 @@ class Apps:
         per-page
          cursor
         """
-        url = self._base_url + f"/app/hook/deliveries"
+        url = self._base_url + "/app/hook/deliveries"
         response = self._execute("get", url, payload)
         return response
 
@@ -124,7 +128,7 @@ class Apps:
          since
          outdated
         """
-        url = self._base_url + f"/app/installations"
+        url = self._base_url + "/app/installations"
         response = self._execute("get", url, payload)
         return response
 
@@ -293,7 +297,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/installation/repositories"
+        url = self._base_url + "/installation/repositories"
         response = self._execute("get", url, payload)
         return response
 
@@ -307,7 +311,7 @@ class Apps:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/installation/token"
+        url = self._base_url + "/installation/token"
         response = self._execute("delete", url, payload)
         return response
 
@@ -336,7 +340,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/marketplace_listing/plans"
+        url = self._base_url + "/marketplace_listing/plans"
         response = self._execute("get", url, payload)
         return response
 
@@ -382,7 +386,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/marketplace_listing/stubbed/plans"
+        url = self._base_url + "/marketplace_listing/stubbed/plans"
         response = self._execute("get", url, payload)
         return response
 
@@ -443,7 +447,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/user/installations"
+        url = self._base_url + "/user/installations"
         response = self._execute("get", url, payload)
         return response
 
@@ -525,7 +529,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/user/marketplace_purchases"
+        url = self._base_url + "/user/marketplace_purchases"
         response = self._execute("get", url, payload)
         return response
 
@@ -540,7 +544,7 @@ class Apps:
         per-page
          page
         """
-        url = self._base_url + f"/user/marketplace_purchases/stubbed"
+        url = self._base_url + "/user/marketplace_purchases/stubbed"
         response = self._execute("get", url, payload)
         return response
 

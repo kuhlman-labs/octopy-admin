@@ -9,6 +9,9 @@ class CodesOfConduct:
     """
 
     def __init__(self, client):
+        """
+        Initialize the CodesOfConduct class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +25,7 @@ class CodesOfConduct:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/codes_of_conduct"
+        url = self._base_url + "/codes_of_conduct"
         response = self._execute("get", url, payload)
         return response
 

@@ -4,11 +4,15 @@ Interact with reactions to various GitHub entities.
 
 
 class Reactions:
+    # pylint: disable=too-many-public-methods
     """
     Interact with reactions to various GitHub entities.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Reactions class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -31,7 +35,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("get", url, payload)
         return response
@@ -39,6 +43,7 @@ class Reactions:
     def create_reaction_for_a_team_discussion_comment(
         self, org, team_slug, discussion_number, comment_number, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Create reaction for a team discussion comment
         https://docs.github.com/rest/reference/reactions#create-reaction-for-a-team-discussion-comment
@@ -53,7 +58,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("post", url, payload)
         return response
@@ -61,6 +66,7 @@ class Reactions:
     def delete_team_discussion_comment_reaction(
         self, org, team_slug, discussion_number, comment_number, reaction_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Delete team discussion comment reaction
         https://docs.github.com/rest/reference/reactions#delete-team-discussion-comment-reaction
@@ -76,7 +82,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions/{reaction_id}"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions/{reaction_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -138,7 +144,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions/{reaction_id}"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions/{reaction_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -340,6 +346,7 @@ class Reactions:
     def delete_a_pull_request_comment_reaction(
         self, owner, repo, comment_id, reaction_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Delete a pull request comment reaction
         https://docs.github.com/rest/reference/reactions#delete-a-pull-request-comment-reaction
@@ -362,6 +369,7 @@ class Reactions:
     def list_reactions_for_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         List reactions for a pull request thread comment
         https://docs.github.com/rest/reference/reactions#list-reactions-for-a-pull-request-thread-comment
@@ -379,7 +387,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions"
+            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("get", url, payload)
         return response
@@ -387,6 +395,7 @@ class Reactions:
     def create_a_reaction_to_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Create a reaction to a pull request thread comment
         https://docs.github.com/rest/reference/reactions#create-a-reaction-to-a-pull-request-thread-comment
@@ -402,7 +411,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions"
+            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("post", url, payload)
         return response
@@ -410,6 +419,7 @@ class Reactions:
     def delete_a_reaction_to_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, reaction_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Delete a reaction to a pull request thread comment
         https://docs.github.com/rest/reference/reactions#delete-a-thread-comment-reaction
@@ -426,7 +436,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions/{reaction_id}"
+            + f"/repos/{owner}/{repo}/pulls/{pull_number}/threads/{thread_id}/comments/{comment_id}/reactions/{reaction_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -502,7 +512,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions"
+            + f"/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("get", url, payload)
         return response
@@ -523,7 +533,7 @@ class Reactions:
         """
         url = (
             self._base_url
-            + f"/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions"
+            + f"/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("post", url, payload)
         return response

@@ -1,14 +1,19 @@
 """
 Interact with GitHub Teams.
 """
+# pylint: disable=too-many-lines
 
 
 class Teams:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Teams.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Teams class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -270,7 +275,7 @@ class Teams:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("get", url, payload)
         return response
@@ -292,7 +297,7 @@ class Teams:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("patch", url, payload)
         return response
@@ -314,7 +319,7 @@ class Teams:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"
+            + f"/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -1132,6 +1137,6 @@ class Teams:
         per-page
          page
         """
-        url = self._base_url + f"/user/teams"
+        url = self._base_url + "/user/teams"
         response = self._execute("get", url, payload)
         return response

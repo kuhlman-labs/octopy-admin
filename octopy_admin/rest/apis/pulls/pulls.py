@@ -4,11 +4,15 @@ Interact with GitHub Pull Requests.
 
 
 class Pulls:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Pull Requests.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Pulls class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -512,6 +516,7 @@ class Pulls:
     def get_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Get a pull request thread comment
         https://docs.github.com/rest/reference/pulls#get-a-thread-comment
@@ -535,6 +540,7 @@ class Pulls:
     def update_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Update a pull request thread comment
         https://docs.github.com/rest/reference/pulls#update-a-thread-comment
@@ -558,6 +564,7 @@ class Pulls:
     def delete_a_pull_request_thread_comment(
         self, owner, repo, pull_number, thread_id, comment_id, **payload
     ):
+        # pylint: disable=too-many-arguments
         """
         Delete a pull request thread comment
         https://docs.github.com/rest/reference/pulls#delete-a-thread-comment

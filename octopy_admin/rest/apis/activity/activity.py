@@ -4,11 +4,15 @@ Activity APIs provide access to notifications, subscriptions, and timelines.
 
 
 class Activity:
+    # pylint: disable=too-many-public-methods
     """
     Activity APIs provide access to notifications, subscriptions, and timelines.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Activity class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -23,7 +27,7 @@ class Activity:
         per-page
          page
         """
-        url = self._base_url + f"/events"
+        url = self._base_url + "/events"
         response = self._execute("get", url, payload)
         return response
 
@@ -37,7 +41,7 @@ class Activity:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/feeds"
+        url = self._base_url + "/feeds"
         response = self._execute("get", url, payload)
         return response
 
@@ -72,7 +76,7 @@ class Activity:
          per-page
          page
         """
-        url = self._base_url + f"/notifications"
+        url = self._base_url + "/notifications"
         response = self._execute("get", url, payload)
         return response
 
@@ -86,7 +90,7 @@ class Activity:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/notifications"
+        url = self._base_url + "/notifications"
         response = self._execute("put", url, payload)
         return response
 
@@ -316,7 +320,7 @@ class Activity:
          per-page
          page
         """
-        url = self._base_url + f"/user/starred"
+        url = self._base_url + "/user/starred"
         response = self._execute("get", url, payload)
         return response
 
@@ -376,7 +380,7 @@ class Activity:
         per-page
          page
         """
-        url = self._base_url + f"/user/subscriptions"
+        url = self._base_url + "/user/subscriptions"
         response = self._execute("get", url, payload)
         return response
 

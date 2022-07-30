@@ -1,42 +1,52 @@
+"""
+These scripts are used to update a string in an existing webhook url to a new value.
+"""
 import os
 import sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from dotenv import load_dotenv
 
-import octopy_admin.rest as rest
+from octopy_admin.rest.rest_client import RestClient, RestClientError
 
-config = load_dotenv()
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
-restpatch = rest.RestPatch()
-restget = rest.RestGet()
+
+CONFIG = load_dotenv()
+
+github = RestClient()
 
 
 def replace_string_in_org_webhooks_url(org, string_to_replace, new_string):
+    """
+    Replace a string in an org's webhooks url.
+    """
     try:
-        webook_org_list = restget.get_org_webhook_list(org)
+        webook_org_list = github.orgs.list_organization_webhooks(org)
         for webhook in webook_org_list:
             webhook_url = webhook.get("config").get("url")
             if string_to_replace in webhook_url:
                 new_webhook_url = webhook_url.replace(string_to_replace, new_string)
                 print(f"Updating webhook url: {webhook_url} -> {new_webhook_url}")
-                restpatch.update_org_webhook_config(
-                    org, webhook.get("id"), {"url": new_webhook_url}
+                github.orgs.update_an_organization_webhook(
+                    org, webhook.get("id"), payload={"url": new_webhook_url}
                 )
-    except rest.RestRequestError as err:
+    except RestClientError as err:
         print(err)
 
 
 def replace_string_in_repo_webhooks_url(org, repo, string_to_replace, new_string):
+    """
+    Replace a string in a repo's webhooks url.
+    """
     try:
-        webook_repo_list = restget.get_repo_webhook_list(org, repo)
+        webook_repo_list = github.repos.list_repository_webhooks(org, repo)
         for webhook in webook_repo_list:
             webhook_url = webhook.get("config").get("url")
             if string_to_replace in webhook_url:
                 new_webhook_url = webhook_url.replace(string_to_replace, new_string)
                 print(f"Updating webhook url: {webhook_url} -> {new_webhook_url}")
-                restpatch.update_repo_webhook_config(
-                    org, repo, webhook.get("id"), {"url": new_webhook_url}
+                github.repos.update_a_repository_webhook(
+                    org, repo, webhook.get("id"), payload={"url": new_webhook_url}
                 )
-    except RestRequestError as err:
+    except RestClientError as err:
         print(err)

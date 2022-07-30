@@ -4,11 +4,15 @@ Interact with and view information about users and also current user.
 
 
 class Users:
+    # pylint: disable=too-many-public-methods
     """
     Interact with and view information about users and also current user.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Users class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +26,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user"
+        url = self._base_url + "/user"
         response = self._execute("get", url, payload)
         return response
 
@@ -36,7 +40,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user"
+        url = self._base_url + "/user"
         response = self._execute("patch", url, payload)
         return response
 
@@ -50,7 +54,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/blocks"
+        url = self._base_url + "/user/blocks"
         response = self._execute("get", url, payload)
         return response
 
@@ -106,7 +110,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/email/visibility"
+        url = self._base_url + "/user/email/visibility"
         response = self._execute("patch", url, payload)
         return response
 
@@ -121,7 +125,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/emails"
+        url = self._base_url + "/user/emails"
         response = self._execute("get", url, payload)
         return response
 
@@ -135,7 +139,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/emails"
+        url = self._base_url + "/user/emails"
         response = self._execute("post", url, payload)
         return response
 
@@ -149,7 +153,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/emails"
+        url = self._base_url + "/user/emails"
         response = self._execute("delete", url, payload)
         return response
 
@@ -164,7 +168,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/followers"
+        url = self._base_url + "/user/followers"
         response = self._execute("get", url, payload)
         return response
 
@@ -179,7 +183,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/following"
+        url = self._base_url + "/user/following"
         response = self._execute("get", url, payload)
         return response
 
@@ -236,7 +240,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/gpg_keys"
+        url = self._base_url + "/user/gpg_keys"
         response = self._execute("get", url, payload)
         return response
 
@@ -250,7 +254,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/gpg_keys"
+        url = self._base_url + "/user/gpg_keys"
         response = self._execute("post", url, payload)
         return response
 
@@ -293,7 +297,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/keys"
+        url = self._base_url + "/user/keys"
         response = self._execute("get", url, payload)
         return response
 
@@ -307,7 +311,7 @@ class Users:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/keys"
+        url = self._base_url + "/user/keys"
         response = self._execute("post", url, payload)
         return response
 
@@ -350,7 +354,7 @@ class Users:
         per-page
          page
         """
-        url = self._base_url + f"/user/public_emails"
+        url = self._base_url + "/user/public_emails"
         response = self._execute("get", url, payload)
         return response
 
@@ -365,7 +369,7 @@ class Users:
         since-user
          per-page
         """
-        url = self._base_url + f"/users"
+        url = self._base_url + "/users"
         response = self._execute("get", url, payload)
         return response
 

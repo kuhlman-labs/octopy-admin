@@ -9,6 +9,9 @@ class Gitignore:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Gitignore class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +25,7 @@ class Gitignore:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/gitignore/templates"
+        url = self._base_url + "/gitignore/templates"
         response = self._execute("get", url, payload)
         return response
 
@@ -32,6 +35,7 @@ class Gitignore:
         https://docs.github.com/rest/reference/gitignore#get-a-gitignore-template
         Attributes:
         Path Parameters:
+        name
         name
         Payload Parameters:
 

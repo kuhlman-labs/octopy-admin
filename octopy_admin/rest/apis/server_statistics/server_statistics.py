@@ -4,11 +4,15 @@ GHES statistics
 
 
 class ServerStatistics:
+    # pylint: disable=too-few-public-methods
     """
     GHES statistics
     """
 
     def __init__(self, client):
+        """
+        Initialize the ServerStatistics class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 

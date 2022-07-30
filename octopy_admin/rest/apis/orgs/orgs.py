@@ -4,11 +4,15 @@ Interact with GitHub Orgs.
 
 
 class Orgs:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Orgs.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Orgs class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -23,7 +27,7 @@ class Orgs:
         since-org
          per-page
         """
-        url = self._base_url + f"/organizations"
+        url = self._base_url + "/organizations"
         response = self._execute("get", url, payload)
         return response
 
@@ -653,7 +657,7 @@ class Orgs:
          per-page
          page
         """
-        url = self._base_url + f"/user/memberships/orgs"
+        url = self._base_url + "/user/memberships/orgs"
         response = self._execute("get", url, payload)
         return response
 
@@ -696,7 +700,7 @@ class Orgs:
         per-page
          page
         """
-        url = self._base_url + f"/user/orgs"
+        url = self._base_url + "/user/orgs"
         response = self._execute("get", url, payload)
         return response
 

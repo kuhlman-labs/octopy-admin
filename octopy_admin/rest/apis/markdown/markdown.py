@@ -9,6 +9,9 @@ class Markdown:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Markdown class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +25,7 @@ class Markdown:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/markdown"
+        url = self._base_url + "/markdown"
         response = self._execute("post", url, payload)
         return response
 
@@ -36,6 +39,6 @@ class Markdown:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/markdown/raw"
+        url = self._base_url + "/markdown/raw"
         response = self._execute("post", url, payload)
         return response
