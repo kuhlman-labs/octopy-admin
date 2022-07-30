@@ -9,6 +9,9 @@ class Meta:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Meta class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +25,7 @@ class Meta:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/"
+        url = self._base_url + "/"
         response = self._execute("get", url, payload)
         return response
 
@@ -36,7 +39,7 @@ class Meta:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/meta"
+        url = self._base_url + "/meta"
         response = self._execute("get", url, payload)
         return response
 
@@ -50,7 +53,7 @@ class Meta:
         Payload Parameters:
         s
         """
-        url = self._base_url + f"/octocat"
+        url = self._base_url + "/octocat"
         response = self._execute("get", url, payload)
         return response
 
@@ -64,7 +67,7 @@ class Meta:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/versions"
+        url = self._base_url + "/versions"
         response = self._execute("get", url, payload)
         return response
 
@@ -78,6 +81,6 @@ class Meta:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/zen"
+        url = self._base_url + "/zen"
         response = self._execute("get", url, payload)
         return response

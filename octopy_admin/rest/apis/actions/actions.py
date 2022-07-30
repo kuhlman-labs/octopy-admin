@@ -1,14 +1,19 @@
 """
 Endpoints to manage GitHub Actions using the REST API.
 """
+# pylint: disable=too-many-lines
 
 
 class Actions:
+    # pylint: disable=too-many-public-methods
     """
     Endpoints to manage GitHub Actions using the REST API.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Actions class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 

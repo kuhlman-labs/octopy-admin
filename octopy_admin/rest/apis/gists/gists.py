@@ -9,6 +9,9 @@ class Gists:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Gists class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -24,7 +27,7 @@ class Gists:
          per-page
          page
         """
-        url = self._base_url + f"/gists"
+        url = self._base_url + "/gists"
         response = self._execute("get", url, payload)
         return response
 
@@ -38,7 +41,7 @@ class Gists:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/gists"
+        url = self._base_url + "/gists"
         response = self._execute("post", url, payload)
         return response
 
@@ -54,7 +57,7 @@ class Gists:
          per-page
          page
         """
-        url = self._base_url + f"/gists/public"
+        url = self._base_url + "/gists/public"
         response = self._execute("get", url, payload)
         return response
 
@@ -70,7 +73,7 @@ class Gists:
          per-page
          page
         """
-        url = self._base_url + f"/gists/starred"
+        url = self._base_url + "/gists/starred"
         response = self._execute("get", url, payload)
         return response
 

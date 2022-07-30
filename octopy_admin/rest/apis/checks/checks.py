@@ -9,6 +9,9 @@ class Checks:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Checks class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 

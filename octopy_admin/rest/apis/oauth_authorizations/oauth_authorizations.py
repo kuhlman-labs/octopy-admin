@@ -9,6 +9,9 @@ class OauthAuthorizations:
     """
 
     def __init__(self, client):
+        """
+        Initialize the OauthAuthorizations class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -24,7 +27,7 @@ class OauthAuthorizations:
          page
          client_id
         """
-        url = self._base_url + f"/applications/grants"
+        url = self._base_url + "/applications/grants"
         response = self._execute("get", url, payload)
         return response
 
@@ -68,7 +71,7 @@ class OauthAuthorizations:
          page
          client_id
         """
-        url = self._base_url + f"/authorizations"
+        url = self._base_url + "/authorizations"
         response = self._execute("get", url, payload)
         return response
 
@@ -82,11 +85,11 @@ class OauthAuthorizations:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/authorizations"
+        url = self._base_url + "/authorizations"
         response = self._execute("post", url, payload)
         return response
 
-    def get_or_create_an_authorization_for_a_specific_app(self, **payload):
+    def get_or_create_an_authorization_for_a_specific_app(self, client_id, **payload):
         """
         Get-or-create an authorization for a specific app
         https://docs.github.com/rest/reference/oauth-authorizations#get-or-create-an-authorization-for-a-specific-app
@@ -94,14 +97,14 @@ class OauthAuthorizations:
         Path Parameters:
 
         Payload Parameters:
-        oauth-client-id
+        client_secret
         """
         url = self._base_url + f"/authorizations/clients/{client_id}"
         response = self._execute("put", url, payload)
         return response
 
     def get_or_create_an_authorization_for_a_specific_app_and_fingerprint(
-        self, fingerprint, **payload
+        self, fingerprint, client_id, **payload
     ):
         """
         Get-or-create an authorization for a specific app and fingerprint
@@ -109,8 +112,9 @@ class OauthAuthorizations:
         Attributes:
         Path Parameters:
         fingerprint
+        client_id
         Payload Parameters:
-        oauth-client-id
+        client_secret
         """
         url = self._base_url + f"/authorizations/clients/{client_id}/{fingerprint}"
         response = self._execute("put", url, payload)

@@ -4,11 +4,15 @@ Interact with GitHub Issues.
 
 
 class Issues:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Issues.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Issues class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -33,7 +37,7 @@ class Issues:
          per-page
          page
         """
-        url = self._base_url + f"/issues"
+        url = self._base_url + "/issues"
         response = self._execute("get", url, payload)
         return response
 
@@ -410,6 +414,7 @@ class Issues:
         return response
 
     def remove_a_label_from_an_issue(self, owner, repo, issue_number, name, **payload):
+        # pylint: disable=too-many-arguments
         """
         Remove a label from an issue
         https://docs.github.com/rest/reference/issues#remove-a-label-from-an-issue
@@ -670,6 +675,6 @@ class Issues:
          per-page
          page
         """
-        url = self._base_url + f"/user/issues"
+        url = self._base_url + "/user/issues"
         response = self._execute("get", url, payload)
         return response

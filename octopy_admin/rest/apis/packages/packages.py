@@ -4,11 +4,15 @@ Manage packages for authenticated users and organizations.
 
 
 class Packages:
+    # pylint: disable=too-many-public-methods
     """
     Manage packages for authenticated users and organizations.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Packages class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -156,7 +160,7 @@ class Packages:
         """
         url = (
             self._base_url
-            + f"/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore"
+            + f"/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("post", url, payload)
         return response
@@ -172,7 +176,7 @@ class Packages:
         package_type
          package-visibility
         """
-        url = self._base_url + f"/user/packages"
+        url = self._base_url + "/user/packages"
         response = self._execute("get", url, payload)
         return response
 
@@ -401,7 +405,7 @@ class Packages:
         """
         url = (
             self._base_url
-            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}"
+            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("get", url, payload)
         return response
@@ -423,7 +427,7 @@ class Packages:
         """
         url = (
             self._base_url
-            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}"
+            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -445,7 +449,7 @@ class Packages:
         """
         url = (
             self._base_url
-            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore"
+            + f"/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("post", url, payload)
         return response

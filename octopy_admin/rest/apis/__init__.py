@@ -1,3 +1,7 @@
+"""
+Init file for apis package.
+"""
+# flake8: noqa
 from .actions import actions
 from .activity import activity
 from .apps import apps

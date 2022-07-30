@@ -1,3 +1,5 @@
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+
 # OctoPy Admin
 
 OctoPy Admin is a python library for interacting with the GitHub API.

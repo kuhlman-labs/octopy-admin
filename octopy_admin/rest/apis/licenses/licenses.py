@@ -9,6 +9,9 @@ class Licenses:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Licenses class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -24,11 +27,12 @@ class Licenses:
          per-page
          page
         """
-        url = self._base_url + f"/licenses"
+        url = self._base_url + "/licenses"
         response = self._execute("get", url, payload)
         return response
 
     def get_a_license(self, license, **payload):
+        # pylint: disable=redefined-builtin
         """
         Get a license
         https://docs.github.com/rest/reference/licenses#get-a-license

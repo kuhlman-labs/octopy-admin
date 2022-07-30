@@ -4,11 +4,15 @@ Move projects to or from GitHub.
 
 
 class Migrations:
+    # pylint: disable=too-many-public-methods
     """
     Move projects to or from GitHub.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Migrations class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -251,7 +255,7 @@ class Migrations:
         per-page
          page
         """
-        url = self._base_url + f"/user/migrations"
+        url = self._base_url + "/user/migrations"
         response = self._execute("get", url, payload)
         return response
 
@@ -265,7 +269,7 @@ class Migrations:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/migrations"
+        url = self._base_url + "/user/migrations"
         response = self._execute("post", url, payload)
         return response
 

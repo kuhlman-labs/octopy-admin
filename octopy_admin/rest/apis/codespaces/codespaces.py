@@ -4,11 +4,15 @@ Endpoints to manage Codespaces using the REST API.
 
 
 class Codespaces:
+    # pylint: disable=too-many-public-methods
     """
     Endpoints to manage Codespaces using the REST API.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Codespaces class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -310,7 +314,7 @@ class Codespaces:
          page
          repository-id-in-query
         """
-        url = self._base_url + f"/user/codespaces"
+        url = self._base_url + "/user/codespaces"
         response = self._execute("get", url, payload)
         return response
 
@@ -324,7 +328,7 @@ class Codespaces:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/codespaces"
+        url = self._base_url + "/user/codespaces"
         response = self._execute("post", url, payload)
         return response
 
@@ -339,7 +343,7 @@ class Codespaces:
         per-page
          page
         """
-        url = self._base_url + f"/user/codespaces/secrets"
+        url = self._base_url + "/user/codespaces/secrets"
         response = self._execute("get", url, payload)
         return response
 
@@ -353,7 +357,7 @@ class Codespaces:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/codespaces/secrets/public-key"
+        url = self._base_url + "/user/codespaces/secrets/public-key"
         response = self._execute("get", url, payload)
         return response
 

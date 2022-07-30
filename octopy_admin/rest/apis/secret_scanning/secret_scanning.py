@@ -9,6 +9,9 @@ class SecretScanning:
     """
 
     def __init__(self, client):
+        """
+        Initialize the SecretScanning class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 

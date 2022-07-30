@@ -4,11 +4,15 @@ Interact with GitHub Projects.
 
 
 class Projects:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Projects.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Projects class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -358,7 +362,7 @@ class Projects:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/projects"
+        url = self._base_url + "/user/projects"
         response = self._execute("post", url, payload)
         return response
 

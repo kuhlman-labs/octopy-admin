@@ -9,6 +9,9 @@ class Interactions:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Interactions class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -109,7 +112,7 @@ class Interactions:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/interaction-limits"
+        url = self._base_url + "/user/interaction-limits"
         response = self._execute("get", url, payload)
         return response
 
@@ -123,7 +126,7 @@ class Interactions:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/interaction-limits"
+        url = self._base_url + "/user/interaction-limits"
         response = self._execute("put", url, payload)
         return response
 
@@ -137,6 +140,6 @@ class Interactions:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/interaction-limits"
+        url = self._base_url + "/user/interaction-limits"
         response = self._execute("delete", url, payload)
         return response

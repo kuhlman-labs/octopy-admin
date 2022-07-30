@@ -4,11 +4,15 @@ Administer a GitHub enterprise.
 
 
 class EnterpriseAdmin:
+    # pylint: disable=too-many-public-methods
     """
     Administer a GitHub enterprise.
     """
 
     def __init__(self, client):
+        """
+        Initialize the EnterpriseAdmin class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -277,7 +281,7 @@ class EnterpriseAdmin:
         """
         url = (
             self._base_url
-            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}"
+            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("put", url, payload)
         return response
@@ -298,7 +302,7 @@ class EnterpriseAdmin:
         """
         url = (
             self._base_url
-            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}"
+            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -360,7 +364,7 @@ class EnterpriseAdmin:
         """
         url = (
             self._base_url
-            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"
+            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("put", url, payload)
         return response
@@ -381,7 +385,7 @@ class EnterpriseAdmin:
         """
         url = (
             self._base_url
-            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"
+            + f"/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"  # pylint: disable=line-too-long # noqa: E501
         )
         response = self._execute("delete", url, payload)
         return response
@@ -542,7 +546,7 @@ class EnterpriseAdmin:
         return response
 
     def remove_a_custom_label_from_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, **payload
+        self, enterprise, runner_id, name, **payload
     ):
         """
         Remove a custom label from a self-hosted runner for an enterprise
@@ -551,6 +555,7 @@ class EnterpriseAdmin:
         Path Parameters:
         enterprise
         runner_id
+        name
         Payload Parameters:
         runner-label-name
         """

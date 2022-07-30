@@ -1,14 +1,19 @@
 """
 Interact with GitHub Repos.
 """
+# pylint: disable=too-many-lines
 
 
 class Repos:
+    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Repos.
     """
 
     def __init__(self, client):
+        """
+        Initialize the Repos class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -2007,7 +2012,7 @@ class Repos:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_repository_readme_for_a_directory(self, owner, repo, dir, **payload):
+    def get_a_repository_readme_for_a_directory(self, owner, repo, directory, **payload):
         """
         Get a repository README for a directory
         https://docs.github.com/rest/reference/repos#get-a-repository-directory-readme
@@ -2015,11 +2020,11 @@ class Repos:
         Path Parameters:
         owner
         repo
-        dir
+        directory
         Payload Parameters:
         ref
         """
-        url = self._base_url + f"/repos/{owner}/{repo}/readme/{dir}"
+        url = self._base_url + f"/repos/{owner}/{repo}/readme/{directory}"
         response = self._execute("get", url, payload)
         return response
 
@@ -2609,7 +2614,7 @@ class Repos:
         Payload Parameters:
         since-repo
         """
-        url = self._base_url + f"/repositories"
+        url = self._base_url + "/repositories"
         response = self._execute("get", url, payload)
         return response
 
@@ -2645,7 +2650,7 @@ class Repos:
          since
          before
         """
-        url = self._base_url + f"/user/repos"
+        url = self._base_url + "/user/repos"
         response = self._execute("get", url, payload)
         return response
 
@@ -2659,7 +2664,7 @@ class Repos:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/user/repos"
+        url = self._base_url + "/user/repos"
         response = self._execute("post", url, payload)
         return response
 
@@ -2674,7 +2679,7 @@ class Repos:
         per-page
          page
         """
-        url = self._base_url + f"/user/repository_invitations"
+        url = self._base_url + "/user/repository_invitations"
         response = self._execute("get", url, payload)
         return response
 

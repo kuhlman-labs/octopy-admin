@@ -9,6 +9,9 @@ class Search:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Search class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
@@ -22,7 +25,7 @@ class Search:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/internal/blackbird/accessible_resources"
+        url = self._base_url + "/internal/blackbird/accessible_resources"
         response = self._execute("post", url, payload)
         return response
 
@@ -36,7 +39,7 @@ class Search:
         Payload Parameters:
 
         """
-        url = self._base_url + f"/internal/blackbird/authorize"
+        url = self._base_url + "/internal/blackbird/authorize"
         response = self._execute("post", url, payload)
         return response
 
@@ -54,7 +57,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/code"
+        url = self._base_url + "/search/code"
         response = self._execute("get", url, payload)
         return response
 
@@ -72,7 +75,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/commits"
+        url = self._base_url + "/search/commits"
         response = self._execute("get", url, payload)
         return response
 
@@ -90,7 +93,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/issues"
+        url = self._base_url + "/search/issues"
         response = self._execute("get", url, payload)
         return response
 
@@ -109,7 +112,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/labels"
+        url = self._base_url + "/search/labels"
         response = self._execute("get", url, payload)
         return response
 
@@ -127,7 +130,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/repositories"
+        url = self._base_url + "/search/repositories"
         response = self._execute("get", url, payload)
         return response
 
@@ -143,7 +146,7 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/topics"
+        url = self._base_url + "/search/topics"
         response = self._execute("get", url, payload)
         return response
 
@@ -161,6 +164,6 @@ class Search:
          per-page
          page
         """
-        url = self._base_url + f"/search/users"
+        url = self._base_url + "/search/users"
         response = self._execute("get", url, payload)
         return response

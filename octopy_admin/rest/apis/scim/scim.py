@@ -9,6 +9,9 @@ class Scim:
     """
 
     def __init__(self, client):
+        """
+        Initialize the Scim class.
+        """
         self._base_url = client._base_url
         self._execute = client._execute
 
