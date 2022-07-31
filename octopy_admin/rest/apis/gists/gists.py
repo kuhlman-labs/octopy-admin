@@ -1,0 +1,311 @@
+"""
+View, modify your gists.
+"""
+
+
+class Gists:
+    """
+    View, modify your gists.
+    """
+
+    def __init__(self, client):
+        """
+        Initialize the Gists class.
+        """
+        self._base_url = client._base_url
+        self._execute = client._execute
+
+    def list_gists_for_the_authenticated_user(self, **payload):
+        """
+        List gists for the authenticated user
+        https://docs.github.com/rest/reference/gists#list-gists-for-the-authenticated-user
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+        since
+         per-page
+         page
+        """
+        url = self._base_url + "/gists"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_a_gist(self, **payload):
+        """
+        Create a gist
+        https://docs.github.com/rest/reference/gists#create-a-gist
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+
+        """
+        url = self._base_url + "/gists"
+        response = self._execute("post", url, payload)
+        return response
+
+    def list_public_gists(self, **payload):
+        """
+        List public gists
+        https://docs.github.com/rest/reference/gists#list-public-gists
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+        since
+         per-page
+         page
+        """
+        url = self._base_url + "/gists/public"
+        response = self._execute("get", url, payload)
+        return response
+
+    def list_starred_gists(self, **payload):
+        """
+        List starred gists
+        https://docs.github.com/rest/reference/gists#list-starred-gists
+        Attributes:
+        Path Parameters:
+
+        Payload Parameters:
+        since
+         per-page
+         page
+        """
+        url = self._base_url + "/gists/starred"
+        response = self._execute("get", url, payload)
+        return response
+
+    def get_a_gist(self, gist_id, **payload):
+        """
+        Get a gist
+        https://docs.github.com/rest/reference/gists#get-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def update_a_gist(self, gist_id, **payload):
+        """
+        Update a gist
+        https://docs.github.com/rest/reference/gists/#update-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}"
+        response = self._execute("patch", url, payload)
+        return response
+
+    def delete_a_gist(self, gist_id, **payload):
+        """
+        Delete a gist
+        https://docs.github.com/rest/reference/gists#delete-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def list_gist_comments(self, gist_id, **payload):
+        """
+        List gist comments
+        https://docs.github.com/rest/reference/gists#list-gist-comments
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+        per-page
+         page
+        """
+        url = self._base_url + f"/gists/{gist_id}/comments"
+        response = self._execute("get", url, payload)
+        return response
+
+    def create_a_gist_comment(self, gist_id, **payload):
+        """
+        Create a gist comment
+        https://docs.github.com/rest/reference/gists#create-a-gist-comment
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/comments"
+        response = self._execute("post", url, payload)
+        return response
+
+    def get_a_gist_comment(self, gist_id, comment_id, **payload):
+        """
+        Get a gist comment
+        https://docs.github.com/rest/reference/gists#get-a-gist-comment
+        Attributes:
+        Path Parameters:
+        gist_id
+        comment_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/comments/{comment_id}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def update_a_gist_comment(self, gist_id, comment_id, **payload):
+        """
+        Update a gist comment
+        https://docs.github.com/rest/reference/gists#update-a-gist-comment
+        Attributes:
+        Path Parameters:
+        gist_id
+        comment_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/comments/{comment_id}"
+        response = self._execute("patch", url, payload)
+        return response
+
+    def delete_a_gist_comment(self, gist_id, comment_id, **payload):
+        """
+        Delete a gist comment
+        https://docs.github.com/rest/reference/gists#delete-a-gist-comment
+        Attributes:
+        Path Parameters:
+        gist_id
+        comment_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/comments/{comment_id}"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def list_gist_commits(self, gist_id, **payload):
+        """
+        List gist commits
+        https://docs.github.com/rest/reference/gists#list-gist-commits
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+        per-page
+         page
+        """
+        url = self._base_url + f"/gists/{gist_id}/commits"
+        response = self._execute("get", url, payload)
+        return response
+
+    def list_gist_forks(self, gist_id, **payload):
+        """
+        List gist forks
+        https://docs.github.com/rest/reference/gists#list-gist-forks
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+        per-page
+         page
+        """
+        url = self._base_url + f"/gists/{gist_id}/forks"
+        response = self._execute("get", url, payload)
+        return response
+
+    def fork_a_gist(self, gist_id, **payload):
+        """
+        Fork a gist
+        https://docs.github.com/rest/reference/gists#fork-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/forks"
+        response = self._execute("post", url, payload)
+        return response
+
+    def check_if_a_gist_is_starred(self, gist_id, **payload):
+        """
+        Check if a gist is starred
+        https://docs.github.com/rest/reference/gists#check-if-a-gist-is-starred
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/star"
+        response = self._execute("get", url, payload)
+        return response
+
+    def star_a_gist(self, gist_id, **payload):
+        """
+        Star a gist
+        https://docs.github.com/rest/reference/gists#star-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/star"
+        response = self._execute("put", url, payload)
+        return response
+
+    def unstar_a_gist(self, gist_id, **payload):
+        """
+        Unstar a gist
+        https://docs.github.com/rest/reference/gists#unstar-a-gist
+        Attributes:
+        Path Parameters:
+        gist_id
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/star"
+        response = self._execute("delete", url, payload)
+        return response
+
+    def get_a_gist_revision(self, gist_id, sha, **payload):
+        """
+        Get a gist revision
+        https://docs.github.com/rest/reference/gists#get-a-gist-revision
+        Attributes:
+        Path Parameters:
+        gist_id
+        sha
+        Payload Parameters:
+
+        """
+        url = self._base_url + f"/gists/{gist_id}/{sha}"
+        response = self._execute("get", url, payload)
+        return response
+
+    def list_gists_for_a_user(self, username, **payload):
+        """
+        List gists for a user
+        https://docs.github.com/rest/reference/gists#list-gists-for-a-user
+        Attributes:
+        Path Parameters:
+        username
+        Payload Parameters:
+        since
+         per-page
+         page
+        """
+        url = self._base_url + f"/users/{username}/gists"
+        response = self._execute("get", url, payload)
+        return response

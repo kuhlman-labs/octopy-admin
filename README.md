@@ -1,10 +1,12 @@
-# OctoPy
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 
-OctoPy is a python library for interacting with the GitHub API.
+# OctoPy Admin
+
+OctoPy Admin is a python library for interacting with the GitHub API.
 
 ## Installation
 
-OctoPy uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
+OctoPy Admin uses Poetry for dependency management. If you haven't installed it already please use Poetry's [official docs](https://python-poetry.org/docs/#installation) for instructions.
 
 1. Install project depenencies.
 

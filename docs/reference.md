@@ -1,6 +1,6 @@
-# Documentation for the `graph_query` module.
+# Graph Package Reference
 
-::: octopy.graph_request.GraphRequest
+::: octopy_admin.graph.graph_request.GraphRequest
     handler: python
     options:
       members:
@@ -10,7 +10,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_query.GraphQuery
+::: octopy_admin.graph.graph_query.GraphQuery
     handler: python
     options:
       members:
@@ -20,7 +20,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_mutation.GraphMutation
+::: octopy_admin.graph.graph_mutation.GraphMutation
     handler: python
     options:
       members:
@@ -29,7 +29,7 @@
       show_root_heading: true
       show_source: false
 
-::: octopy.graph_query_converter.GraphQueryConverter
+::: octopy_admin.graph.graph_query_converter.GraphQueryConverter
     handler: python
     options:
       members:
@@ -38,3 +38,12 @@
         - get_collaborators_permission_list
       show_root_heading: true
       show_source: false
+
+# Rest Package Reference
+
+::: octopy_admin.rest.rest_client
+    handler: python
+    options:
+      members:
+        - __init__
+        - _execute
