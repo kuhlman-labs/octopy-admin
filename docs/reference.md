@@ -1,4 +1,6 @@
-# Graph Package Reference
+# OctoPy Admin Reference
+
+## Graph Package
 
 ::: octopy_admin.graph.graph_request.GraphRequest
     handler: python
@@ -6,7 +8,6 @@
       members:
         - __init__
         - _load_query
-        - _execute
       show_root_heading: true
       show_source: false
 
@@ -39,7 +40,7 @@
       show_root_heading: true
       show_source: false
 
-# Rest Package Reference
+## Rest Package
 
 ::: octopy_admin.rest.rest_client
     handler: python
