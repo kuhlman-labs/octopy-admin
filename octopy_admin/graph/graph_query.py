@@ -1,13 +1,19 @@
 """
 This module is used to make queries through the GitHub GraphQL API.
 """
-from .graph_request import GraphRequest
 
 
-class GraphQuery(GraphRequest):
+class GraphQuery:
     """
     This class is used to get the data from the GraphQL API.
     """
+
+    def __init__(self, client):
+        """
+        Initialize the GraphQuery class.
+        """
+        self._execute = client._execute
+        self._load_query = client._load_query
 
     def _get_page_info(self, results):
         """
@@ -24,9 +30,26 @@ class GraphQuery(GraphRequest):
                         return self._get_page_info(results)
                     return item.get("pageInfo")
 
+    def _get_nodes(self, results):
+        """
+        This module returns a list of nodes from a GraphQL query.
+
+        Attributes:
+            results (dict): The results of a GraphQL query.
+        """
+
+        while results.get("nodes") or results.get("edges") is None:
+            for _, item in results.items():
+                if isinstance(item, dict):
+                    if item.get("nodes"):
+                        return item.get("nodes")
+                    if item.get("edges"):
+                        return item.get("edges")
+                    return self._get_nodes(item)
+
     def _paginate_results(self, query, params):
         """
-        This module returns a generator that will yield a dictionary
+        This method returns a generator that will yield a dictionary
          of all results from a GraphQL query.
 
         Attributes:
@@ -43,6 +66,19 @@ class GraphQuery(GraphRequest):
             yield results
             if not next_page:
                 return
+
+    def results_to_list(self, results):
+        """
+        This method returns a list of all results from the nodes or
+        edges field in a GraphQL query.
+
+        Attributes:
+            results (dict): The results of a GraphQL query.
+        """
+        result_list = []
+        for result in results:
+            result_list.extend(self._get_nodes(result))
+        return result_list
 
     def get_enterprise_orgs(self, enterprise):
         """

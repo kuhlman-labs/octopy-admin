@@ -2,7 +2,7 @@
 
 ## Graph Package
 
-::: octopy_admin.graph.graph_request.GraphRequest
+::: octopy_admin.graph.graph_request.GraphClient
     handler: python
     options:
       members:

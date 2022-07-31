@@ -1,13 +1,19 @@
 """
 This module is used to make mutations through the GitHub GraphQL API.
 """
-from .graph_request import GraphRequest
 
 
-class GraphMutation(GraphRequest):
+class GraphMutation:
     """
     This class is used to make mutations through the GitHub GraphQL API.
     """
+
+    def __init__(self, client):
+        """
+        Initialize the GraphMutation class.
+        """
+        self._execute = client._execute
+        self._load_query = client._load_query
 
     def add_enterprise_org(self, organization):
         """

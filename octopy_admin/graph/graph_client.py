@@ -7,8 +7,10 @@ from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.exceptions import TransportQueryError, TransportServerError
 
+from . import graph_mutation, graph_query
 
-class GraphRequest:  # pylint: disable=too-few-public-methods
+
+class GraphClient:  # pylint: disable=too-few-public-methods
     """
     This following methods are used to form requests to the GitHub GraphQL API.
     """
@@ -20,7 +22,7 @@ class GraphRequest:  # pylint: disable=too-few-public-methods
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise GraphRequestError("API_TOKEN environment variable is not set")
+                raise GraphClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
         if graph_api_url is None:
             graph_api_url = os.environ.get("GRAPH_API_URL", r"https://api.github.com/graphql")
@@ -30,6 +32,9 @@ class GraphRequest:  # pylint: disable=too-few-public-methods
             headers=headers,
         )
         self._client = Client(transport=transport, fetch_schema_from_transport=True)
+
+        self.query = graph_query.GraphQuery(self)
+        self.mutation = graph_mutation.GraphMutation(self)
 
     def _load_query(self, path):
         """
@@ -55,14 +60,14 @@ class GraphRequest:  # pylint: disable=too-few-public-methods
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as errquery:
-            raise GraphRequestError(errquery.errors[0].get("message")) from errquery
+            raise GraphClientError(errquery.errors[0].get("message")) from errquery
         except TransportServerError as errserver:
-            raise GraphRequestError(
+            raise GraphClientError(
                 f"Server responded with a {str(errserver.code)} status code"
             ) from errserver
 
 
-class GraphRequestError(Exception):
+class GraphClientError(Exception):
     """
-    Exception raised when an error occurs in the GraphRequest.
+    Exception raised when an error occurs in the GraphClient.
     """
