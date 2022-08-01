@@ -15,7 +15,7 @@ class Git:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def create_a_blob(self, owner, repo, **payload):
+    def create_a_blob(self, owner, repo, payload=None):
         """
         Create a blob
         https://docs.github.com/rest/reference/git#create-a-blob
@@ -30,7 +30,7 @@ class Git:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_blob(self, owner, repo, file_sha, **payload):
+    def get_a_blob(self, owner, repo, file_sha, payload=None):
         """
         Get a blob
         https://docs.github.com/rest/reference/git#get-a-blob
@@ -46,7 +46,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_commit(self, owner, repo, **payload):
+    def create_a_commit(self, owner, repo, payload=None):
         """
         Create a commit
         https://docs.github.com/rest/reference/git#create-a-commit
@@ -61,7 +61,7 @@ class Git:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_commit(self, owner, repo, commit_sha, **payload):
+    def get_a_commit(self, owner, repo, commit_sha, payload=None):
         """
         Get a commit
         https://docs.github.com/rest/reference/git#get-a-commit
@@ -77,7 +77,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def list_matching_references(self, owner, repo, ref, **payload):
+    def list_matching_references(self, owner, repo, ref, payload=None):
         """
         List matching references
         https://docs.github.com/rest/reference/git#list-matching-references
@@ -94,7 +94,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_reference(self, owner, repo, ref, **payload):
+    def get_a_reference(self, owner, repo, ref, payload=None):
         """
         Get a reference
         https://docs.github.com/rest/reference/git#get-a-reference
@@ -110,7 +110,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_reference(self, owner, repo, **payload):
+    def create_a_reference(self, owner, repo, payload=None):
         """
         Create a reference
         https://docs.github.com/rest/reference/git#create-a-reference
@@ -125,7 +125,7 @@ class Git:
         response = self._execute("post", url, payload)
         return response
 
-    def get_all_references_in_a_namespace(self, owner, repo, namespace, **payload):
+    def get_all_references_in_a_namespace(self, owner, repo, namespace, payload=None):
         """
         Get all references in a namespace
         https://docs.github.com/rest/reference/git#get-a-reference
@@ -142,7 +142,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_reference(self, owner, repo, ref, **payload):
+    def update_a_reference(self, owner, repo, ref, payload=None):
         """
         Update a reference
         https://docs.github.com/rest/reference/git#update-a-reference
@@ -158,7 +158,7 @@ class Git:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_reference(self, owner, repo, ref, **payload):
+    def delete_a_reference(self, owner, repo, ref, payload=None):
         """
         Delete a reference
         https://docs.github.com/rest/reference/git#delete-a-reference
@@ -174,7 +174,7 @@ class Git:
         response = self._execute("delete", url, payload)
         return response
 
-    def create_a_tag_object(self, owner, repo, **payload):
+    def create_a_tag_object(self, owner, repo, payload=None):
         """
         Create a tag object
         https://docs.github.com/rest/reference/git#create-a-tag-object
@@ -189,7 +189,7 @@ class Git:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_tag(self, owner, repo, tag_sha, **payload):
+    def get_a_tag(self, owner, repo, tag_sha, payload=None):
         """
         Get a tag
         https://docs.github.com/rest/reference/git#get-a-tag
@@ -205,7 +205,7 @@ class Git:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_tree(self, owner, repo, **payload):
+    def create_a_tree(self, owner, repo, payload=None):
         """
         Create a tree
         https://docs.github.com/rest/reference/git#create-a-tree
@@ -220,7 +220,7 @@ class Git:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_tree(self, owner, repo, tree_sha, **payload):
+    def get_a_tree(self, owner, repo, tree_sha, payload=None):
         """
         Get a tree
         https://docs.github.com/rest/reference/git#get-a-tree

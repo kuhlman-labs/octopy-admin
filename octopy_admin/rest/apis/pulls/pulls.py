@@ -16,7 +16,7 @@ class Pulls:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_pull_requests(self, owner, repo, **payload):
+    def list_pull_requests(self, owner, repo, payload=None):
         """
         List pull requests
         https://docs.github.com/rest/reference/pulls#list-pull-requests
@@ -37,7 +37,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_pull_request(self, owner, repo, **payload):
+    def create_a_pull_request(self, owner, repo, payload=None):
         """
         Create a pull request
         https://docs.github.com/rest/reference/pulls#create-a-pull-request
@@ -52,7 +52,7 @@ class Pulls:
         response = self._execute("post", url, payload)
         return response
 
-    def list_review_comments_in_a_repository(self, owner, repo, **payload):
+    def list_review_comments_in_a_repository(self, owner, repo, payload=None):
         """
         List review comments in a repository
         https://docs.github.com/rest/reference/pulls#list-review-comments-in-a-repository
@@ -71,7 +71,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, **payload):
+    def get_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, payload=None):
         """
         Get a review comment for a pull request
         https://docs.github.com/rest/reference/pulls#get-a-review-comment-for-a-pull-request
@@ -87,7 +87,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, **payload):
+    def update_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, payload=None):
         """
         Update a review comment for a pull request
         https://docs.github.com/rest/reference/pulls#update-a-review-comment-for-a-pull-request
@@ -103,7 +103,7 @@ class Pulls:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, **payload):
+    def delete_a_review_comment_for_a_pull_request(self, owner, repo, comment_id, payload=None):
         """
         Delete a review comment for a pull request
         https://docs.github.com/rest/reference/pulls#delete-a-review-comment-for-a-pull-request
@@ -119,7 +119,7 @@ class Pulls:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_a_pull_request(self, owner, repo, pull_number, **payload):
+    def get_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Get a pull request
         https://docs.github.com/rest/reference/pulls#get-a-pull-request
@@ -135,7 +135,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_pull_request(self, owner, repo, pull_number, **payload):
+    def update_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Update a pull request
         https://docs.github.com/rest/reference/pulls/#update-a-pull-request
@@ -151,7 +151,7 @@ class Pulls:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_review_comments_on_a_pull_request(self, owner, repo, pull_number, **payload):
+    def list_review_comments_on_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         List review comments on a pull request
         https://docs.github.com/rest/reference/pulls#list-review-comments-on-a-pull-request
@@ -171,7 +171,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_review_comment_for_a_pull_request(self, owner, repo, pull_number, **payload):
+    def create_a_review_comment_for_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Create a review comment for a pull request
         https://docs.github.com/rest/reference/pulls#create-a-review-comment-for-a-pull-request
@@ -187,7 +187,9 @@ class Pulls:
         response = self._execute("post", url, payload)
         return response
 
-    def create_a_reply_for_a_review_comment(self, owner, repo, pull_number, comment_id, **payload):
+    def create_a_reply_for_a_review_comment(
+        self, owner, repo, pull_number, comment_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Create a reply for a review comment
         https://docs.github.com/rest/reference/pulls#create-a-reply-for-a-review-comment
@@ -207,7 +209,7 @@ class Pulls:
         response = self._execute("post", url, payload)
         return response
 
-    def list_commits_on_a_pull_request(self, owner, repo, pull_number, **payload):
+    def list_commits_on_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         List commits on a pull request
         https://docs.github.com/rest/reference/pulls#list-commits-on-a-pull-request
@@ -224,7 +226,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def list_pull_requests_files(self, owner, repo, pull_number, **payload):
+    def list_pull_requests_files(self, owner, repo, pull_number, payload=None):
         """
         List pull requests files
         https://docs.github.com/rest/reference/pulls#list-pull-requests-files
@@ -241,7 +243,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_pull_request_has_been_merged(self, owner, repo, pull_number, **payload):
+    def check_if_a_pull_request_has_been_merged(self, owner, repo, pull_number, payload=None):
         """
         Check if a pull request has been merged
         https://docs.github.com/rest/reference/pulls#check-if-a-pull-request-has-been-merged
@@ -257,7 +259,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def merge_a_pull_request(self, owner, repo, pull_number, **payload):
+    def merge_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Merge a pull request
         https://docs.github.com/rest/reference/pulls#merge-a-pull-request
@@ -273,7 +275,7 @@ class Pulls:
         response = self._execute("put", url, payload)
         return response
 
-    def list_requested_reviewers_for_a_pull_request(self, owner, repo, pull_number, **payload):
+    def list_requested_reviewers_for_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         List requested reviewers for a pull request
         https://docs.github.com/rest/reference/pulls#list-requested-reviewers-for-a-pull-request
@@ -290,7 +292,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def request_reviewers_for_a_pull_request(self, owner, repo, pull_number, **payload):
+    def request_reviewers_for_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Request reviewers for a pull request
         https://docs.github.com/rest/reference/pulls#request-reviewers-for-a-pull-request
@@ -306,7 +308,9 @@ class Pulls:
         response = self._execute("post", url, payload)
         return response
 
-    def remove_requested_reviewers_from_a_pull_request(self, owner, repo, pull_number, **payload):
+    def remove_requested_reviewers_from_a_pull_request(
+        self, owner, repo, pull_number, payload=None
+    ):
         """
         Remove requested reviewers from a pull request
         https://docs.github.com/rest/reference/pulls#remove-requested-reviewers-from-a-pull-request
@@ -322,7 +326,7 @@ class Pulls:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_reviews_for_a_pull_request(self, owner, repo, pull_number, **payload):
+    def list_reviews_for_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         List reviews for a pull request
         https://docs.github.com/rest/reference/pulls#list-reviews-for-a-pull-request
@@ -339,7 +343,7 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_review_for_a_pull_request(self, owner, repo, pull_number, **payload):
+    def create_a_review_for_a_pull_request(self, owner, repo, pull_number, payload=None):
         """
         Create a review for a pull request
         https://docs.github.com/rest/reference/pulls#create-a-review-for-a-pull-request
@@ -355,7 +359,9 @@ class Pulls:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_review_for_a_pull_request(self, owner, repo, pull_number, review_id, **payload):
+    def get_a_review_for_a_pull_request(
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Get a review for a pull request
         https://docs.github.com/rest/reference/pulls#get-a-review-for-a-pull-request
@@ -372,7 +378,9 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_review_for_a_pull_request(self, owner, repo, pull_number, review_id, **payload):
+    def update_a_review_for_a_pull_request(
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Update a review for a pull request
         https://docs.github.com/rest/reference/pulls#update-a-review-for-a-pull-request
@@ -390,8 +398,8 @@ class Pulls:
         return response
 
     def delete_a_pending_review_for_a_pull_request(
-        self, owner, repo, pull_number, review_id, **payload
-    ):
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Delete a pending review for a pull request
         https://docs.github.com/rest/reference/pulls#delete-a-pending-review-for-a-pull-request
@@ -409,8 +417,8 @@ class Pulls:
         return response
 
     def list_comments_for_a_pull_request_review(
-        self, owner, repo, pull_number, review_id, **payload
-    ):
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         List comments for a pull request review
         https://docs.github.com/rest/reference/pulls#list-comments-for-a-pull-request-review
@@ -431,7 +439,9 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def dismiss_a_review_for_a_pull_request(self, owner, repo, pull_number, review_id, **payload):
+    def dismiss_a_review_for_a_pull_request(
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Dismiss a review for a pull request
         https://docs.github.com/rest/reference/pulls#dismiss-a-review-for-a-pull-request
@@ -451,7 +461,9 @@ class Pulls:
         response = self._execute("put", url, payload)
         return response
 
-    def submit_a_review_for_a_pull_request(self, owner, repo, pull_number, review_id, **payload):
+    def submit_a_review_for_a_pull_request(
+        self, owner, repo, pull_number, review_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Submit a review for a pull request
         https://docs.github.com/rest/reference/pulls#submit-a-review-for-a-pull-request
@@ -471,8 +483,8 @@ class Pulls:
         return response
 
     def list_comments_in_a_pull_request_thread(
-        self, owner, repo, pull_number, thread_id, **payload
-    ):
+        self, owner, repo, pull_number, thread_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         List comments in a pull request thread
         https://docs.github.com/rest/reference/pulls#list-thread-comments-in-a-thread
@@ -493,7 +505,9 @@ class Pulls:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_pull_request_thread_comment(self, owner, repo, pull_number, thread_id, **payload):
+    def create_a_pull_request_thread_comment(
+        self, owner, repo, pull_number, thread_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Create a pull request thread comment
         https://docs.github.com/rest/reference/pulls#create-a-thread-comment
@@ -514,7 +528,7 @@ class Pulls:
         return response
 
     def get_a_pull_request_thread_comment(
-        self, owner, repo, pull_number, thread_id, comment_id, **payload
+        self, owner, repo, pull_number, thread_id, comment_id, payload=None
     ):
         # pylint: disable=too-many-arguments
         """
@@ -538,7 +552,7 @@ class Pulls:
         return response
 
     def update_a_pull_request_thread_comment(
-        self, owner, repo, pull_number, thread_id, comment_id, **payload
+        self, owner, repo, pull_number, thread_id, comment_id, payload=None
     ):
         # pylint: disable=too-many-arguments
         """
@@ -562,7 +576,7 @@ class Pulls:
         return response
 
     def delete_a_pull_request_thread_comment(
-        self, owner, repo, pull_number, thread_id, comment_id, **payload
+        self, owner, repo, pull_number, thread_id, comment_id, payload=None
     ):
         # pylint: disable=too-many-arguments
         """
@@ -585,7 +599,7 @@ class Pulls:
         response = self._execute("delete", url, payload)
         return response
 
-    def update_a_pull_request_branch(self, owner, repo, pull_number, **payload):
+    def update_a_pull_request_branch(self, owner, repo, pull_number, payload=None):
         """
         Update a pull request branch
         https://docs.github.com/rest/reference/pulls#update-a-pull-request-branch

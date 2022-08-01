@@ -15,7 +15,7 @@ class Gitignore:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_all_gitignore_templates(self, **payload):
+    def get_all_gitignore_templates(self, payload=None):
         """
         Get all gitignore templates
         https://docs.github.com/rest/reference/gitignore#get-all-gitignore-templates
@@ -29,7 +29,7 @@ class Gitignore:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_gitignore_template(self, name, **payload):
+    def get_a_gitignore_template(self, name, payload=None):
         """
         Get a gitignore template
         https://docs.github.com/rest/reference/gitignore#get-a-gitignore-template

@@ -15,7 +15,7 @@ class DependencyGraph:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_a_diff_of_the_dependencies_between_commits(self, owner, repo, basehead, **payload):
+    def get_a_diff_of_the_dependencies_between_commits(self, owner, repo, basehead, payload=None):
         """
         Get a diff of the dependencies between commits
         https://docs.github.com/rest/reference/dependency-graph#get-a-diff-of-the-dependencies-between-commits
@@ -31,7 +31,7 @@ class DependencyGraph:
         response = self._execute("get", url, payload)
         return response
 
-    def get_snapshot_dependencies_for_a_repository(self, owner, repo, **payload):
+    def get_snapshot_dependencies_for_a_repository(self, owner, repo, payload=None):
         """
         Get snapshot dependencies for a repository
         https://docs.github.com/rest/reference/repos#dependency-graph/get-snapshot-dependencies-for-repo
@@ -46,7 +46,7 @@ class DependencyGraph:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_snapshot_of_dependencies_for_a_repository(self, owner, repo, **payload):
+    def create_a_snapshot_of_dependencies_for_a_repository(self, owner, repo, payload=None):
         """
         Create a snapshot of dependencies for a repository
         https://docs.github.com/rest/reference/dependency-graph#create-a-snapshot-of-dependencies-for-a-repository

@@ -15,7 +15,7 @@ class Search:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_resources_accessible_to_the_access_tokens_session(self, **payload):
+    def list_resources_accessible_to_the_access_tokens_session(self, payload=None):
         """
         List resources accessible to the access_token's session
         https://docs.github.com/rest/reference/blackbird#list-resources-accessible-to-the-current-access-tokens-session
@@ -29,7 +29,7 @@ class Search:
         response = self._execute("post", url, payload)
         return response
 
-    def generate_a_signed_access_token_for_use_with_blackbird_fe(self, **payload):
+    def generate_a_signed_access_token_for_use_with_blackbird_fe(self, payload=None):
         """
         Generate a signed access token for use with blackbird-fe
         https://docs.github.com/rest/reference/blackbird#generate-a-signed-access-token-for-use-with-blackbird-fe
@@ -43,7 +43,7 @@ class Search:
         response = self._execute("post", url, payload)
         return response
 
-    def search_code(self, **payload):
+    def search_code(self, payload=None):
         """
         Search code
         https://docs.github.com/rest/reference/search#search-code
@@ -61,7 +61,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_commits(self, **payload):
+    def search_commits(self, payload=None):
         """
         Search commits
         https://docs.github.com/rest/reference/search#search-commits
@@ -79,7 +79,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_issues_and_pull_requests(self, **payload):
+    def search_issues_and_pull_requests(self, payload=None):
         """
         Search issues and pull requests
         https://docs.github.com/rest/reference/search#search-issues-and-pull-requests
@@ -97,7 +97,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_labels(self, **payload):
+    def search_labels(self, payload=None):
         """
         Search labels
         https://docs.github.com/rest/reference/search#search-labels
@@ -116,7 +116,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_repositories(self, **payload):
+    def search_repositories(self, payload=None):
         """
         Search repositories
         https://docs.github.com/rest/reference/search#search-repositories
@@ -134,7 +134,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_topics(self, **payload):
+    def search_topics(self, payload=None):
         """
         Search topics
         https://docs.github.com/rest/reference/search#search-topics
@@ -150,7 +150,7 @@ class Search:
         response = self._execute("get", url, payload)
         return response
 
-    def search_users(self, **payload):
+    def search_users(self, payload=None):
         """
         Search users
         https://docs.github.com/rest/reference/search#search-users

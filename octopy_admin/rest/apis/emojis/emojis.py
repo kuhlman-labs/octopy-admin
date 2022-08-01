@@ -16,7 +16,7 @@ class Emojis:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_emojis(self, **payload):
+    def get_emojis(self, payload=None):
         """
         Get emojis
         https://docs.github.com/rest/reference/emojis#get-emojis

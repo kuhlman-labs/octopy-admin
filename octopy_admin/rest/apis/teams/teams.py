@@ -17,7 +17,7 @@ class Teams:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_an_external_group(self, org, group_id, **payload):
+    def get_an_external_group(self, org, group_id, payload=None):
         """
         Get an external group
         https://docs.github.com/rest/reference/teams#external-idp-group-info-for-an-organization
@@ -32,7 +32,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_external_groups_in_an_organization(self, org, **payload):
+    def list_external_groups_in_an_organization(self, org, payload=None):
         """
         List external groups in an organization
         https://docs.github.com/rest/reference/teams#list-external-idp-groups-for-an-organization
@@ -48,7 +48,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_idp_groups_for_an_organization(self, org, **payload):
+    def list_idp_groups_for_an_organization(self, org, payload=None):
         """
         List IdP groups for an organization
         https://docs.github.com/rest/reference/teams#list-idp-groups-for-an-organization
@@ -63,7 +63,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_teams(self, org, **payload):
+    def list_teams(self, org, payload=None):
         """
         List teams
         https://docs.github.com/rest/reference/teams#list-teams
@@ -78,7 +78,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_team(self, org, **payload):
+    def create_a_team(self, org, payload=None):
         """
         Create a team
         https://docs.github.com/rest/reference/teams#create-a-team
@@ -92,7 +92,7 @@ class Teams:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_team_by_name(self, org, team_slug, **payload):
+    def get_a_team_by_name(self, org, team_slug, payload=None):
         """
         Get a team by name
         https://docs.github.com/rest/reference/teams#get-a-team-by-name
@@ -107,7 +107,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_team(self, org, team_slug, **payload):
+    def update_a_team(self, org, team_slug, payload=None):
         """
         Update a team
         https://docs.github.com/rest/reference/teams#update-a-team
@@ -122,7 +122,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_team(self, org, team_slug, **payload):
+    def delete_a_team(self, org, team_slug, payload=None):
         """
         Delete a team
         https://docs.github.com/rest/reference/teams#delete-a-team
@@ -137,7 +137,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_discussions(self, org, team_slug, **payload):
+    def list_discussions(self, org, team_slug, payload=None):
         """
         List discussions
         https://docs.github.com/rest/reference/teams#list-discussions
@@ -155,7 +155,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_discussion(self, org, team_slug, **payload):
+    def create_a_discussion(self, org, team_slug, payload=None):
         """
         Create a discussion
         https://docs.github.com/rest/reference/teams#create-a-discussion
@@ -170,7 +170,7 @@ class Teams:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_discussion(self, org, team_slug, discussion_number, **payload):
+    def get_a_discussion(self, org, team_slug, discussion_number, payload=None):
         """
         Get a discussion
         https://docs.github.com/rest/reference/teams#get-a-discussion
@@ -186,7 +186,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_discussion(self, org, team_slug, discussion_number, **payload):
+    def update_a_discussion(self, org, team_slug, discussion_number, payload=None):
         """
         Update a discussion
         https://docs.github.com/rest/reference/teams#update-a-discussion
@@ -202,7 +202,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_discussion(self, org, team_slug, discussion_number, **payload):
+    def delete_a_discussion(self, org, team_slug, discussion_number, payload=None):
         """
         Delete a discussion
         https://docs.github.com/rest/reference/teams#delete-a-discussion
@@ -218,7 +218,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_discussion_comments(self, org, team_slug, discussion_number, **payload):
+    def list_discussion_comments(self, org, team_slug, discussion_number, payload=None):
         """
         List discussion comments
         https://docs.github.com/rest/reference/teams#list-discussion-comments
@@ -239,7 +239,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_discussion_comment(self, org, team_slug, discussion_number, **payload):
+    def create_a_discussion_comment(self, org, team_slug, discussion_number, payload=None):
         """
         Create a discussion comment
         https://docs.github.com/rest/reference/teams#create-a-discussion-comment
@@ -259,8 +259,8 @@ class Teams:
         return response
 
     def get_a_discussion_comment(
-        self, org, team_slug, discussion_number, comment_number, **payload
-    ):
+        self, org, team_slug, discussion_number, comment_number, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Get a discussion comment
         https://docs.github.com/rest/reference/teams#get-a-discussion-comment
@@ -281,8 +281,8 @@ class Teams:
         return response
 
     def update_a_discussion_comment(
-        self, org, team_slug, discussion_number, comment_number, **payload
-    ):
+        self, org, team_slug, discussion_number, comment_number, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Update a discussion comment
         https://docs.github.com/rest/reference/teams#update-a-discussion-comment
@@ -303,8 +303,8 @@ class Teams:
         return response
 
     def delete_a_discussion_comment(
-        self, org, team_slug, discussion_number, comment_number, **payload
-    ):
+        self, org, team_slug, discussion_number, comment_number, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Delete a discussion comment
         https://docs.github.com/rest/reference/teams#delete-a-discussion-comment
@@ -324,7 +324,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_a_connection_between_an_external_group_and_a_team(self, org, team_slug, **payload):
+    def list_a_connection_between_an_external_group_and_a_team(self, org, team_slug, payload=None):
         """
         List a connection between an external group and a team
         https://docs.github.com/rest/reference/teams#list-external-idp-group-team-connection
@@ -339,7 +339,9 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def update_the_connection_between_an_external_group_and_a_team(self, org, team_slug, **payload):
+    def update_the_connection_between_an_external_group_and_a_team(
+        self, org, team_slug, payload=None
+    ):
         """
         Update the connection between an external group and a team
         https://docs.github.com/rest/reference/teams#link-external-idp-group-team-connection
@@ -354,7 +356,9 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def remove_the_connection_between_an_external_group_and_a_team(self, org, team_slug, **payload):
+    def remove_the_connection_between_an_external_group_and_a_team(
+        self, org, team_slug, payload=None
+    ):
         """
         Remove the connection between an external group and a team
         https://docs.github.com/rest/reference/teams#unlink-external-idp-group-team-connection
@@ -369,7 +373,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_pending_team_invitations(self, org, team_slug, **payload):
+    def list_pending_team_invitations(self, org, team_slug, payload=None):
         """
         List pending team invitations
         https://docs.github.com/rest/reference/teams#list-pending-team-invitations
@@ -385,7 +389,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_team_members(self, org, team_slug, **payload):
+    def list_team_members(self, org, team_slug, payload=None):
         """
         List team members
         https://docs.github.com/rest/reference/teams#list-team-members
@@ -402,7 +406,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def get_team_membership_for_a_user(self, org, team_slug, username, **payload):
+    def get_team_membership_for_a_user(self, org, team_slug, username, payload=None):
         """
         Get team membership for a user
         https://docs.github.com/rest/reference/teams#get-team-membership-for-a-user
@@ -418,7 +422,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_membership_for_a_user(self, org, team_slug, username, **payload):
+    def add_or_update_team_membership_for_a_user(self, org, team_slug, username, payload=None):
         """
         Add or update team membership for a user
         https://docs.github.com/rest/reference/teams#add-or-update-team-membership-for-a-user
@@ -434,7 +438,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_team_membership_for_a_user(self, org, team_slug, username, **payload):
+    def remove_team_membership_for_a_user(self, org, team_slug, username, payload=None):
         """
         Remove team membership for a user
         https://docs.github.com/rest/reference/teams#remove-team-membership-for-a-user
@@ -450,7 +454,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_team_projects(self, org, team_slug, **payload):
+    def list_team_projects(self, org, team_slug, payload=None):
         """
         List team projects
         https://docs.github.com/rest/reference/teams#list-team-projects
@@ -466,7 +470,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def check_team_permissions_for_a_project(self, org, team_slug, project_id, **payload):
+    def check_team_permissions_for_a_project(self, org, team_slug, project_id, payload=None):
         """
         Check team permissions for a project
         https://docs.github.com/rest/reference/teams#check-team-permissions-for-a-project
@@ -482,7 +486,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_project_permissions(self, org, team_slug, project_id, **payload):
+    def add_or_update_team_project_permissions(self, org, team_slug, project_id, payload=None):
         """
         Add or update team project permissions
         https://docs.github.com/rest/reference/teams#add-or-update-team-project-permissions
@@ -498,7 +502,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_a_project_from_a_team(self, org, team_slug, project_id, **payload):
+    def remove_a_project_from_a_team(self, org, team_slug, project_id, payload=None):
         """
         Remove a project from a team
         https://docs.github.com/rest/reference/teams#remove-a-project-from-a-team
@@ -514,7 +518,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_team_repositories(self, org, team_slug, **payload):
+    def list_team_repositories(self, org, team_slug, payload=None):
         """
         List team repositories
         https://docs.github.com/rest/reference/teams#list-team-repositories
@@ -530,7 +534,9 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def check_team_permissions_for_a_repository(self, org, team_slug, owner, repo, **payload):
+    def check_team_permissions_for_a_repository(
+        self, org, team_slug, owner, repo, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Check team permissions for a repository
         https://docs.github.com/rest/reference/teams/#check-team-permissions-for-a-repository
@@ -547,7 +553,9 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_repository_permissions(self, org, team_slug, owner, repo, **payload):
+    def add_or_update_team_repository_permissions(
+        self, org, team_slug, owner, repo, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Add or update team repository permissions
         https://docs.github.com/rest/reference/teams/#add-or-update-team-repository-permissions
@@ -564,7 +572,9 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_a_repository_from_a_team(self, org, team_slug, owner, repo, **payload):
+    def remove_a_repository_from_a_team(
+        self, org, team_slug, owner, repo, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Remove a repository from a team
         https://docs.github.com/rest/reference/teams/#remove-a-repository-from-a-team
@@ -581,7 +591,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_idp_groups_for_a_team(self, org, team_slug, **payload):
+    def list_idp_groups_for_a_team(self, org, team_slug, payload=None):
         """
         List IdP groups for a team
         https://docs.github.com/rest/reference/teams#list-idp-groups-for-a-team
@@ -596,7 +606,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_or_update_idp_group_connections(self, org, team_slug, **payload):
+    def create_or_update_idp_group_connections(self, org, team_slug, payload=None):
         """
         Create or update IdP group connections
         https://docs.github.com/rest/reference/teams#create-or-update-idp-group-connections
@@ -611,7 +621,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_child_teams(self, org, team_slug, **payload):
+    def list_child_teams(self, org, team_slug, payload=None):
         """
         List child teams
         https://docs.github.com/rest/reference/teams#list-child-teams
@@ -627,7 +637,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_team__legacy(self, team_id, **payload):
+    def get_a_team__legacy(self, team_id, payload=None):
         """
         Get a team (Legacy)
         https://docs.github.com/rest/reference/teams/#get-a-team-legacy
@@ -641,7 +651,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_team__legacy(self, team_id, **payload):
+    def update_a_team__legacy(self, team_id, payload=None):
         """
         Update a team (Legacy)
         https://docs.github.com/rest/reference/teams/#update-a-team-legacy
@@ -655,7 +665,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_team__legacy(self, team_id, **payload):
+    def delete_a_team__legacy(self, team_id, payload=None):
         """
         Delete a team (Legacy)
         https://docs.github.com/rest/reference/teams/#delete-a-team-legacy
@@ -669,7 +679,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_discussions__legacy(self, team_id, **payload):
+    def list_discussions__legacy(self, team_id, payload=None):
         """
         List discussions (Legacy)
         https://docs.github.com/rest/reference/teams#list-discussions-legacy
@@ -685,7 +695,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_discussion__legacy(self, team_id, **payload):
+    def create_a_discussion__legacy(self, team_id, payload=None):
         """
         Create a discussion (Legacy)
         https://docs.github.com/rest/reference/teams#create-a-discussion-legacy
@@ -699,7 +709,7 @@ class Teams:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_discussion__legacy(self, team_id, discussion_number, **payload):
+    def get_a_discussion__legacy(self, team_id, discussion_number, payload=None):
         """
         Get a discussion (Legacy)
         https://docs.github.com/rest/reference/teams#get-a-discussion-legacy
@@ -714,7 +724,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_discussion__legacy(self, team_id, discussion_number, **payload):
+    def update_a_discussion__legacy(self, team_id, discussion_number, payload=None):
         """
         Update a discussion (Legacy)
         https://docs.github.com/rest/reference/teams#update-a-discussion-legacy
@@ -729,7 +739,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_discussion__legacy(self, team_id, discussion_number, **payload):
+    def delete_a_discussion__legacy(self, team_id, discussion_number, payload=None):
         """
         Delete a discussion (Legacy)
         https://docs.github.com/rest/reference/teams#delete-a-discussion-legacy
@@ -744,7 +754,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_discussion_comments__legacy(self, team_id, discussion_number, **payload):
+    def list_discussion_comments__legacy(self, team_id, discussion_number, payload=None):
         """
         List discussion comments (Legacy)
         https://docs.github.com/rest/reference/teams#list-discussion-comments-legacy
@@ -761,7 +771,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_discussion_comment__legacy(self, team_id, discussion_number, **payload):
+    def create_a_discussion_comment__legacy(self, team_id, discussion_number, payload=None):
         """
         Create a discussion comment (Legacy)
         https://docs.github.com/rest/reference/teams#create-a-discussion-comment-legacy
@@ -777,7 +787,7 @@ class Teams:
         return response
 
     def get_a_discussion_comment__legacy(
-        self, team_id, discussion_number, comment_number, **payload
+        self, team_id, discussion_number, comment_number, payload=None
     ):
         """
         Get a discussion comment (Legacy)
@@ -798,7 +808,7 @@ class Teams:
         return response
 
     def update_a_discussion_comment__legacy(
-        self, team_id, discussion_number, comment_number, **payload
+        self, team_id, discussion_number, comment_number, payload=None
     ):
         """
         Update a discussion comment (Legacy)
@@ -819,7 +829,7 @@ class Teams:
         return response
 
     def delete_a_discussion_comment__legacy(
-        self, team_id, discussion_number, comment_number, **payload
+        self, team_id, discussion_number, comment_number, payload=None
     ):
         """
         Delete a discussion comment (Legacy)
@@ -839,7 +849,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_pending_team_invitations__legacy(self, team_id, **payload):
+    def list_pending_team_invitations__legacy(self, team_id, payload=None):
         """
         List pending team invitations (Legacy)
         https://docs.github.com/rest/reference/teams#list-pending-team-invitations-legacy
@@ -854,7 +864,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_team_members__legacy(self, team_id, **payload):
+    def list_team_members__legacy(self, team_id, payload=None):
         """
         List team members (Legacy)
         https://docs.github.com/rest/reference/teams#list-team-members-legacy
@@ -870,7 +880,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def get_team_member__legacy(self, team_id, username, **payload):
+    def get_team_member__legacy(self, team_id, username, payload=None):
         """
         Get team member (Legacy)
         https://docs.github.com/rest/reference/teams#get-team-member-legacy
@@ -885,7 +895,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_team_member__legacy(self, team_id, username, **payload):
+    def add_team_member__legacy(self, team_id, username, payload=None):
         """
         Add team member (Legacy)
         https://docs.github.com/rest/reference/teams#add-team-member-legacy
@@ -900,7 +910,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_team_member__legacy(self, team_id, username, **payload):
+    def remove_team_member__legacy(self, team_id, username, payload=None):
         """
         Remove team member (Legacy)
         https://docs.github.com/rest/reference/teams#remove-team-member-legacy
@@ -915,7 +925,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_team_membership_for_a_user__legacy(self, team_id, username, **payload):
+    def get_team_membership_for_a_user__legacy(self, team_id, username, payload=None):
         """
         Get team membership for a user (Legacy)
         https://docs.github.com/rest/reference/teams#get-team-membership-for-a-user-legacy
@@ -930,7 +940,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_membership_for_a_user__legacy(self, team_id, username, **payload):
+    def add_or_update_team_membership_for_a_user__legacy(self, team_id, username, payload=None):
         """
         Add or update team membership for a user (Legacy)
         https://docs.github.com/rest/reference/teams#add-or-update-team-membership-for-a-user-legacy
@@ -945,7 +955,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_team_membership_for_a_user__legacy(self, team_id, username, **payload):
+    def remove_team_membership_for_a_user__legacy(self, team_id, username, payload=None):
         """
         Remove team membership for a user (Legacy)
         https://docs.github.com/rest/reference/teams#remove-team-membership-for-a-user-legacy
@@ -960,7 +970,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_team_projects__legacy(self, team_id, **payload):
+    def list_team_projects__legacy(self, team_id, payload=None):
         """
         List team projects (Legacy)
         https://docs.github.com/rest/reference/teams/#list-team-projects-legacy
@@ -975,7 +985,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def check_team_permissions_for_a_project__legacy(self, team_id, project_id, **payload):
+    def check_team_permissions_for_a_project__legacy(self, team_id, project_id, payload=None):
         """
         Check team permissions for a project (Legacy)
         https://docs.github.com/rest/reference/teams/#check-team-permissions-for-a-project-legacy
@@ -990,7 +1000,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_project_permissions__legacy(self, team_id, project_id, **payload):
+    def add_or_update_team_project_permissions__legacy(self, team_id, project_id, payload=None):
         """
         Add or update team project permissions (Legacy)
         https://docs.github.com/rest/reference/teams/#add-or-update-team-project-permissions-legacy
@@ -1005,7 +1015,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_a_project_from_a_team__legacy(self, team_id, project_id, **payload):
+    def remove_a_project_from_a_team__legacy(self, team_id, project_id, payload=None):
         """
         Remove a project from a team (Legacy)
         https://docs.github.com/rest/reference/teams/#remove-a-project-from-a-team-legacy
@@ -1020,7 +1030,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_team_repositories__legacy(self, team_id, **payload):
+    def list_team_repositories__legacy(self, team_id, payload=None):
         """
         List team repositories (Legacy)
         https://docs.github.com/rest/reference/teams/#list-team-repositories-legacy
@@ -1035,7 +1045,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def check_team_permissions_for_a_repository__legacy(self, team_id, owner, repo, **payload):
+    def check_team_permissions_for_a_repository__legacy(self, team_id, owner, repo, payload=None):
         """
         Check team permissions for a repository (Legacy)
         https://docs.github.com/rest/reference/teams/#check-team-permissions-for-a-repository-legacy
@@ -1051,7 +1061,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def add_or_update_team_repository_permissions__legacy(self, team_id, owner, repo, **payload):
+    def add_or_update_team_repository_permissions__legacy(self, team_id, owner, repo, payload=None):
         """
         Add or update team repository permissions (Legacy)
         https://docs.github.com/rest/reference/teams/#add-or-update-team-repository-permissions-legacy
@@ -1067,7 +1077,7 @@ class Teams:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_a_repository_from_a_team__legacy(self, team_id, owner, repo, **payload):
+    def remove_a_repository_from_a_team__legacy(self, team_id, owner, repo, payload=None):
         """
         Remove a repository from a team (Legacy)
         https://docs.github.com/rest/reference/teams/#remove-a-repository-from-a-team-legacy
@@ -1083,7 +1093,7 @@ class Teams:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_idp_groups_for_a_team__legacy(self, team_id, **payload):
+    def list_idp_groups_for_a_team__legacy(self, team_id, payload=None):
         """
         List IdP groups for a team (Legacy)
         https://docs.github.com/rest/reference/teams#list-idp-groups-for-a-team-legacy
@@ -1097,7 +1107,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def create_or_update_idp_group_connections__legacy(self, team_id, **payload):
+    def create_or_update_idp_group_connections__legacy(self, team_id, payload=None):
         """
         Create or update IdP group connections (Legacy)
         https://docs.github.com/rest/reference/teams#create-or-update-idp-group-connections-legacy
@@ -1111,7 +1121,7 @@ class Teams:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_child_teams__legacy(self, team_id, **payload):
+    def list_child_teams__legacy(self, team_id, payload=None):
         """
         List child teams (Legacy)
         https://docs.github.com/rest/reference/teams/#list-child-teams-legacy
@@ -1126,7 +1136,7 @@ class Teams:
         response = self._execute("get", url, payload)
         return response
 
-    def list_teams_for_the_authenticated_user(self, **payload):
+    def list_teams_for_the_authenticated_user(self, payload=None):
         """
         List teams for the authenticated user
         https://docs.github.com/rest/reference/teams#list-teams-for-the-authenticated-user

@@ -16,7 +16,7 @@ class Migrations:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organization_migrations(self, org, **payload):
+    def list_organization_migrations(self, org, payload=None):
         """
         List organization migrations
         https://docs.github.com/rest/reference/migrations#list-organization-migrations
@@ -32,7 +32,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def start_an_organization_migration(self, org, **payload):
+    def start_an_organization_migration(self, org, payload=None):
         """
         Start an organization migration
         https://docs.github.com/rest/reference/migrations#start-an-organization-migration
@@ -46,7 +46,7 @@ class Migrations:
         response = self._execute("post", url, payload)
         return response
 
-    def get_an_organization_migration_status(self, org, migration_id, **payload):
+    def get_an_organization_migration_status(self, org, migration_id, payload=None):
         """
         Get an organization migration status
         https://docs.github.com/rest/reference/migrations#get-an-organization-migration-status
@@ -61,7 +61,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def download_an_organization_migration_archive(self, org, migration_id, **payload):
+    def download_an_organization_migration_archive(self, org, migration_id, payload=None):
         """
         Download an organization migration archive
         https://docs.github.com/rest/reference/migrations#download-an-organization-migration-archive
@@ -76,7 +76,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_an_organization_migration_archive(self, org, migration_id, **payload):
+    def delete_an_organization_migration_archive(self, org, migration_id, payload=None):
         """
         Delete an organization migration archive
         https://docs.github.com/rest/reference/migrations#delete-an-organization-migration-archive
@@ -91,7 +91,7 @@ class Migrations:
         response = self._execute("delete", url, payload)
         return response
 
-    def unlock_an_organization_repository(self, org, migration_id, repo_name, **payload):
+    def unlock_an_organization_repository(self, org, migration_id, repo_name, payload=None):
         """
         Unlock an organization repository
         https://docs.github.com/rest/reference/migrations#unlock-an-organization-repository
@@ -107,7 +107,7 @@ class Migrations:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_repositories_in_an_organization_migration(self, org, migration_id, **payload):
+    def list_repositories_in_an_organization_migration(self, org, migration_id, payload=None):
         """
         List repositories in an organization migration
         https://docs.github.com/rest/reference/migrations#list-repositories-in-an-organization-migration
@@ -123,7 +123,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_import_status(self, owner, repo, **payload):
+    def get_an_import_status(self, owner, repo, payload=None):
         """
         Get an import status
         https://docs.github.com/rest/reference/migrations#get-an-import-status
@@ -138,7 +138,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def start_an_import(self, owner, repo, **payload):
+    def start_an_import(self, owner, repo, payload=None):
         """
         Start an import
         https://docs.github.com/rest/reference/migrations#start-an-import
@@ -153,7 +153,7 @@ class Migrations:
         response = self._execute("put", url, payload)
         return response
 
-    def update_an_import(self, owner, repo, **payload):
+    def update_an_import(self, owner, repo, payload=None):
         """
         Update an import
         https://docs.github.com/rest/reference/migrations#update-an-import
@@ -168,7 +168,7 @@ class Migrations:
         response = self._execute("patch", url, payload)
         return response
 
-    def cancel_an_import(self, owner, repo, **payload):
+    def cancel_an_import(self, owner, repo, payload=None):
         """
         Cancel an import
         https://docs.github.com/rest/reference/migrations#cancel-an-import
@@ -183,7 +183,7 @@ class Migrations:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_commit_authors(self, owner, repo, **payload):
+    def get_commit_authors(self, owner, repo, payload=None):
         """
         Get commit authors
         https://docs.github.com/rest/reference/migrations#get-commit-authors
@@ -198,7 +198,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def map_a_commit_author(self, owner, repo, author_id, **payload):
+    def map_a_commit_author(self, owner, repo, author_id, payload=None):
         """
         Map a commit author
         https://docs.github.com/rest/reference/migrations#map-a-commit-author
@@ -214,7 +214,7 @@ class Migrations:
         response = self._execute("patch", url, payload)
         return response
 
-    def get_large_files(self, owner, repo, **payload):
+    def get_large_files(self, owner, repo, payload=None):
         """
         Get large files
         https://docs.github.com/rest/reference/migrations#get-large-files
@@ -229,7 +229,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def update_git_lfs_preference(self, owner, repo, **payload):
+    def update_git_lfs_preference(self, owner, repo, payload=None):
         """
         Update Git LFS preference
         https://docs.github.com/rest/reference/migrations#update-git-lfs-preference
@@ -244,7 +244,7 @@ class Migrations:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_user_migrations(self, **payload):
+    def list_user_migrations(self, payload=None):
         """
         List user migrations
         https://docs.github.com/rest/reference/migrations#list-user-migrations
@@ -259,7 +259,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def start_a_user_migration(self, **payload):
+    def start_a_user_migration(self, payload=None):
         """
         Start a user migration
         https://docs.github.com/rest/reference/migrations#start-a-user-migration
@@ -273,7 +273,7 @@ class Migrations:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_user_migration_status(self, migration_id, **payload):
+    def get_a_user_migration_status(self, migration_id, payload=None):
         """
         Get a user migration status
         https://docs.github.com/rest/reference/migrations#get-a-user-migration-status
@@ -287,7 +287,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def download_a_user_migration_archive(self, migration_id, **payload):
+    def download_a_user_migration_archive(self, migration_id, payload=None):
         """
         Download a user migration archive
         https://docs.github.com/rest/reference/migrations#download-a-user-migration-archive
@@ -301,7 +301,7 @@ class Migrations:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_user_migration_archive(self, migration_id, **payload):
+    def delete_a_user_migration_archive(self, migration_id, payload=None):
         """
         Delete a user migration archive
         https://docs.github.com/rest/reference/migrations#delete-a-user-migration-archive
@@ -315,7 +315,7 @@ class Migrations:
         response = self._execute("delete", url, payload)
         return response
 
-    def unlock_a_user_repository(self, migration_id, repo_name, **payload):
+    def unlock_a_user_repository(self, migration_id, repo_name, payload=None):
         """
         Unlock a user repository
         https://docs.github.com/rest/reference/migrations#unlock-a-user-repository
@@ -330,7 +330,7 @@ class Migrations:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_repositories_for_a_user_migration(self, migration_id, **payload):
+    def list_repositories_for_a_user_migration(self, migration_id, payload=None):
         """
         List repositories for a user migration
         https://docs.github.com/rest/reference/migrations#list-repositories-for-a-user-migration

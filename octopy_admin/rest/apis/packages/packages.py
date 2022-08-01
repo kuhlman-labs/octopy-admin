@@ -16,7 +16,7 @@ class Packages:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_packages_for_an_organization(self, org, **payload):
+    def list_packages_for_an_organization(self, org, payload=None):
         """
         List packages for an organization
         https://docs.github.com/rest/reference/packages#list-packages-for-an-organization
@@ -31,7 +31,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_package_for_an_organization(self, package_type, package_name, org, **payload):
+    def get_a_package_for_an_organization(self, package_type, package_name, org, payload=None):
         """
         Get a package for an organization
         https://docs.github.com/rest/reference/packages#get-a-package-for-an-organization
@@ -47,7 +47,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_package_for_an_organization(self, package_type, package_name, org, **payload):
+    def delete_a_package_for_an_organization(self, package_type, package_name, org, payload=None):
         """
         Delete a package for an organization
         https://docs.github.com/rest/reference/packages#delete-a-package-for-an-organization
@@ -63,7 +63,7 @@ class Packages:
         response = self._execute("delete", url, payload)
         return response
 
-    def restore_a_package_for_an_organization(self, package_type, package_name, org, **payload):
+    def restore_a_package_for_an_organization(self, package_type, package_name, org, payload=None):
         """
         Restore a package for an organization
         https://docs.github.com/rest/reference/packages#restore-a-package-for-an-organization
@@ -80,7 +80,7 @@ class Packages:
         return response
 
     def get_all_package_versions_for_a_package_owned_by_an_organization(
-        self, package_type, package_name, org, **payload
+        self, package_type, package_name, org, payload=None
     ):
         """
         Get all package versions for a package owned by an organization
@@ -100,8 +100,8 @@ class Packages:
         return response
 
     def get_a_package_version_for_an_organization(
-        self, package_type, package_name, org, package_version_id, **payload
-    ):
+        self, package_type, package_name, org, package_version_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Get a package version for an organization
         https://docs.github.com/rest/reference/packages#get-a-package-version-for-an-organization
@@ -122,8 +122,8 @@ class Packages:
         return response
 
     def delete_package_version_for_an_organization(
-        self, package_type, package_name, org, package_version_id, **payload
-    ):
+        self, package_type, package_name, org, package_version_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Delete package version for an organization
         https://docs.github.com/rest/reference/packages#delete-a-package-version-for-an-organization
@@ -144,8 +144,8 @@ class Packages:
         return response
 
     def restore_package_version_for_an_organization(
-        self, package_type, package_name, org, package_version_id, **payload
-    ):
+        self, package_type, package_name, org, package_version_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Restore package version for an organization
         https://docs.github.com/rest/reference/packages#restore-a-package-version-for-an-organization
@@ -165,7 +165,7 @@ class Packages:
         response = self._execute("post", url, payload)
         return response
 
-    def list_packages_for_the_authenticated_users_namespace(self, **payload):
+    def list_packages_for_the_authenticated_users_namespace(self, payload=None):
         """
         List packages for the authenticated user's namespace
         https://docs.github.com/rest/reference/packages#list-packages-for-the-authenticated-user
@@ -180,7 +180,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_package_for_the_authenticated_user(self, package_type, package_name, **payload):
+    def get_a_package_for_the_authenticated_user(self, package_type, package_name, payload=None):
         """
         Get a package for the authenticated user
         https://docs.github.com/rest/reference/packages#get-a-package-for-the-authenticated-user
@@ -195,7 +195,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_package_for_the_authenticated_user(self, package_type, package_name, **payload):
+    def delete_a_package_for_the_authenticated_user(self, package_type, package_name, payload=None):
         """
         Delete a package for the authenticated user
         https://docs.github.com/rest/reference/packages#delete-a-package-for-the-authenticated-user
@@ -210,7 +210,9 @@ class Packages:
         response = self._execute("delete", url, payload)
         return response
 
-    def restore_a_package_for_the_authenticated_user(self, package_type, package_name, **payload):
+    def restore_a_package_for_the_authenticated_user(
+        self, package_type, package_name, payload=None
+    ):
         """
         Restore a package for the authenticated user
         https://docs.github.com/rest/reference/packages#restore-a-package-for-the-authenticated-user
@@ -226,7 +228,7 @@ class Packages:
         return response
 
     def get_all_package_versions_for_a_package_owned_by_the_authenticated_user(
-        self, package_type, package_name, **payload
+        self, package_type, package_name, payload=None
     ):
         """
         Get all package versions for a package owned by the authenticated user
@@ -245,7 +247,7 @@ class Packages:
         return response
 
     def get_a_package_version_for_the_authenticated_user(
-        self, package_type, package_name, package_version_id, **payload
+        self, package_type, package_name, package_version_id, payload=None
     ):
         """
         Get a package version for the authenticated user
@@ -266,7 +268,7 @@ class Packages:
         return response
 
     def delete_a_package_version_for_the_authenticated_user(
-        self, package_type, package_name, package_version_id, **payload
+        self, package_type, package_name, package_version_id, payload=None
     ):
         """
         Delete a package version for the authenticated user
@@ -287,7 +289,7 @@ class Packages:
         return response
 
     def restore_a_package_version_for_the_authenticated_user(
-        self, package_type, package_name, package_version_id, **payload
+        self, package_type, package_name, package_version_id, payload=None
     ):
         """
         Restore a package version for the authenticated user
@@ -307,7 +309,7 @@ class Packages:
         response = self._execute("post", url, payload)
         return response
 
-    def list_packages_for_a_user(self, username, **payload):
+    def list_packages_for_a_user(self, username, payload=None):
         """
         List packages for a user
         https://docs.github.com/rest/reference/packages#list-packages-for-user
@@ -322,7 +324,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_package_for_a_user(self, package_type, package_name, username, **payload):
+    def get_a_package_for_a_user(self, package_type, package_name, username, payload=None):
         """
         Get a package for a user
         https://docs.github.com/rest/reference/packages#get-a-package-for-a-user
@@ -338,7 +340,7 @@ class Packages:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_package_for_a_user(self, package_type, package_name, username, **payload):
+    def delete_a_package_for_a_user(self, package_type, package_name, username, payload=None):
         """
         Delete a package for a user
         https://docs.github.com/rest/reference/packages#delete-a-package-for-a-user
@@ -354,7 +356,7 @@ class Packages:
         response = self._execute("delete", url, payload)
         return response
 
-    def restore_a_package_for_a_user(self, package_type, package_name, username, **payload):
+    def restore_a_package_for_a_user(self, package_type, package_name, username, payload=None):
         """
         Restore a package for a user
         https://docs.github.com/rest/reference/packages#restore-a-package-for-a-user
@@ -371,7 +373,7 @@ class Packages:
         return response
 
     def get_all_package_versions_for_a_package_owned_by_a_user(
-        self, package_type, package_name, username, **payload
+        self, package_type, package_name, username, payload=None
     ):
         """
         Get all package versions for a package owned by a user
@@ -389,8 +391,8 @@ class Packages:
         return response
 
     def get_a_package_version_for_a_user(
-        self, package_type, package_name, package_version_id, username, **payload
-    ):
+        self, package_type, package_name, package_version_id, username, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Get a package version for a user
         https://docs.github.com/rest/reference/packages#get-a-package-version-for-a-user
@@ -411,8 +413,8 @@ class Packages:
         return response
 
     def delete_package_version_for_a_user(
-        self, package_type, package_name, username, package_version_id, **payload
-    ):
+        self, package_type, package_name, username, package_version_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Delete package version for a user
         https://docs.github.com/rest/reference/packages#delete-a-package-version-for-a-user
@@ -433,8 +435,8 @@ class Packages:
         return response
 
     def restore_package_version_for_a_user(
-        self, package_type, package_name, username, package_version_id, **payload
-    ):
+        self, package_type, package_name, username, package_version_id, payload=None
+    ):  # pylint: disable=too-many-arguments
         """
         Restore package version for a user
         https://docs.github.com/rest/reference/packages#restore-a-package-version-for-a-user

@@ -16,7 +16,7 @@ class Orgs:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organizations(self, **payload):
+    def list_organizations(self, payload=None):
         """
         List organizations
         https://docs.github.com/rest/reference/orgs#list-organizations
@@ -31,7 +31,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_custom_repository_roles_in_an_organization(self, organization_id, **payload):
+    def list_custom_repository_roles_in_an_organization(self, organization_id, payload=None):
         """
         List custom repository roles in an organization
         https://docs.github.com/rest/reference/orgs#list-custom-repository-roles-in-an-organization
@@ -45,7 +45,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_organization(self, org, **payload):
+    def get_an_organization(self, org, payload=None):
         """
         Get an organization
         https://docs.github.com/rest/reference/orgs#get-an-organization
@@ -59,7 +59,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_organization(self, org, **payload):
+    def update_an_organization(self, org, payload=None):
         """
         Update an organization
         https://docs.github.com/rest/reference/orgs/#update-an-organization
@@ -73,7 +73,7 @@ class Orgs:
         response = self._execute("patch", url, payload)
         return response
 
-    def get_the_audit_log_for_an_organization(self, org, **payload):
+    def get_the_audit_log_for_an_organization(self, org, payload=None):
         """
         Get the audit log for an organization
         https://docs.github.com/rest/reference/orgs#get-audit-log
@@ -92,7 +92,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_users_blocked_by_an_organization(self, org, **payload):
+    def list_users_blocked_by_an_organization(self, org, payload=None):
         """
         List users blocked by an organization
         https://docs.github.com/rest/reference/orgs#list-users-blocked-by-an-organization
@@ -106,7 +106,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_user_is_blocked_by_an_organization(self, org, username, **payload):
+    def check_if_a_user_is_blocked_by_an_organization(self, org, username, payload=None):
         """
         Check if a user is blocked by an organization
         https://docs.github.com/rest/reference/orgs#check-if-a-user-is-blocked-by-an-organization
@@ -121,7 +121,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def block_a_user_from_an_organization(self, org, username, **payload):
+    def block_a_user_from_an_organization(self, org, username, payload=None):
         """
         Block a user from an organization
         https://docs.github.com/rest/reference/orgs#block-a-user-from-an-organization
@@ -136,7 +136,7 @@ class Orgs:
         response = self._execute("put", url, payload)
         return response
 
-    def unblock_a_user_from_an_organization(self, org, username, **payload):
+    def unblock_a_user_from_an_organization(self, org, username, payload=None):
         """
         Unblock a user from an organization
         https://docs.github.com/rest/reference/orgs#unblock-a-user-from-an-organization
@@ -151,7 +151,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_saml_sso_authorizations_for_an_organization(self, org, **payload):
+    def list_saml_sso_authorizations_for_an_organization(self, org, payload=None):
         """
         List SAML SSO authorizations for an organization
         https://docs.github.com/rest/reference/orgs#list-saml-sso-authorizations-for-an-organization
@@ -167,7 +167,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def remove_a_saml_sso_authorization_for_an_organization(self, org, credential_id, **payload):
+    def remove_a_saml_sso_authorization_for_an_organization(self, org, credential_id, payload=None):
         """
         Remove a SAML SSO authorization for an organization
         https://docs.github.com/rest/reference/orgs#remove-a-saml-sso-authorization-for-an-organization
@@ -182,7 +182,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_failed_organization_invitations(self, org, **payload):
+    def list_failed_organization_invitations(self, org, payload=None):
         """
         List failed organization invitations
         https://docs.github.com/rest/reference/orgs#list-failed-organization-invitations
@@ -197,7 +197,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_organization_webhooks(self, org, **payload):
+    def list_organization_webhooks(self, org, payload=None):
         """
         List organization webhooks
         https://docs.github.com/rest/reference/orgs#list-organization-webhooks
@@ -212,7 +212,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def create_an_organization_webhook(self, org, **payload):
+    def create_an_organization_webhook(self, org, payload=None):
         """
         Create an organization webhook
         https://docs.github.com/rest/reference/orgs#create-an-organization-webhook
@@ -226,7 +226,7 @@ class Orgs:
         response = self._execute("post", url, payload)
         return response
 
-    def get_an_organization_webhook(self, org, hook_id, **payload):
+    def get_an_organization_webhook(self, org, hook_id, payload=None):
         """
         Get an organization webhook
         https://docs.github.com/rest/reference/orgs#get-an-organization-webhook
@@ -241,7 +241,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_organization_webhook(self, org, hook_id, **payload):
+    def update_an_organization_webhook(self, org, hook_id, payload=None):
         """
         Update an organization webhook
         https://docs.github.com/rest/reference/orgs#update-an-organization-webhook
@@ -256,7 +256,7 @@ class Orgs:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_an_organization_webhook(self, org, hook_id, **payload):
+    def delete_an_organization_webhook(self, org, hook_id, payload=None):
         """
         Delete an organization webhook
         https://docs.github.com/rest/reference/orgs#delete-an-organization-webhook
@@ -271,7 +271,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_a_webhook_configuration_for_an_organization(self, org, hook_id, **payload):
+    def get_a_webhook_configuration_for_an_organization(self, org, hook_id, payload=None):
         """
         Get a webhook configuration for an organization
         https://docs.github.com/rest/reference/orgs#get-a-webhook-configuration-for-an-organization
@@ -286,7 +286,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_webhook_configuration_for_an_organization(self, org, hook_id, **payload):
+    def update_a_webhook_configuration_for_an_organization(self, org, hook_id, payload=None):
         """
         Update a webhook configuration for an organization
         https://docs.github.com/rest/reference/orgs#update-a-webhook-configuration-for-an-organization
@@ -301,7 +301,7 @@ class Orgs:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_deliveries_for_an_organization_webhook(self, org, hook_id, **payload):
+    def list_deliveries_for_an_organization_webhook(self, org, hook_id, payload=None):
         """
         List deliveries for an organization webhook
         https://docs.github.com/rest/reference/orgs#list-deliveries-for-an-organization-webhook
@@ -318,7 +318,7 @@ class Orgs:
         return response
 
     def get_a_webhook_delivery_for_an_organization_webhook(
-        self, org, hook_id, delivery_id, **payload
+        self, org, hook_id, delivery_id, payload=None
     ):
         """
         Get a webhook delivery for an organization webhook
@@ -336,7 +336,7 @@ class Orgs:
         return response
 
     def redeliver_a_delivery_for_an_organization_webhook(
-        self, org, hook_id, delivery_id, **payload
+        self, org, hook_id, delivery_id, payload=None
     ):
         """
         Redeliver a delivery for an organization webhook
@@ -353,7 +353,7 @@ class Orgs:
         response = self._execute("post", url, payload)
         return response
 
-    def ping_an_organization_webhook(self, org, hook_id, **payload):
+    def ping_an_organization_webhook(self, org, hook_id, payload=None):
         """
         Ping an organization webhook
         https://docs.github.com/rest/reference/orgs#ping-an-organization-webhook
@@ -368,7 +368,7 @@ class Orgs:
         response = self._execute("post", url, payload)
         return response
 
-    def list_app_installations_for_an_organization(self, org, **payload):
+    def list_app_installations_for_an_organization(self, org, payload=None):
         """
         List app installations for an organization
         https://docs.github.com/rest/reference/orgs#list-app-installations-for-an-organization
@@ -383,7 +383,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_pending_organization_invitations(self, org, **payload):
+    def list_pending_organization_invitations(self, org, payload=None):
         """
         List pending organization invitations
         https://docs.github.com/rest/reference/orgs#list-pending-organization-invitations
@@ -398,7 +398,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def create_an_organization_invitation(self, org, **payload):
+    def create_an_organization_invitation(self, org, payload=None):
         """
         Create an organization invitation
         https://docs.github.com/rest/reference/orgs#create-an-organization-invitation
@@ -412,7 +412,7 @@ class Orgs:
         response = self._execute("post", url, payload)
         return response
 
-    def cancel_an_organization_invitation(self, org, invitation_id, **payload):
+    def cancel_an_organization_invitation(self, org, invitation_id, payload=None):
         """
         Cancel an organization invitation
         https://docs.github.com/rest/reference/orgs#cancel-an-organization-invitation
@@ -427,7 +427,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_organization_invitation_teams(self, org, invitation_id, **payload):
+    def list_organization_invitation_teams(self, org, invitation_id, payload=None):
         """
         List organization invitation teams
         https://docs.github.com/rest/reference/orgs#list-organization-invitation-teams
@@ -443,7 +443,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_organization_members(self, org, **payload):
+    def list_organization_members(self, org, payload=None):
         """
         List organization members
         https://docs.github.com/rest/reference/orgs#list-organization-members
@@ -460,7 +460,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def check_organization_membership_for_a_user(self, org, username, **payload):
+    def check_organization_membership_for_a_user(self, org, username, payload=None):
         """
         Check organization membership for a user
         https://docs.github.com/rest/reference/orgs#check-organization-membership-for-a-user
@@ -475,7 +475,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def remove_an_organization_member(self, org, username, **payload):
+    def remove_an_organization_member(self, org, username, payload=None):
         """
         Remove an organization member
         https://docs.github.com/rest/reference/orgs#remove-an-organization-member
@@ -490,7 +490,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_organization_membership_for_a_user(self, org, username, **payload):
+    def get_organization_membership_for_a_user(self, org, username, payload=None):
         """
         Get organization membership for a user
         https://docs.github.com/rest/reference/orgs#get-organization-membership-for-a-user
@@ -505,7 +505,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def set_organization_membership_for_a_user(self, org, username, **payload):
+    def set_organization_membership_for_a_user(self, org, username, payload=None):
         """
         Set organization membership for a user
         https://docs.github.com/rest/reference/orgs#set-organization-membership-for-a-user
@@ -520,7 +520,7 @@ class Orgs:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_organization_membership_for_a_user(self, org, username, **payload):
+    def remove_organization_membership_for_a_user(self, org, username, payload=None):
         """
         Remove organization membership for a user
         https://docs.github.com/rest/reference/orgs#remove-organization-membership-for-a-user
@@ -535,7 +535,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_outside_collaborators_for_an_organization(self, org, **payload):
+    def list_outside_collaborators_for_an_organization(self, org, payload=None):
         """
         List outside collaborators for an organization
         https://docs.github.com/rest/reference/orgs#list-outside-collaborators-for-an-organization
@@ -551,7 +551,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def convert_an_organization_member_to_outside_collaborator(self, org, username, **payload):
+    def convert_an_organization_member_to_outside_collaborator(self, org, username, payload=None):
         """
         Convert an organization member to outside collaborator
         https://docs.github.com/rest/reference/orgs#convert-an-organization-member-to-outside-collaborator
@@ -566,7 +566,7 @@ class Orgs:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_outside_collaborator_from_an_organization(self, org, username, **payload):
+    def remove_outside_collaborator_from_an_organization(self, org, username, payload=None):
         """
         Remove outside collaborator from an organization
         https://docs.github.com/rest/reference/orgs#remove-outside-collaborator-from-an-organization
@@ -581,7 +581,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_public_organization_members(self, org, **payload):
+    def list_public_organization_members(self, org, payload=None):
         """
         List public organization members
         https://docs.github.com/rest/reference/orgs#list-public-organization-members
@@ -596,7 +596,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def check_public_organization_membership_for_a_user(self, org, username, **payload):
+    def check_public_organization_membership_for_a_user(self, org, username, payload=None):
         """
         Check public organization membership for a user
         https://docs.github.com/rest/reference/orgs#check-public-organization-membership-for-a-user
@@ -612,7 +612,7 @@ class Orgs:
         return response
 
     def set_public_organization_membership_for_the_authenticated_user(
-        self, org, username, **payload
+        self, org, username, payload=None
     ):
         """
         Set public organization membership for the authenticated user
@@ -629,7 +629,7 @@ class Orgs:
         return response
 
     def remove_public_organization_membership_for_the_authenticated_user(
-        self, org, username, **payload
+        self, org, username, payload=None
     ):
         """
         Remove public organization membership for the authenticated user
@@ -645,7 +645,7 @@ class Orgs:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_organization_memberships_for_the_authenticated_user(self, **payload):
+    def list_organization_memberships_for_the_authenticated_user(self, payload=None):
         """
         List organization memberships for the authenticated user
         https://docs.github.com/rest/reference/orgs#list-organization-memberships-for-the-authenticated-user
@@ -661,7 +661,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_organization_membership_for_the_authenticated_user(self, org, **payload):
+    def get_an_organization_membership_for_the_authenticated_user(self, org, payload=None):
         """
         Get an organization membership for the authenticated user
         https://docs.github.com/rest/reference/orgs#get-an-organization-membership-for-the-authenticated-user
@@ -675,7 +675,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_organization_membership_for_the_authenticated_user(self, org, **payload):
+    def update_an_organization_membership_for_the_authenticated_user(self, org, payload=None):
         """
         Update an organization membership for the authenticated user
         https://docs.github.com/rest/reference/orgs#update-an-organization-membership-for-the-authenticated-user
@@ -689,7 +689,7 @@ class Orgs:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_organizations_for_the_authenticated_user(self, **payload):
+    def list_organizations_for_the_authenticated_user(self, payload=None):
         """
         List organizations for the authenticated user
         https://docs.github.com/rest/reference/orgs#list-organizations-for-the-authenticated-user
@@ -704,7 +704,7 @@ class Orgs:
         response = self._execute("get", url, payload)
         return response
 
-    def list_organizations_for_a_user(self, username, **payload):
+    def list_organizations_for_a_user(self, username, payload=None):
         """
         List organizations for a user
         https://docs.github.com/rest/reference/orgs#list-organizations-for-a-user

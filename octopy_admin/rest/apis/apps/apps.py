@@ -16,7 +16,7 @@ class Apps:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_the_authenticated_app(self, **payload):
+    def get_the_authenticated_app(self, payload=None):
         """
         Get the authenticated app
         https://docs.github.com/rest/reference/apps#get-the-authenticated-app
@@ -30,7 +30,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_github_app_from_a_manifest(self, code, **payload):
+    def create_a_github_app_from_a_manifest(self, code, payload=None):
         """
         Create a GitHub App from a manifest
         https://docs.github.com/rest/reference/apps#create-a-github-app-from-a-manifest
@@ -44,7 +44,7 @@ class Apps:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_webhook_configuration_for_an_app(self, **payload):
+    def get_a_webhook_configuration_for_an_app(self, payload=None):
         """
         Get a webhook configuration for an app
         https://docs.github.com/rest/reference/apps#get-a-webhook-configuration-for-an-app
@@ -58,7 +58,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_webhook_configuration_for_an_app(self, **payload):
+    def update_a_webhook_configuration_for_an_app(self, payload=None):
         """
         Update a webhook configuration for an app
         https://docs.github.com/rest/reference/apps#update-a-webhook-configuration-for-an-app
@@ -72,7 +72,7 @@ class Apps:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_deliveries_for_an_app_webhook(self, **payload):
+    def list_deliveries_for_an_app_webhook(self, payload=None):
         """
         List deliveries for an app webhook
         https://docs.github.com/rest/reference/apps#list-deliveries-for-an-app-webhook
@@ -87,7 +87,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_delivery_for_an_app_webhook(self, delivery_id, **payload):
+    def get_a_delivery_for_an_app_webhook(self, delivery_id, payload=None):
         """
         Get a delivery for an app webhook
         https://docs.github.com/rest/reference/apps#get-a-delivery-for-an-app-webhook
@@ -101,7 +101,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def redeliver_a_delivery_for_an_app_webhook(self, delivery_id, **payload):
+    def redeliver_a_delivery_for_an_app_webhook(self, delivery_id, payload=None):
         """
         Redeliver a delivery for an app webhook
         https://docs.github.com/rest/reference/apps#redeliver-a-delivery-for-an-app-webhook
@@ -115,7 +115,7 @@ class Apps:
         response = self._execute("post", url, payload)
         return response
 
-    def list_installations_for_the_authenticated_app(self, **payload):
+    def list_installations_for_the_authenticated_app(self, payload=None):
         """
         List installations for the authenticated app
         https://docs.github.com/rest/reference/apps#list-installations-for-the-authenticated-app
@@ -132,7 +132,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_installation_for_the_authenticated_app(self, installation_id, **payload):
+    def get_an_installation_for_the_authenticated_app(self, installation_id, payload=None):
         """
         Get an installation for the authenticated app
         https://docs.github.com/rest/reference/apps#get-an-installation-for-the-authenticated-app
@@ -146,7 +146,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_an_installation_for_the_authenticated_app(self, installation_id, **payload):
+    def delete_an_installation_for_the_authenticated_app(self, installation_id, payload=None):
         """
         Delete an installation for the authenticated app
         https://docs.github.com/rest/reference/apps#delete-an-installation-for-the-authenticated-app
@@ -160,7 +160,7 @@ class Apps:
         response = self._execute("delete", url, payload)
         return response
 
-    def create_an_installation_access_token_for_an_app(self, installation_id, **payload):
+    def create_an_installation_access_token_for_an_app(self, installation_id, payload=None):
         """
         Create an installation access token for an app
         https://docs.github.com/rest/reference/apps/#create-an-installation-access-token-for-an-app
@@ -174,7 +174,7 @@ class Apps:
         response = self._execute("post", url, payload)
         return response
 
-    def suspend_an_app_installation(self, installation_id, **payload):
+    def suspend_an_app_installation(self, installation_id, payload=None):
         """
         Suspend an app installation
         https://docs.github.com/rest/reference/apps#suspend-an-app-installation
@@ -188,7 +188,7 @@ class Apps:
         response = self._execute("put", url, payload)
         return response
 
-    def unsuspend_an_app_installation(self, installation_id, **payload):
+    def unsuspend_an_app_installation(self, installation_id, payload=None):
         """
         Unsuspend an app installation
         https://docs.github.com/rest/reference/apps#unsuspend-an-app-installation
@@ -202,7 +202,7 @@ class Apps:
         response = self._execute("delete", url, payload)
         return response
 
-    def delete_an_app_authorization(self, client_id, **payload):
+    def delete_an_app_authorization(self, client_id, payload=None):
         """
         Delete an app authorization
         https://docs.github.com/rest/reference/apps#delete-an-app-authorization
@@ -216,7 +216,7 @@ class Apps:
         response = self._execute("delete", url, payload)
         return response
 
-    def check_a_token(self, client_id, **payload):
+    def check_a_token(self, client_id, payload=None):
         """
         Check a token
         https://docs.github.com/rest/reference/apps#check-a-token
@@ -230,7 +230,7 @@ class Apps:
         response = self._execute("post", url, payload)
         return response
 
-    def reset_a_token(self, client_id, **payload):
+    def reset_a_token(self, client_id, payload=None):
         """
         Reset a token
         https://docs.github.com/rest/reference/apps#reset-a-token
@@ -244,7 +244,7 @@ class Apps:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_an_app_token(self, client_id, **payload):
+    def delete_an_app_token(self, client_id, payload=None):
         """
         Delete an app token
         https://docs.github.com/rest/reference/apps#delete-an-app-token
@@ -258,7 +258,7 @@ class Apps:
         response = self._execute("delete", url, payload)
         return response
 
-    def create_a_scoped_access_token(self, client_id, **payload):
+    def create_a_scoped_access_token(self, client_id, payload=None):
         """
         Create a scoped access token
         https://docs.github.com/rest/reference/apps#create-a-scoped-access-token
@@ -272,7 +272,7 @@ class Apps:
         response = self._execute("post", url, payload)
         return response
 
-    def get_an_app(self, app_slug, **payload):
+    def get_an_app(self, app_slug, payload=None):
         """
         Get an app
         https://docs.github.com/rest/reference/apps/#get-an-app
@@ -286,7 +286,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_repositories_accessible_to_the_app_installation(self, **payload):
+    def list_repositories_accessible_to_the_app_installation(self, payload=None):
         """
         List repositories accessible to the app installation
         https://docs.github.com/rest/reference/apps#list-repositories-accessible-to-the-app-installation
@@ -301,7 +301,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def revoke_an_installation_access_token(self, **payload):
+    def revoke_an_installation_access_token(self, payload=None):
         """
         Revoke an installation access token
         https://docs.github.com/rest/reference/apps#revoke-an-installation-access-token
@@ -315,7 +315,7 @@ class Apps:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_a_subscription_plan_for_an_account(self, account_id, **payload):
+    def get_a_subscription_plan_for_an_account(self, account_id, payload=None):
         """
         Get a subscription plan for an account
         https://docs.github.com/rest/reference/apps#get-a-subscription-plan-for-an-account
@@ -329,7 +329,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_plans(self, **payload):
+    def list_plans(self, payload=None):
         """
         List plans
         https://docs.github.com/rest/reference/apps#list-plans
@@ -344,7 +344,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_accounts_for_a_plan(self, plan_id, **payload):
+    def list_accounts_for_a_plan(self, plan_id, payload=None):
         """
         List accounts for a plan
         https://docs.github.com/rest/reference/apps#list-accounts-for-a-plan
@@ -361,7 +361,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_subscription_plan_for_an_account__stubbed(self, account_id, **payload):
+    def get_a_subscription_plan_for_an_account__stubbed(self, account_id, payload=None):
         """
         Get a subscription plan for an account (stubbed)
         https://docs.github.com/rest/reference/apps#get-a-subscription-plan-for-an-account-stubbed
@@ -375,7 +375,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_plans__stubbed(self, **payload):
+    def list_plans__stubbed(self, payload=None):
         """
         List plans (stubbed)
         https://docs.github.com/rest/reference/apps#list-plans-stubbed
@@ -390,7 +390,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_accounts_for_a_plan__stubbed(self, plan_id, **payload):
+    def list_accounts_for_a_plan__stubbed(self, plan_id, payload=None):
         """
         List accounts for a plan (stubbed)
         https://docs.github.com/rest/reference/apps#list-accounts-for-a-plan-stubbed
@@ -407,7 +407,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_organization_installation_for_the_authenticated_app(self, org, **payload):
+    def get_an_organization_installation_for_the_authenticated_app(self, org, payload=None):
         """
         Get an organization installation for the authenticated app
         https://docs.github.com/rest/reference/apps#get-an-organization-installation-for-the-authenticated-app
@@ -421,7 +421,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_repository_installation_for_the_authenticated_app(self, owner, repo, **payload):
+    def get_a_repository_installation_for_the_authenticated_app(self, owner, repo, payload=None):
         """
         Get a repository installation for the authenticated app
         https://docs.github.com/rest/reference/apps#get-a-repository-installation-for-the-authenticated-app
@@ -436,7 +436,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_app_installations_accessible_to_the_user_access_token(self, **payload):
+    def list_app_installations_accessible_to_the_user_access_token(self, payload=None):
         """
         List app installations accessible to the user access token
         https://docs.github.com/rest/reference/apps#list-app-installations-accessible-to-the-user-access-token
@@ -451,7 +451,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_repositories_accessible_to_the_user_access_token(self, installation_id, **payload):
+    def list_repositories_accessible_to_the_user_access_token(self, installation_id, payload=None):
         """
         List repositories accessible to the user access token
         https://docs.github.com/rest/reference/apps#list-repositories-accessible-to-the-user-access-token
@@ -466,7 +466,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def add_a_repository_to_an_app_installation(self, installation_id, repository_id, **payload):
+    def add_a_repository_to_an_app_installation(self, installation_id, repository_id, payload=None):
         """
         Add a repository to an app installation
         https://docs.github.com/rest/reference/apps#add-a-repository-to-an-app-installation
@@ -482,7 +482,7 @@ class Apps:
         return response
 
     def remove_a_repository_from_an_app_installation(
-        self, installation_id, repository_id, **payload
+        self, installation_id, repository_id, payload=None
     ):
         """
         Remove a repository from an app installation
@@ -499,7 +499,7 @@ class Apps:
         return response
 
     def search_user_repositories_related_to_integration_installation(
-        self, installation_id, **payload
+        self, installation_id, payload=None
     ):
         """
         Search user repositories related to integration installation
@@ -518,7 +518,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_subscriptions_for_the_authenticated_user(self, **payload):
+    def list_subscriptions_for_the_authenticated_user(self, payload=None):
         """
         List subscriptions for the authenticated user
         https://docs.github.com/rest/reference/apps#list-subscriptions-for-the-authenticated-user
@@ -533,7 +533,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def list_subscriptions_for_the_authenticated_user__stubbed(self, **payload):
+    def list_subscriptions_for_the_authenticated_user__stubbed(self, payload=None):
         """
         List subscriptions for the authenticated user (stubbed)
         https://docs.github.com/rest/reference/apps#list-subscriptions-for-the-authenticated-user-stubbed
@@ -548,7 +548,7 @@ class Apps:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_user_installation_for_the_authenticated_app(self, username, **payload):
+    def get_a_user_installation_for_the_authenticated_app(self, username, payload=None):
         """
         Get a user installation for the authenticated app
         https://docs.github.com/rest/reference/apps#get-a-user-installation-for-the-authenticated-app

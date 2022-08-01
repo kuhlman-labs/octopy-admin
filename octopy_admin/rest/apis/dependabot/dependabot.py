@@ -15,7 +15,7 @@ class Dependabot:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organization_secrets(self, org, **payload):
+    def list_organization_secrets(self, org, payload=None):
         """
         List organization secrets
         https://docs.github.com/rest/reference/dependabot#list-organization-secrets
@@ -30,7 +30,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_organization_public_key(self, org, **payload):
+    def get_an_organization_public_key(self, org, payload=None):
         """
         Get an organization public key
         https://docs.github.com/rest/reference/dependabot#get-an-organization-public-key
@@ -44,7 +44,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_organization_secret(self, org, secret_name, **payload):
+    def get_an_organization_secret(self, org, secret_name, payload=None):
         """
         Get an organization secret
         https://docs.github.com/rest/reference/dependabot#get-an-organization-secret
@@ -59,7 +59,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def create_or_update_an_organization_secret(self, org, secret_name, **payload):
+    def create_or_update_an_organization_secret(self, org, secret_name, payload=None):
         """
         Create or update an organization secret
         https://docs.github.com/rest/reference/dependabot#create-or-update-an-organization-secret
@@ -74,7 +74,7 @@ class Dependabot:
         response = self._execute("put", url, payload)
         return response
 
-    def delete_an_organization_secret(self, org, secret_name, **payload):
+    def delete_an_organization_secret(self, org, secret_name, payload=None):
         """
         Delete an organization secret
         https://docs.github.com/rest/reference/dependabot#delete-an-organization-secret
@@ -89,7 +89,7 @@ class Dependabot:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_selected_repositories_for_an_organization_secret(self, org, secret_name, **payload):
+    def list_selected_repositories_for_an_organization_secret(self, org, secret_name, payload=None):
         """
         List selected repositories for an organization secret
         https://docs.github.com/rest/reference/dependabot#list-selected-repositories-for-an-organization-secret
@@ -105,7 +105,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def set_selected_repositories_for_an_organization_secret(self, org, secret_name, **payload):
+    def set_selected_repositories_for_an_organization_secret(self, org, secret_name, payload=None):
         """
         Set selected repositories for an organization secret
         https://docs.github.com/rest/reference/dependabot#set-selected-repositories-for-an-organization-secret
@@ -121,7 +121,7 @@ class Dependabot:
         return response
 
     def add_selected_repository_to_an_organization_secret(
-        self, org, secret_name, repository_id, **payload
+        self, org, secret_name, repository_id, payload=None
     ):
         """
         Add selected repository to an organization secret
@@ -142,7 +142,7 @@ class Dependabot:
         return response
 
     def remove_selected_repository_from_an_organization_secret(
-        self, org, secret_name, repository_id, **payload
+        self, org, secret_name, repository_id, payload=None
     ):
         """
         Remove selected repository from an organization secret
@@ -162,7 +162,7 @@ class Dependabot:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_repository_secrets(self, owner, repo, **payload):
+    def list_repository_secrets(self, owner, repo, payload=None):
         """
         List repository secrets
         https://docs.github.com/rest/reference/dependabot#list-repository-secrets
@@ -178,7 +178,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_repository_public_key(self, owner, repo, **payload):
+    def get_a_repository_public_key(self, owner, repo, payload=None):
         """
         Get a repository public key
         https://docs.github.com/rest/reference/dependabot#get-a-repository-public-key
@@ -193,7 +193,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_repository_secret(self, owner, repo, secret_name, **payload):
+    def get_a_repository_secret(self, owner, repo, secret_name, payload=None):
         """
         Get a repository secret
         https://docs.github.com/rest/reference/dependabot#get-a-repository-secret
@@ -209,7 +209,7 @@ class Dependabot:
         response = self._execute("get", url, payload)
         return response
 
-    def create_or_update_a_repository_secret(self, owner, repo, secret_name, **payload):
+    def create_or_update_a_repository_secret(self, owner, repo, secret_name, payload=None):
         """
         Create or update a repository secret
         https://docs.github.com/rest/reference/dependabot#create-or-update-a-repository-secret
@@ -225,7 +225,7 @@ class Dependabot:
         response = self._execute("put", url, payload)
         return response
 
-    def delete_a_repository_secret(self, owner, repo, secret_name, **payload):
+    def delete_a_repository_secret(self, owner, repo, secret_name, payload=None):
         """
         Delete a repository secret
         https://docs.github.com/rest/reference/dependabot#delete-a-repository-secret

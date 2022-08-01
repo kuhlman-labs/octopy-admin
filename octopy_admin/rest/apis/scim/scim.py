@@ -15,7 +15,7 @@ class Scim:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_scim_provisioned_identities(self, org, **payload):
+    def list_scim_provisioned_identities(self, org, payload=None):
         """
         List SCIM provisioned identities
         https://docs.github.com/rest/reference/scim#list-scim-provisioned-identities
@@ -31,7 +31,7 @@ class Scim:
         response = self._execute("get", url, payload)
         return response
 
-    def provision_and_invite_a_scim_user(self, org, **payload):
+    def provision_and_invite_a_scim_user(self, org, payload=None):
         """
         Provision and invite a SCIM user
         https://docs.github.com/rest/reference/scim#provision-and-invite-a-scim-user
@@ -45,7 +45,7 @@ class Scim:
         response = self._execute("post", url, payload)
         return response
 
-    def get_scim_provisioning_information_for_a_user(self, org, scim_user_id, **payload):
+    def get_scim_provisioning_information_for_a_user(self, org, scim_user_id, payload=None):
         """
         Get SCIM provisioning information for a user
         https://docs.github.com/rest/reference/scim#get-scim-provisioning-information-for-a-user
@@ -60,7 +60,7 @@ class Scim:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_provisioned_organization_membership(self, org, scim_user_id, **payload):
+    def update_a_provisioned_organization_membership(self, org, scim_user_id, payload=None):
         """
         Update a provisioned organization membership
         https://docs.github.com/rest/reference/scim#set-scim-information-for-a-provisioned-user
@@ -75,7 +75,7 @@ class Scim:
         response = self._execute("put", url, payload)
         return response
 
-    def update_an_attribute_for_a_scim_user(self, org, scim_user_id, **payload):
+    def update_an_attribute_for_a_scim_user(self, org, scim_user_id, payload=None):
         """
         Update an attribute for a SCIM user
         https://docs.github.com/rest/reference/scim#update-an-attribute-for-a-scim-user
@@ -90,7 +90,7 @@ class Scim:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_scim_user_from_an_organization(self, org, scim_user_id, **payload):
+    def delete_a_scim_user_from_an_organization(self, org, scim_user_id, payload=None):
         """
         Delete a SCIM user from an organization
         https://docs.github.com/rest/reference/scim#delete-a-scim-user-from-an-organization
