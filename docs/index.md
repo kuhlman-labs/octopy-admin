@@ -21,7 +21,7 @@ poetry install
 ### Install with pip
 
 ```bash
-pip install octopy_admin
+pip install octopy-admin
 ```
 
 ### Set Environment Variables
