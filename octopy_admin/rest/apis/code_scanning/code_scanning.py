@@ -15,7 +15,7 @@ class CodeScanning:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_code_scanning_alerts_for_an_enterprise(self, enterprise, **payload):
+    def list_code_scanning_alerts_for_an_enterprise(self, enterprise, payload=None):
         """
         List code scanning alerts for an enterprise
         https://docs.github.com/rest/reference/code-scanning#list-code-scanning-alerts-for-an-enterprise
@@ -37,7 +37,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def list_code_scanning_alerts_for_an_organization(self, org, **payload):
+    def list_code_scanning_alerts_for_an_organization(self, org, payload=None):
         """
         List code scanning alerts for an organization
         https://docs.github.com/rest/reference/code-scanning#list-code-scanning-alerts-by-organization
@@ -59,7 +59,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def list_code_scanning_alerts_for_a_repository(self, owner, repo, **payload):
+    def list_code_scanning_alerts_for_a_repository(self, owner, repo, payload=None):
         """
         List code scanning alerts for a repository
         https://docs.github.com/rest/reference/code-scanning#list-code-scanning-alerts-for-a-repository
@@ -81,7 +81,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_code_scanning_alert(self, owner, repo, alert_number, **payload):
+    def get_a_code_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         Get a code scanning alert
         https://docs.github.com/rest/reference/code-scanning#get-a-code-scanning-alert
@@ -97,7 +97,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_code_scanning_alert(self, owner, repo, alert_number, **payload):
+    def update_a_code_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         Update a code scanning alert
         https://docs.github.com/rest/reference/code-scanning#update-a-code-scanning-alert
@@ -113,7 +113,7 @@ class CodeScanning:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_instances_of_a_code_scanning_alert(self, owner, repo, alert_number, **payload):
+    def list_instances_of_a_code_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         List instances of a code scanning alert
         https://docs.github.com/rest/reference/code-scanning#list-instances-of-a-code-scanning-alert
@@ -133,7 +133,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def list_code_scanning_analyses_for_a_repository(self, owner, repo, **payload):
+    def list_code_scanning_analyses_for_a_repository(self, owner, repo, payload=None):
         """
         List code scanning analyses for a repository
         https://docs.github.com/rest/reference/code-scanning#list-code-scanning-analyses-for-a-repository
@@ -153,7 +153,7 @@ class CodeScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_code_scanning_analysis_for_a_repository(self, owner, repo, analysis_id, **payload):
+    def get_a_code_scanning_analysis_for_a_repository(self, owner, repo, analysis_id, payload=None):
         """
         Get a code scanning analysis for a repository
         https://docs.github.com/rest/reference/code-scanning#get-a-code-scanning-analysis-for-a-repository
@@ -170,7 +170,7 @@ class CodeScanning:
         return response
 
     def delete_a_code_scanning_analysis_from_a_repository(
-        self, owner, repo, analysis_id, **payload
+        self, owner, repo, analysis_id, payload=None
     ):
         """
         Delete a code scanning analysis from a repository
@@ -187,7 +187,7 @@ class CodeScanning:
         response = self._execute("delete", url, payload)
         return response
 
-    def run_codeql_queries_against_one_or_more_repositories(self, owner, repo, **payload):
+    def run_codeql_queries_against_one_or_more_repositories(self, owner, repo, payload=None):
         """
         Run CodeQL queries against one or more repositories
         https://docs.github.com/rest/reference/code-scanning#run-codeql-queries-against-one-or-more-repositories
@@ -202,7 +202,7 @@ class CodeScanning:
         response = self._execute("post", url, payload)
         return response
 
-    def put_a_summary_status_report_for_building_a_codeql_database(self, owner, repo, **payload):
+    def put_a_summary_status_report_for_building_a_codeql_database(self, owner, repo, payload=None):
         """
         Put a summary status report for building a CodeQL database
         N/A
@@ -217,7 +217,7 @@ class CodeScanning:
         response = self._execute("put", url, payload)
         return response
 
-    def upload_an_analysis_as_sarif_data(self, owner, repo, **payload):
+    def upload_an_analysis_as_sarif_data(self, owner, repo, payload=None):
         """
         Upload an analysis as SARIF data
         https://docs.github.com/rest/reference/code-scanning#upload-a-sarif-file
@@ -232,7 +232,7 @@ class CodeScanning:
         response = self._execute("post", url, payload)
         return response
 
-    def get_information_about_a_sarif_upload(self, owner, repo, sarif_id, **payload):
+    def get_information_about_a_sarif_upload(self, owner, repo, sarif_id, payload=None):
         """
         Get information about a SARIF upload
         https://docs.github.com/rest/reference/code-scanning#list-recent-code-scanning-analyses-for-a-repository

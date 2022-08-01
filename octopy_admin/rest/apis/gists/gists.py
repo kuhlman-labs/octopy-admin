@@ -15,7 +15,7 @@ class Gists:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_gists_for_the_authenticated_user(self, **payload):
+    def list_gists_for_the_authenticated_user(self, payload=None):
         """
         List gists for the authenticated user
         https://docs.github.com/rest/reference/gists#list-gists-for-the-authenticated-user
@@ -31,7 +31,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_gist(self, **payload):
+    def create_a_gist(self, payload=None):
         """
         Create a gist
         https://docs.github.com/rest/reference/gists#create-a-gist
@@ -45,7 +45,7 @@ class Gists:
         response = self._execute("post", url, payload)
         return response
 
-    def list_public_gists(self, **payload):
+    def list_public_gists(self, payload=None):
         """
         List public gists
         https://docs.github.com/rest/reference/gists#list-public-gists
@@ -61,7 +61,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def list_starred_gists(self, **payload):
+    def list_starred_gists(self, payload=None):
         """
         List starred gists
         https://docs.github.com/rest/reference/gists#list-starred-gists
@@ -77,7 +77,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_gist(self, gist_id, **payload):
+    def get_a_gist(self, gist_id, payload=None):
         """
         Get a gist
         https://docs.github.com/rest/reference/gists#get-a-gist
@@ -91,7 +91,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_gist(self, gist_id, **payload):
+    def update_a_gist(self, gist_id, payload=None):
         """
         Update a gist
         https://docs.github.com/rest/reference/gists/#update-a-gist
@@ -105,7 +105,7 @@ class Gists:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_gist(self, gist_id, **payload):
+    def delete_a_gist(self, gist_id, payload=None):
         """
         Delete a gist
         https://docs.github.com/rest/reference/gists#delete-a-gist
@@ -119,7 +119,7 @@ class Gists:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_gist_comments(self, gist_id, **payload):
+    def list_gist_comments(self, gist_id, payload=None):
         """
         List gist comments
         https://docs.github.com/rest/reference/gists#list-gist-comments
@@ -134,7 +134,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_gist_comment(self, gist_id, **payload):
+    def create_a_gist_comment(self, gist_id, payload=None):
         """
         Create a gist comment
         https://docs.github.com/rest/reference/gists#create-a-gist-comment
@@ -148,7 +148,7 @@ class Gists:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_gist_comment(self, gist_id, comment_id, **payload):
+    def get_a_gist_comment(self, gist_id, comment_id, payload=None):
         """
         Get a gist comment
         https://docs.github.com/rest/reference/gists#get-a-gist-comment
@@ -163,7 +163,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_gist_comment(self, gist_id, comment_id, **payload):
+    def update_a_gist_comment(self, gist_id, comment_id, payload=None):
         """
         Update a gist comment
         https://docs.github.com/rest/reference/gists#update-a-gist-comment
@@ -178,7 +178,7 @@ class Gists:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_gist_comment(self, gist_id, comment_id, **payload):
+    def delete_a_gist_comment(self, gist_id, comment_id, payload=None):
         """
         Delete a gist comment
         https://docs.github.com/rest/reference/gists#delete-a-gist-comment
@@ -193,7 +193,7 @@ class Gists:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_gist_commits(self, gist_id, **payload):
+    def list_gist_commits(self, gist_id, payload=None):
         """
         List gist commits
         https://docs.github.com/rest/reference/gists#list-gist-commits
@@ -208,7 +208,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def list_gist_forks(self, gist_id, **payload):
+    def list_gist_forks(self, gist_id, payload=None):
         """
         List gist forks
         https://docs.github.com/rest/reference/gists#list-gist-forks
@@ -223,7 +223,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def fork_a_gist(self, gist_id, **payload):
+    def fork_a_gist(self, gist_id, payload=None):
         """
         Fork a gist
         https://docs.github.com/rest/reference/gists#fork-a-gist
@@ -237,7 +237,7 @@ class Gists:
         response = self._execute("post", url, payload)
         return response
 
-    def check_if_a_gist_is_starred(self, gist_id, **payload):
+    def check_if_a_gist_is_starred(self, gist_id, payload=None):
         """
         Check if a gist is starred
         https://docs.github.com/rest/reference/gists#check-if-a-gist-is-starred
@@ -251,7 +251,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def star_a_gist(self, gist_id, **payload):
+    def star_a_gist(self, gist_id, payload=None):
         """
         Star a gist
         https://docs.github.com/rest/reference/gists#star-a-gist
@@ -265,7 +265,7 @@ class Gists:
         response = self._execute("put", url, payload)
         return response
 
-    def unstar_a_gist(self, gist_id, **payload):
+    def unstar_a_gist(self, gist_id, payload=None):
         """
         Unstar a gist
         https://docs.github.com/rest/reference/gists#unstar-a-gist
@@ -279,7 +279,7 @@ class Gists:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_a_gist_revision(self, gist_id, sha, **payload):
+    def get_a_gist_revision(self, gist_id, sha, payload=None):
         """
         Get a gist revision
         https://docs.github.com/rest/reference/gists#get-a-gist-revision
@@ -294,7 +294,7 @@ class Gists:
         response = self._execute("get", url, payload)
         return response
 
-    def list_gists_for_a_user(self, username, **payload):
+    def list_gists_for_a_user(self, username, payload=None):
         """
         List gists for a user
         https://docs.github.com/rest/reference/gists#list-gists-for-a-user

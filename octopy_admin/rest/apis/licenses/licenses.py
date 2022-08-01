@@ -15,7 +15,7 @@ class Licenses:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_all_commonly_used_licenses(self, **payload):
+    def get_all_commonly_used_licenses(self, payload=None):
         """
         Get all commonly used licenses
         https://docs.github.com/rest/reference/licenses#get-all-commonly-used-licenses
@@ -31,7 +31,7 @@ class Licenses:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_license(self, license, **payload):
+    def get_a_license(self, license, payload=None):
         # pylint: disable=redefined-builtin
         """
         Get a license
@@ -46,7 +46,7 @@ class Licenses:
         response = self._execute("get", url, payload)
         return response
 
-    def get_the_license_for_a_repository(self, owner, repo, **payload):
+    def get_the_license_for_a_repository(self, owner, repo, payload=None):
         """
         Get the license for a repository
         https://docs.github.com/rest/reference/licenses/#get-the-license-for-a-repository

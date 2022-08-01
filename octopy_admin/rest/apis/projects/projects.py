@@ -16,7 +16,7 @@ class Projects:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organization_projects(self, org, **payload):
+    def list_organization_projects(self, org, payload=None):
         """
         List organization projects
         https://docs.github.com/rest/reference/projects#list-organization-projects
@@ -32,7 +32,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def create_an_organization_project(self, org, **payload):
+    def create_an_organization_project(self, org, payload=None):
         """
         Create an organization project
         https://docs.github.com/rest/reference/projects#create-an-organization-project
@@ -46,7 +46,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_project_card(self, card_id, **payload):
+    def get_a_project_card(self, card_id, payload=None):
         """
         Get a project card
         https://docs.github.com/rest/reference/projects#get-a-project-card
@@ -60,7 +60,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_existing_project_card(self, card_id, **payload):
+    def update_an_existing_project_card(self, card_id, payload=None):
         """
         Update an existing project card
         https://docs.github.com/rest/reference/projects#update-a-project-card
@@ -74,7 +74,7 @@ class Projects:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_project_card(self, card_id, **payload):
+    def delete_a_project_card(self, card_id, payload=None):
         """
         Delete a project card
         https://docs.github.com/rest/reference/projects#delete-a-project-card
@@ -88,7 +88,7 @@ class Projects:
         response = self._execute("delete", url, payload)
         return response
 
-    def move_a_project_card(self, card_id, **payload):
+    def move_a_project_card(self, card_id, payload=None):
         """
         Move a project card
         https://docs.github.com/rest/reference/projects#move-a-project-card
@@ -102,7 +102,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_project_column(self, column_id, **payload):
+    def get_a_project_column(self, column_id, payload=None):
         """
         Get a project column
         https://docs.github.com/rest/reference/projects#get-a-project-column
@@ -116,7 +116,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_existing_project_column(self, column_id, **payload):
+    def update_an_existing_project_column(self, column_id, payload=None):
         """
         Update an existing project column
         https://docs.github.com/rest/reference/projects#update-a-project-column
@@ -130,7 +130,7 @@ class Projects:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_project_column(self, column_id, **payload):
+    def delete_a_project_column(self, column_id, payload=None):
         """
         Delete a project column
         https://docs.github.com/rest/reference/projects#delete-a-project-column
@@ -144,7 +144,7 @@ class Projects:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_project_cards(self, column_id, **payload):
+    def list_project_cards(self, column_id, payload=None):
         """
         List project cards
         https://docs.github.com/rest/reference/projects#list-project-cards
@@ -160,7 +160,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_project_card(self, column_id, **payload):
+    def create_a_project_card(self, column_id, payload=None):
         """
         Create a project card
         https://docs.github.com/rest/reference/projects#create-a-project-card
@@ -174,7 +174,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def move_a_project_column(self, column_id, **payload):
+    def move_a_project_column(self, column_id, payload=None):
         """
         Move a project column
         https://docs.github.com/rest/reference/projects#move-a-project-column
@@ -188,7 +188,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_project(self, project_id, **payload):
+    def get_a_project(self, project_id, payload=None):
         """
         Get a project
         https://docs.github.com/rest/reference/projects#get-a-project
@@ -202,7 +202,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_project(self, project_id, **payload):
+    def update_a_project(self, project_id, payload=None):
         """
         Update a project
         https://docs.github.com/rest/reference/projects#update-a-project
@@ -216,7 +216,7 @@ class Projects:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_project(self, project_id, **payload):
+    def delete_a_project(self, project_id, payload=None):
         """
         Delete a project
         https://docs.github.com/rest/reference/projects#delete-a-project
@@ -230,7 +230,7 @@ class Projects:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_project_collaborators(self, project_id, **payload):
+    def list_project_collaborators(self, project_id, payload=None):
         """
         List project collaborators
         https://docs.github.com/rest/reference/projects#list-project-collaborators
@@ -246,7 +246,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def add_project_collaborator(self, project_id, username, **payload):
+    def add_project_collaborator(self, project_id, username, payload=None):
         """
         Add project collaborator
         https://docs.github.com/rest/reference/projects#add-project-collaborator
@@ -261,7 +261,7 @@ class Projects:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_user_as_a_collaborator(self, project_id, username, **payload):
+    def remove_user_as_a_collaborator(self, project_id, username, payload=None):
         """
         Remove user as a collaborator
         https://docs.github.com/rest/reference/projects#remove-project-collaborator
@@ -276,7 +276,7 @@ class Projects:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_project_permission_for_a_user(self, project_id, username, **payload):
+    def get_project_permission_for_a_user(self, project_id, username, payload=None):
         """
         Get project permission for a user
         https://docs.github.com/rest/reference/projects#get-project-permission-for-a-user
@@ -291,7 +291,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def list_project_columns(self, project_id, **payload):
+    def list_project_columns(self, project_id, payload=None):
         """
         List project columns
         https://docs.github.com/rest/reference/projects#list-project-columns
@@ -306,7 +306,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_project_column(self, project_id, **payload):
+    def create_a_project_column(self, project_id, payload=None):
         """
         Create a project column
         https://docs.github.com/rest/reference/projects#create-a-project-column
@@ -320,7 +320,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def list_repository_projects(self, owner, repo, **payload):
+    def list_repository_projects(self, owner, repo, payload=None):
         """
         List repository projects
         https://docs.github.com/rest/reference/projects#list-repository-projects
@@ -337,7 +337,7 @@ class Projects:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_repository_project(self, owner, repo, **payload):
+    def create_a_repository_project(self, owner, repo, payload=None):
         """
         Create a repository project
         https://docs.github.com/rest/reference/projects#create-a-repository-project
@@ -352,7 +352,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def create_a_user_project(self, **payload):
+    def create_a_user_project(self, payload=None):
         """
         Create a user project
         https://docs.github.com/rest/reference/projects#create-a-user-project
@@ -366,7 +366,7 @@ class Projects:
         response = self._execute("post", url, payload)
         return response
 
-    def list_user_projects(self, username, **payload):
+    def list_user_projects(self, username, payload=None):
         """
         List user projects
         https://docs.github.com/rest/reference/projects#list-user-projects

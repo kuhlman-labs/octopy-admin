@@ -43,8 +43,12 @@ class GraphQuery:
                 if isinstance(item, dict):
                     if item.get("nodes"):
                         return item.get("nodes")
+                    if item.get("nodes") == []:
+                        return []
                     if item.get("edges"):
                         return item.get("edges")
+                    if item.get("edges") == []:
+                        return []
                     return self._get_nodes(item)
 
     def _paginate_results(self, query, params):
@@ -77,7 +81,8 @@ class GraphQuery:
         """
         result_list = []
         for result in results:
-            result_list.extend(self._get_nodes(result))
+            if self._get_nodes(result):
+                result_list.extend(self._get_nodes(result))
         return result_list
 
     def get_enterprise_orgs(self, enterprise):

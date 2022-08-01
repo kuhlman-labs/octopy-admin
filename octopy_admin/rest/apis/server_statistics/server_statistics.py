@@ -16,7 +16,7 @@ class ServerStatistics:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_github_enterprise_server_statistics(self, enterprise_or_org, **payload):
+    def get_github_enterprise_server_statistics(self, enterprise_or_org, payload=None):
         """
         Get GitHub Enterprise Server statistics
         https://docs.github.com/rest/reference/enterprise-admin#get-github-enterprise-server-statistics

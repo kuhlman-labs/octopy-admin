@@ -15,7 +15,7 @@ class Meta:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def github_api_root(self, **payload):
+    def github_api_root(self, payload=None):
         """
         GitHub API Root
         https://docs.github.com/rest/overview/resources-in-the-rest-api#root-endpoint
@@ -29,7 +29,7 @@ class Meta:
         response = self._execute("get", url, payload)
         return response
 
-    def get_github_meta_information(self, **payload):
+    def get_github_meta_information(self, payload=None):
         """
         Get GitHub meta information
         https://docs.github.com/rest/reference/meta#get-github-meta-information
@@ -43,7 +43,7 @@ class Meta:
         response = self._execute("get", url, payload)
         return response
 
-    def get_octocat(self, **payload):
+    def get_octocat(self, payload=None):
         """
         Get Octocat
         https://docs.github.com/rest/reference/meta#get-octocat
@@ -57,7 +57,7 @@ class Meta:
         response = self._execute("get", url, payload)
         return response
 
-    def get_all_api_versions(self, **payload):
+    def get_all_api_versions(self, payload=None):
         """
         Get all API versions
         https://docs.github.com/rest/reference/meta#get-all-api-versions
@@ -71,7 +71,7 @@ class Meta:
         response = self._execute("get", url, payload)
         return response
 
-    def get_the_zen_of_github(self, **payload):
+    def get_the_zen_of_github(self, payload=None):
         """
         Get the Zen of GitHub
         N/A

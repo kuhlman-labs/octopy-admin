@@ -16,7 +16,7 @@ class RateLimit:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_rate_limit_status_for_the_authenticated_user(self, **payload):
+    def get_rate_limit_status_for_the_authenticated_user(self, payload=None):
         """
         Get rate limit status for the authenticated user
         https://docs.github.com/rest/reference/rate-limit#get-rate-limit-status-for-the-authenticated-user

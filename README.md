@@ -61,7 +61,7 @@ github = RestClient()
 # Make a request to the REST API for the current user:
 current_user = github.users.get_the_authenticated_user()
 # Print response
-print(current_user.txt)
+print(current_user.text)
 ```
 
 ### GraphQL API

@@ -11,8 +11,6 @@ from dotenv import load_dotenv
 
 from octopy_admin.graph.graph_client import GraphClient, GraphClientError
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-
 load_dotenv()
 graphquery = GraphClient()
 

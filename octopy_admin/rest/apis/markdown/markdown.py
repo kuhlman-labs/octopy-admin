@@ -15,7 +15,7 @@ class Markdown:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def render_a_markdown_document(self, **payload):
+    def render_a_markdown_document(self, payload=None):
         """
         Render a Markdown document
         https://docs.github.com/rest/reference/markdown#render-a-markdown-document
@@ -29,7 +29,7 @@ class Markdown:
         response = self._execute("post", url, payload)
         return response
 
-    def render_a_markdown_document_in_raw_mode(self, **payload):
+    def render_a_markdown_document_in_raw_mode(self, payload=None):
         """
         Render a Markdown document in raw mode
         https://docs.github.com/rest/reference/markdown#render-a-markdown-document-in-raw-mode

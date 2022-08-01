@@ -16,7 +16,7 @@ class Users:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_the_authenticated_user(self, **payload):
+    def get_the_authenticated_user(self, payload=None):
         """
         Get the authenticated user
         https://docs.github.com/rest/reference/users#get-the-authenticated-user
@@ -30,7 +30,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def update_the_authenticated_user(self, **payload):
+    def update_the_authenticated_user(self, payload=None):
         """
         Update the authenticated user
         https://docs.github.com/rest/reference/users/#update-the-authenticated-user
@@ -44,7 +44,7 @@ class Users:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_users_blocked_by_the_authenticated_user(self, **payload):
+    def list_users_blocked_by_the_authenticated_user(self, payload=None):
         """
         List users blocked by the authenticated user
         https://docs.github.com/rest/reference/users#list-users-blocked-by-the-authenticated-user
@@ -58,7 +58,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_user_is_blocked_by_the_authenticated_user(self, username, **payload):
+    def check_if_a_user_is_blocked_by_the_authenticated_user(self, username, payload=None):
         """
         Check if a user is blocked by the authenticated user
         https://docs.github.com/rest/reference/users#check-if-a-user-is-blocked-by-the-authenticated-user
@@ -72,7 +72,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def block_a_user(self, username, **payload):
+    def block_a_user(self, username, payload=None):
         """
         Block a user
         https://docs.github.com/rest/reference/users#block-a-user
@@ -86,7 +86,7 @@ class Users:
         response = self._execute("put", url, payload)
         return response
 
-    def unblock_a_user(self, username, **payload):
+    def unblock_a_user(self, username, payload=None):
         """
         Unblock a user
         https://docs.github.com/rest/reference/users#unblock-a-user
@@ -100,7 +100,7 @@ class Users:
         response = self._execute("delete", url, payload)
         return response
 
-    def set_primary_email_visibility_for_the_authenticated_user(self, **payload):
+    def set_primary_email_visibility_for_the_authenticated_user(self, payload=None):
         """
         Set primary email visibility for the authenticated user
         https://docs.github.com/rest/reference/users#set-primary-email-visibility-for-the-authenticated-user
@@ -114,7 +114,7 @@ class Users:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_email_addresses_for_the_authenticated_user(self, **payload):
+    def list_email_addresses_for_the_authenticated_user(self, payload=None):
         """
         List email addresses for the authenticated user
         https://docs.github.com/rest/reference/users#list-email-addresses-for-the-authenticated-user
@@ -129,7 +129,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def add_an_email_address_for_the_authenticated_user(self, **payload):
+    def add_an_email_address_for_the_authenticated_user(self, payload=None):
         """
         Add an email address for the authenticated user
         https://docs.github.com/rest/reference/users#add-an-email-address-for-the-authenticated-user
@@ -143,7 +143,7 @@ class Users:
         response = self._execute("post", url, payload)
         return response
 
-    def delete_an_email_address_for_the_authenticated_user(self, **payload):
+    def delete_an_email_address_for_the_authenticated_user(self, payload=None):
         """
         Delete an email address for the authenticated user
         https://docs.github.com/rest/reference/users#delete-an-email-address-for-the-authenticated-user
@@ -157,7 +157,7 @@ class Users:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_followers_of_the_authenticated_user(self, **payload):
+    def list_followers_of_the_authenticated_user(self, payload=None):
         """
         List followers of the authenticated user
         https://docs.github.com/rest/reference/users#list-followers-of-the-authenticated-user
@@ -172,7 +172,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_the_people_the_authenticated_user_follows(self, **payload):
+    def list_the_people_the_authenticated_user_follows(self, payload=None):
         """
         List the people the authenticated user follows
         https://docs.github.com/rest/reference/users#list-the-people-the-authenticated-user-follows
@@ -187,7 +187,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_person_is_followed_by_the_authenticated_user(self, username, **payload):
+    def check_if_a_person_is_followed_by_the_authenticated_user(self, username, payload=None):
         """
         Check if a person is followed by the authenticated user
         https://docs.github.com/rest/reference/users#check-if-a-person-is-followed-by-the-authenticated-user
@@ -201,7 +201,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def follow_a_user(self, username, **payload):
+    def follow_a_user(self, username, payload=None):
         """
         Follow a user
         https://docs.github.com/rest/reference/users#follow-a-user
@@ -215,7 +215,7 @@ class Users:
         response = self._execute("put", url, payload)
         return response
 
-    def unfollow_a_user(self, username, **payload):
+    def unfollow_a_user(self, username, payload=None):
         """
         Unfollow a user
         https://docs.github.com/rest/reference/users#unfollow-a-user
@@ -229,7 +229,7 @@ class Users:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_gpg_keys_for_the_authenticated_user(self, **payload):
+    def list_gpg_keys_for_the_authenticated_user(self, payload=None):
         """
         List GPG keys for the authenticated user
         https://docs.github.com/rest/reference/users#list-gpg-keys-for-the-authenticated-user
@@ -244,7 +244,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_gpg_key_for_the_authenticated_user(self, **payload):
+    def create_a_gpg_key_for_the_authenticated_user(self, payload=None):
         """
         Create a GPG key for the authenticated user
         https://docs.github.com/rest/reference/users#create-a-gpg-key-for-the-authenticated-user
@@ -258,7 +258,7 @@ class Users:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_gpg_key_for_the_authenticated_user(self, gpg_key_id, **payload):
+    def get_a_gpg_key_for_the_authenticated_user(self, gpg_key_id, payload=None):
         """
         Get a GPG key for the authenticated user
         https://docs.github.com/rest/reference/users#get-a-gpg-key-for-the-authenticated-user
@@ -272,7 +272,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_gpg_key_for_the_authenticated_user(self, gpg_key_id, **payload):
+    def delete_a_gpg_key_for_the_authenticated_user(self, gpg_key_id, payload=None):
         """
         Delete a GPG key for the authenticated user
         https://docs.github.com/rest/reference/users#delete-a-gpg-key-for-the-authenticated-user
@@ -286,7 +286,7 @@ class Users:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_public_ssh_keys_for_the_authenticated_user(self, **payload):
+    def list_public_ssh_keys_for_the_authenticated_user(self, payload=None):
         """
         List public SSH keys for the authenticated user
         https://docs.github.com/rest/reference/users#list-public-ssh-keys-for-the-authenticated-user
@@ -301,7 +301,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_public_ssh_key_for_the_authenticated_user(self, **payload):
+    def create_a_public_ssh_key_for_the_authenticated_user(self, payload=None):
         """
         Create a public SSH key for the authenticated user
         https://docs.github.com/rest/reference/users#create-a-public-ssh-key-for-the-authenticated-user
@@ -315,7 +315,7 @@ class Users:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_public_ssh_key_for_the_authenticated_user(self, key_id, **payload):
+    def get_a_public_ssh_key_for_the_authenticated_user(self, key_id, payload=None):
         """
         Get a public SSH key for the authenticated user
         https://docs.github.com/rest/reference/users#get-a-public-ssh-key-for-the-authenticated-user
@@ -329,7 +329,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_public_ssh_key_for_the_authenticated_user(self, key_id, **payload):
+    def delete_a_public_ssh_key_for_the_authenticated_user(self, key_id, payload=None):
         """
         Delete a public SSH key for the authenticated user
         https://docs.github.com/rest/reference/users#delete-a-public-ssh-key-for-the-authenticated-user
@@ -343,7 +343,7 @@ class Users:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_public_email_addresses_for_the_authenticated_user(self, **payload):
+    def list_public_email_addresses_for_the_authenticated_user(self, payload=None):
         """
         List public email addresses for the authenticated user
         https://docs.github.com/rest/reference/users#list-public-email-addresses-for-the-authenticated-user
@@ -358,7 +358,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_users(self, **payload):
+    def list_users(self, payload=None):
         """
         List users
         https://docs.github.com/rest/reference/users#list-users
@@ -373,7 +373,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_user(self, username, **payload):
+    def get_a_user(self, username, payload=None):
         """
         Get a user
         https://docs.github.com/rest/reference/users#get-a-user
@@ -387,7 +387,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_followers_of_a_user(self, username, **payload):
+    def list_followers_of_a_user(self, username, payload=None):
         """
         List followers of a user
         https://docs.github.com/rest/reference/users#list-followers-of-a-user
@@ -402,7 +402,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_the_people_a_user_follows(self, username, **payload):
+    def list_the_people_a_user_follows(self, username, payload=None):
         """
         List the people a user follows
         https://docs.github.com/rest/reference/users#list-the-people-a-user-follows
@@ -417,7 +417,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_user_follows_another_user(self, username, target_user, **payload):
+    def check_if_a_user_follows_another_user(self, username, target_user, payload=None):
         """
         Check if a user follows another user
         https://docs.github.com/rest/reference/users#check-if-a-user-follows-another-user
@@ -432,7 +432,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_gpg_keys_for_a_user(self, username, **payload):
+    def list_gpg_keys_for_a_user(self, username, payload=None):
         """
         List GPG keys for a user
         https://docs.github.com/rest/reference/users#list-gpg-keys-for-a-user
@@ -447,7 +447,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def get_contextual_information_for_a_user(self, username, **payload):
+    def get_contextual_information_for_a_user(self, username, payload=None):
         """
         Get contextual information for a user
         https://docs.github.com/rest/reference/users#get-contextual-information-for-a-user
@@ -462,7 +462,7 @@ class Users:
         response = self._execute("get", url, payload)
         return response
 
-    def list_public_keys_for_a_user(self, username, **payload):
+    def list_public_keys_for_a_user(self, username, payload=None):
         """
         List public keys for a user
         https://docs.github.com/rest/reference/users#list-public-keys-for-a-user

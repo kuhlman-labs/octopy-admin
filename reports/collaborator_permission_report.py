@@ -30,7 +30,7 @@ def enterpise_collaborator_permission_report(enterprise):
         print(f"Got {len(orgs)} orgs.")
         for org in orgs:
             org = org.get("login")
-            print(f"Getting repos for the {org.get('name')} organization.")
+            print(f"Getting repos for the {org} organization.")
             repo_query = graphquery.query.get_org_repos(org)
             repos = graphquery.query.results_to_list(repo_query)
             print(f"Got {len(repos)} repos.")

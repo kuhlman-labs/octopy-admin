@@ -16,7 +16,7 @@ class EnterpriseAdmin:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_github_actions_permissions_for_an_enterprise(self, enterprise, **payload):
+    def get_github_actions_permissions_for_an_enterprise(self, enterprise, payload=None):
         """
         Get GitHub Actions permissions for an enterprise
         https://docs.github.com/rest/reference/actions#get-github-actions-permissions-for-an-enterprise
@@ -30,7 +30,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def set_github_actions_permissions_for_an_enterprise(self, enterprise, **payload):
+    def set_github_actions_permissions_for_an_enterprise(self, enterprise, payload=None):
         """
         Set GitHub Actions permissions for an enterprise
         https://docs.github.com/rest/reference/actions#set-github-actions-permissions-for-an-enterprise
@@ -45,7 +45,7 @@ class EnterpriseAdmin:
         return response
 
     def list_selected_organizations_enabled_for_github_actions_in_an_enterprise(
-        self, enterprise, **payload
+        self, enterprise, payload=None
     ):
         """
         List selected organizations enabled for GitHub Actions in an enterprise
@@ -62,7 +62,7 @@ class EnterpriseAdmin:
         return response
 
     def set_selected_organizations_enabled_for_github_actions_in_an_enterprise(
-        self, enterprise, **payload
+        self, enterprise, payload=None
     ):
         """
         Set selected organizations enabled for GitHub Actions in an enterprise
@@ -78,7 +78,7 @@ class EnterpriseAdmin:
         return response
 
     def enable_a_selected_organization_for_github_actions_in_an_enterprise(
-        self, enterprise, org_id, **payload
+        self, enterprise, org_id, payload=None
     ):
         """
         Enable a selected organization for GitHub Actions in an enterprise
@@ -97,7 +97,7 @@ class EnterpriseAdmin:
         return response
 
     def disable_a_selected_organization_for_github_actions_in_an_enterprise(
-        self, enterprise, org_id, **payload
+        self, enterprise, org_id, payload=None
     ):
         """
         Disable a selected organization for GitHub Actions in an enterprise
@@ -115,7 +115,9 @@ class EnterpriseAdmin:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_allowed_actions_and_reusable_workflows_for_an_enterprise(self, enterprise, **payload):
+    def get_allowed_actions_and_reusable_workflows_for_an_enterprise(
+        self, enterprise, payload=None
+    ):
         """
         Get allowed actions and reusable workflows for an enterprise
         https://docs.github.com/rest/reference/actions#get-allowed-actions-for-an-enterprise
@@ -129,7 +131,9 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def set_allowed_actions_and_reusable_workflows_for_an_enterprise(self, enterprise, **payload):
+    def set_allowed_actions_and_reusable_workflows_for_an_enterprise(
+        self, enterprise, payload=None
+    ):
         """
         Set allowed actions and reusable workflows for an enterprise
         https://docs.github.com/rest/reference/actions#set-allowed-actions-for-an-enterprise
@@ -143,7 +147,7 @@ class EnterpriseAdmin:
         response = self._execute("put", url, payload)
         return response
 
-    def list_self_hosted_runner_groups_for_an_enterprise(self, enterprise, **payload):
+    def list_self_hosted_runner_groups_for_an_enterprise(self, enterprise, payload=None):
         """
         List self-hosted runner groups for an enterprise
         https://docs.github.com/rest/reference/actions#list-self-hosted-runner-groups-for-an-enterprise
@@ -159,7 +163,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_self_hosted_runner_group_for_an_enterprise(self, enterprise, **payload):
+    def create_a_self_hosted_runner_group_for_an_enterprise(self, enterprise, payload=None):
         """
         Create a self-hosted runner group for an enterprise
         https://docs.github.com/rest/reference/actions#create-self-hosted-runner-group-for-an-enterprise
@@ -174,7 +178,7 @@ class EnterpriseAdmin:
         return response
 
     def get_a_self_hosted_runner_group_for_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         Get a self-hosted runner group for an enterprise
@@ -191,7 +195,7 @@ class EnterpriseAdmin:
         return response
 
     def update_a_self_hosted_runner_group_for_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         Update a self-hosted runner group for an enterprise
@@ -208,7 +212,7 @@ class EnterpriseAdmin:
         return response
 
     def delete_a_self_hosted_runner_group_from_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         Delete a self-hosted runner group from an enterprise
@@ -225,7 +229,7 @@ class EnterpriseAdmin:
         return response
 
     def list_organization_access_to_a_self_hosted_runner_group_in_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         List organization access to a self-hosted runner group in an enterprise
@@ -246,7 +250,7 @@ class EnterpriseAdmin:
         return response
 
     def set_organization_access_for_a_self_hosted_runner_group_in_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         Set organization access for a self-hosted runner group in an enterprise
@@ -266,7 +270,7 @@ class EnterpriseAdmin:
         return response
 
     def add_organization_access_to_a_self_hosted_runner_group_in_an_enterprise(
-        self, enterprise, runner_group_id, org_id, **payload
+        self, enterprise, runner_group_id, org_id, payload=None
     ):
         """
         Add organization access to a self-hosted runner group in an enterprise
@@ -287,7 +291,7 @@ class EnterpriseAdmin:
         return response
 
     def remove_organization_access_to_a_self_hosted_runner_group_in_an_enterprise(
-        self, enterprise, runner_group_id, org_id, **payload
+        self, enterprise, runner_group_id, org_id, payload=None
     ):
         """
         Remove organization access to a self-hosted runner group in an enterprise
@@ -308,7 +312,7 @@ class EnterpriseAdmin:
         return response
 
     def list_self_hosted_runners_in_a_group_for_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         List self-hosted runners in a group for an enterprise
@@ -329,7 +333,7 @@ class EnterpriseAdmin:
         return response
 
     def set_self_hosted_runners_in_a_group_for_an_enterprise(
-        self, enterprise, runner_group_id, **payload
+        self, enterprise, runner_group_id, payload=None
     ):
         """
         Set self-hosted runners in a group for an enterprise
@@ -349,7 +353,7 @@ class EnterpriseAdmin:
         return response
 
     def add_a_self_hosted_runner_to_a_group_for_an_enterprise(
-        self, enterprise, runner_group_id, runner_id, **payload
+        self, enterprise, runner_group_id, runner_id, payload=None
     ):
         """
         Add a self-hosted runner to a group for an enterprise
@@ -370,7 +374,7 @@ class EnterpriseAdmin:
         return response
 
     def remove_a_self_hosted_runner_from_a_group_for_an_enterprise(
-        self, enterprise, runner_group_id, runner_id, **payload
+        self, enterprise, runner_group_id, runner_id, payload=None
     ):
         """
         Remove a self-hosted runner from a group for an enterprise
@@ -390,7 +394,7 @@ class EnterpriseAdmin:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_self_hosted_runners_for_an_enterprise(self, enterprise, **payload):
+    def list_self_hosted_runners_for_an_enterprise(self, enterprise, payload=None):
         """
         List self-hosted runners for an enterprise
         https://docs.github.com/rest/reference/actions#list-self-hosted-runners-for-an-enterprise
@@ -405,7 +409,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def list_runner_applications_for_an_enterprise(self, enterprise, **payload):
+    def list_runner_applications_for_an_enterprise(self, enterprise, payload=None):
         """
         List runner applications for an enterprise
         https://docs.github.com/rest/reference/actions#list-runner-applications-for-an-enterprise
@@ -419,7 +423,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_registration_token_for_an_enterprise(self, enterprise, **payload):
+    def create_a_registration_token_for_an_enterprise(self, enterprise, payload=None):
         """
         Create a registration token for an enterprise
         https://docs.github.com/rest/reference/actions#create-a-registration-token-for-an-enterprise
@@ -433,7 +437,7 @@ class EnterpriseAdmin:
         response = self._execute("post", url, payload)
         return response
 
-    def create_a_remove_token_for_an_enterprise(self, enterprise, **payload):
+    def create_a_remove_token_for_an_enterprise(self, enterprise, payload=None):
         """
         Create a remove token for an enterprise
         https://docs.github.com/rest/reference/actions#create-a-remove-token-for-an-enterprise
@@ -447,7 +451,7 @@ class EnterpriseAdmin:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_self_hosted_runner_for_an_enterprise(self, enterprise, runner_id, **payload):
+    def get_a_self_hosted_runner_for_an_enterprise(self, enterprise, runner_id, payload=None):
         """
         Get a self-hosted runner for an enterprise
         https://docs.github.com/rest/reference/actions#get-a-self-hosted-runner-for-an-enterprise
@@ -462,7 +466,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def delete_a_self_hosted_runner_from_an_enterprise(self, enterprise, runner_id, **payload):
+    def delete_a_self_hosted_runner_from_an_enterprise(self, enterprise, runner_id, payload=None):
         """
         Delete a self-hosted runner from an enterprise
         https://docs.github.com/rest/reference/actions#delete-self-hosted-runner-from-an-enterprise
@@ -478,7 +482,7 @@ class EnterpriseAdmin:
         return response
 
     def list_labels_for_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, **payload
+        self, enterprise, runner_id, payload=None
     ):
         """
         List labels for a self-hosted runner for an enterprise
@@ -495,7 +499,7 @@ class EnterpriseAdmin:
         return response
 
     def add_custom_labels_to_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, **payload
+        self, enterprise, runner_id, payload=None
     ):
         """
         Add custom labels to a self-hosted runner for an enterprise
@@ -512,7 +516,7 @@ class EnterpriseAdmin:
         return response
 
     def set_custom_labels_for_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, **payload
+        self, enterprise, runner_id, payload=None
     ):
         """
         Set custom labels for a self-hosted runner for an enterprise
@@ -529,7 +533,7 @@ class EnterpriseAdmin:
         return response
 
     def remove_all_custom_labels_from_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, **payload
+        self, enterprise, runner_id, payload=None
     ):
         """
         Remove all custom labels from a self-hosted runner for an enterprise
@@ -546,7 +550,7 @@ class EnterpriseAdmin:
         return response
 
     def remove_a_custom_label_from_a_self_hosted_runner_for_an_enterprise(
-        self, enterprise, runner_id, name, **payload
+        self, enterprise, runner_id, name, payload=None
     ):
         """
         Remove a custom label from a self-hosted runner for an enterprise
@@ -565,7 +569,7 @@ class EnterpriseAdmin:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_the_audit_log_for_an_enterprise(self, enterprise, **payload):
+    def get_the_audit_log_for_an_enterprise(self, enterprise, payload=None):
         """
         Get the audit log for an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#get-the-audit-log-for-an-enterprise
@@ -585,7 +589,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def retrieve_enterprise_license_sync_consumed_licenses(self, enterprise, **payload):
+    def retrieve_enterprise_license_sync_consumed_licenses(self, enterprise, payload=None):
         """
         Retrieve Enterprise License Sync Consumed Licenses
         https://docs.github.com/rest/reference/enterprise-admin#retrieve-enterprise-license-sync-consumed-licenses
@@ -600,7 +604,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def provides_license_sync_job_status_for_connected_instances(self, enterprise, **payload):
+    def provides_license_sync_job_status_for_connected_instances(self, enterprise, payload=None):
         """
         Provides License Sync Job status for connected instances
         https://docs.github.com/rest/reference/enterprise-admin#provides-license-sync-job-status-for-connected-instances
@@ -614,7 +618,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def list_provisioned_scim_groups_for_an_enterprise(self, enterprise, **payload):
+    def list_provisioned_scim_groups_for_an_enterprise(self, enterprise, payload=None):
         """
         List provisioned SCIM groups for an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#list-provisioned-scim-groups-for-an-enterprise
@@ -631,7 +635,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def provision_a_scim_enterprise_group_and_invite_users(self, enterprise, **payload):
+    def provision_a_scim_enterprise_group_and_invite_users(self, enterprise, payload=None):
         """
         Provision a SCIM enterprise group and invite users
         https://docs.github.com/rest/reference/enterprise-admin#provision-a-scim-enterprise-group-and-invite-users
@@ -646,7 +650,7 @@ class EnterpriseAdmin:
         return response
 
     def get_scim_provisioning_information_for_an_enterprise_group(
-        self, enterprise, scim_group_id, **payload
+        self, enterprise, scim_group_id, payload=None
     ):
         """
         Get SCIM provisioning information for an enterprise group
@@ -663,7 +667,7 @@ class EnterpriseAdmin:
         return response
 
     def set_scim_information_for_a_provisioned_enterprise_group(
-        self, enterprise, scim_group_id, **payload
+        self, enterprise, scim_group_id, payload=None
     ):
         """
         Set SCIM information for a provisioned enterprise group
@@ -679,7 +683,9 @@ class EnterpriseAdmin:
         response = self._execute("put", url, payload)
         return response
 
-    def update_an_attribute_for_a_scim_enterprise_group(self, enterprise, scim_group_id, **payload):
+    def update_an_attribute_for_a_scim_enterprise_group(
+        self, enterprise, scim_group_id, payload=None
+    ):
         """
         Update an attribute for a SCIM enterprise group
         https://docs.github.com/rest/reference/enterprise-admin#update-an-attribute-for-a-scim-enterprise-group
@@ -694,7 +700,7 @@ class EnterpriseAdmin:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_scim_group_from_an_enterprise(self, enterprise, scim_group_id, **payload):
+    def delete_a_scim_group_from_an_enterprise(self, enterprise, scim_group_id, payload=None):
         """
         Delete a SCIM group from an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#delete-a-scim-group-from-an-enterprise
@@ -709,7 +715,7 @@ class EnterpriseAdmin:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_scim_provisioned_identities_for_an_enterprise(self, enterprise, **payload):
+    def list_scim_provisioned_identities_for_an_enterprise(self, enterprise, payload=None):
         """
         List SCIM provisioned identities for an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#list-scim-provisioned-identities-for-an-enterprise
@@ -725,7 +731,7 @@ class EnterpriseAdmin:
         response = self._execute("get", url, payload)
         return response
 
-    def provision_and_invite_a_scim_enterprise_user(self, enterprise, **payload):
+    def provision_and_invite_a_scim_enterprise_user(self, enterprise, payload=None):
         """
         Provision and invite a SCIM enterprise user
         https://docs.github.com/rest/reference/enterprise-admin#provision-and-invite-a-scim-enterprise-user
@@ -740,7 +746,7 @@ class EnterpriseAdmin:
         return response
 
     def get_scim_provisioning_information_for_an_enterprise_user(
-        self, enterprise, scim_user_id, **payload
+        self, enterprise, scim_user_id, payload=None
     ):
         """
         Get SCIM provisioning information for an enterprise user
@@ -757,7 +763,7 @@ class EnterpriseAdmin:
         return response
 
     def set_scim_information_for_a_provisioned_enterprise_user(
-        self, enterprise, scim_user_id, **payload
+        self, enterprise, scim_user_id, payload=None
     ):
         """
         Set SCIM information for a provisioned enterprise user
@@ -773,7 +779,9 @@ class EnterpriseAdmin:
         response = self._execute("put", url, payload)
         return response
 
-    def update_an_attribute_for_a_scim_enterprise_user(self, enterprise, scim_user_id, **payload):
+    def update_an_attribute_for_a_scim_enterprise_user(
+        self, enterprise, scim_user_id, payload=None
+    ):
         """
         Update an attribute for a SCIM enterprise user
         https://docs.github.com/rest/reference/enterprise-admin#update-an-attribute-for-a-scim-enterprise-user
@@ -788,7 +796,7 @@ class EnterpriseAdmin:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_scim_user_from_an_enterprise(self, enterprise, scim_user_id, **payload):
+    def delete_a_scim_user_from_an_enterprise(self, enterprise, scim_user_id, payload=None):
         """
         Delete a SCIM user from an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#delete-a-scim-user-from-an-enterprise

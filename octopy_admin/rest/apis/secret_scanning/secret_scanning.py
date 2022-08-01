@@ -15,7 +15,7 @@ class SecretScanning:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_secret_scanning_alerts_for_an_enterprise(self, enterprise, **payload):
+    def list_secret_scanning_alerts_for_an_enterprise(self, enterprise, payload=None):
         """
         List secret scanning alerts for an enterprise
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-an-enterprise
@@ -36,7 +36,7 @@ class SecretScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def list_secret_scanning_alerts_for_an_organization(self, org, **payload):
+    def list_secret_scanning_alerts_for_an_organization(self, org, payload=None):
         """
         List secret scanning alerts for an organization
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-an-organization
@@ -58,7 +58,7 @@ class SecretScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def list_secret_scanning_alerts_for_a_repository(self, owner, repo, **payload):
+    def list_secret_scanning_alerts_for_a_repository(self, owner, repo, payload=None):
         """
         List secret scanning alerts for a repository
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-a-repository
@@ -81,7 +81,7 @@ class SecretScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def get_a_secret_scanning_alert(self, owner, repo, alert_number, **payload):
+    def get_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         Get a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#get-a-secret-scanning-alert
@@ -97,7 +97,7 @@ class SecretScanning:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_secret_scanning_alert(self, owner, repo, alert_number, **payload):
+    def update_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         Update a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#update-a-secret-scanning-alert
@@ -113,7 +113,7 @@ class SecretScanning:
         response = self._execute("patch", url, payload)
         return response
 
-    def list_locations_for_a_secret_scanning_alert(self, owner, repo, alert_number, **payload):
+    def list_locations_for_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
         """
         List locations for a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#list-locations-for-a-secret-scanning-alert

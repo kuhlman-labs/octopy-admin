@@ -16,7 +16,7 @@ class Issues:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_issues_assigned_to_the_authenticated_user(self, **payload):
+    def list_issues_assigned_to_the_authenticated_user(self, payload=None):
         """
         List issues assigned to the authenticated user
         https://docs.github.com/rest/reference/issues#list-issues-assigned-to-the-authenticated-user
@@ -41,7 +41,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_organization_issues_assigned_to_the_authenticated_user(self, org, **payload):
+    def list_organization_issues_assigned_to_the_authenticated_user(self, org, payload=None):
         """
         List organization issues assigned to the authenticated user
         https://docs.github.com/rest/reference/issues#list-organization-issues-assigned-to-the-authenticated-user
@@ -62,7 +62,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_assignees(self, owner, repo, **payload):
+    def list_assignees(self, owner, repo, payload=None):
         """
         List assignees
         https://docs.github.com/rest/reference/issues#list-assignees
@@ -78,7 +78,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def check_if_a_user_can_be_assigned(self, owner, repo, assignee, **payload):
+    def check_if_a_user_can_be_assigned(self, owner, repo, assignee, payload=None):
         """
         Check if a user can be assigned
         https://docs.github.com/rest/reference/issues#check-if-a-user-can-be-assigned
@@ -94,7 +94,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_repository_issues(self, owner, repo, **payload):
+    def list_repository_issues(self, owner, repo, payload=None):
         """
         List repository issues
         https://docs.github.com/rest/reference/issues#list-repository-issues
@@ -119,7 +119,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def create_an_issue(self, owner, repo, **payload):
+    def create_an_issue(self, owner, repo, payload=None):
         """
         Create an issue
         https://docs.github.com/rest/reference/issues#create-an-issue
@@ -134,7 +134,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def list_issue_comments_for_a_repository(self, owner, repo, **payload):
+    def list_issue_comments_for_a_repository(self, owner, repo, payload=None):
         """
         List issue comments for a repository
         https://docs.github.com/rest/reference/issues#list-issue-comments-for-a-repository
@@ -153,7 +153,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_issue_comment(self, owner, repo, comment_id, **payload):
+    def get_an_issue_comment(self, owner, repo, comment_id, payload=None):
         """
         Get an issue comment
         https://docs.github.com/rest/reference/issues#get-an-issue-comment
@@ -169,7 +169,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_issue_comment(self, owner, repo, comment_id, **payload):
+    def update_an_issue_comment(self, owner, repo, comment_id, payload=None):
         """
         Update an issue comment
         https://docs.github.com/rest/reference/issues#update-an-issue-comment
@@ -185,7 +185,7 @@ class Issues:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_an_issue_comment(self, owner, repo, comment_id, **payload):
+    def delete_an_issue_comment(self, owner, repo, comment_id, payload=None):
         """
         Delete an issue comment
         https://docs.github.com/rest/reference/issues#delete-an-issue-comment
@@ -201,7 +201,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_issue_events_for_a_repository(self, owner, repo, **payload):
+    def list_issue_events_for_a_repository(self, owner, repo, payload=None):
         """
         List issue events for a repository
         https://docs.github.com/rest/reference/issues#list-issue-events-for-a-repository
@@ -217,7 +217,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_issue_event(self, owner, repo, event_id, **payload):
+    def get_an_issue_event(self, owner, repo, event_id, payload=None):
         """
         Get an issue event
         https://docs.github.com/rest/reference/issues#get-an-issue-event
@@ -233,7 +233,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def get_an_issue(self, owner, repo, issue_number, **payload):
+    def get_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Get an issue
         https://docs.github.com/rest/reference/issues#get-an-issue
@@ -249,7 +249,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def update_an_issue(self, owner, repo, issue_number, **payload):
+    def update_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Update an issue
         https://docs.github.com/rest/reference/issues/#update-an-issue
@@ -265,7 +265,7 @@ class Issues:
         response = self._execute("patch", url, payload)
         return response
 
-    def add_assignees_to_an_issue(self, owner, repo, issue_number, **payload):
+    def add_assignees_to_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Add assignees to an issue
         https://docs.github.com/rest/reference/issues#add-assignees-to-an-issue
@@ -281,7 +281,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def remove_assignees_from_an_issue(self, owner, repo, issue_number, **payload):
+    def remove_assignees_from_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Remove assignees from an issue
         https://docs.github.com/rest/reference/issues#remove-assignees-from-an-issue
@@ -297,7 +297,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_issue_comments(self, owner, repo, issue_number, **payload):
+    def list_issue_comments(self, owner, repo, issue_number, payload=None):
         """
         List issue comments
         https://docs.github.com/rest/reference/issues#list-issue-comments
@@ -315,7 +315,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def create_an_issue_comment(self, owner, repo, issue_number, **payload):
+    def create_an_issue_comment(self, owner, repo, issue_number, payload=None):
         """
         Create an issue comment
         https://docs.github.com/rest/reference/issues#create-an-issue-comment
@@ -331,7 +331,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def list_issue_events(self, owner, repo, issue_number, **payload):
+    def list_issue_events(self, owner, repo, issue_number, payload=None):
         """
         List issue events
         https://docs.github.com/rest/reference/issues#list-issue-events
@@ -348,7 +348,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_labels_for_an_issue(self, owner, repo, issue_number, **payload):
+    def list_labels_for_an_issue(self, owner, repo, issue_number, payload=None):
         """
         List labels for an issue
         https://docs.github.com/rest/reference/issues#list-labels-for-an-issue
@@ -365,7 +365,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def add_labels_to_an_issue(self, owner, repo, issue_number, **payload):
+    def add_labels_to_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Add labels to an issue
         https://docs.github.com/rest/reference/issues#add-labels-to-an-issue
@@ -381,7 +381,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def set_labels_for_an_issue(self, owner, repo, issue_number, **payload):
+    def set_labels_for_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Set labels for an issue
         https://docs.github.com/rest/reference/issues#set-labels-for-an-issue
@@ -397,7 +397,7 @@ class Issues:
         response = self._execute("put", url, payload)
         return response
 
-    def remove_all_labels_from_an_issue(self, owner, repo, issue_number, **payload):
+    def remove_all_labels_from_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Remove all labels from an issue
         https://docs.github.com/rest/reference/issues#remove-all-labels-from-an-issue
@@ -413,7 +413,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def remove_a_label_from_an_issue(self, owner, repo, issue_number, name, **payload):
+    def remove_a_label_from_an_issue(self, owner, repo, issue_number, name, payload=None):
         # pylint: disable=too-many-arguments
         """
         Remove a label from an issue
@@ -431,7 +431,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def lock_an_issue(self, owner, repo, issue_number, **payload):
+    def lock_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Lock an issue
         https://docs.github.com/rest/reference/issues#lock-an-issue
@@ -447,7 +447,7 @@ class Issues:
         response = self._execute("put", url, payload)
         return response
 
-    def unlock_an_issue(self, owner, repo, issue_number, **payload):
+    def unlock_an_issue(self, owner, repo, issue_number, payload=None):
         """
         Unlock an issue
         https://docs.github.com/rest/reference/issues#unlock-an-issue
@@ -463,7 +463,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_timeline_events_for_an_issue(self, owner, repo, issue_number, **payload):
+    def list_timeline_events_for_an_issue(self, owner, repo, issue_number, payload=None):
         """
         List timeline events for an issue
         https://docs.github.com/rest/reference/issues#list-timeline-events-for-an-issue
@@ -480,7 +480,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_labels_for_a_repository(self, owner, repo, **payload):
+    def list_labels_for_a_repository(self, owner, repo, payload=None):
         """
         List labels for a repository
         https://docs.github.com/rest/reference/issues#list-labels-for-a-repository
@@ -496,7 +496,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_label(self, owner, repo, **payload):
+    def create_a_label(self, owner, repo, payload=None):
         """
         Create a label
         https://docs.github.com/rest/reference/issues#create-a-label
@@ -511,7 +511,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_label(self, owner, repo, name, **payload):
+    def get_a_label(self, owner, repo, name, payload=None):
         """
         Get a label
         https://docs.github.com/rest/reference/issues#get-a-label
@@ -527,7 +527,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_label(self, owner, repo, name, **payload):
+    def update_a_label(self, owner, repo, name, payload=None):
         """
         Update a label
         https://docs.github.com/rest/reference/issues#update-a-label
@@ -543,7 +543,7 @@ class Issues:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_label(self, owner, repo, name, **payload):
+    def delete_a_label(self, owner, repo, name, payload=None):
         """
         Delete a label
         https://docs.github.com/rest/reference/issues#delete-a-label
@@ -559,7 +559,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_milestones(self, owner, repo, **payload):
+    def list_milestones(self, owner, repo, payload=None):
         """
         List milestones
         https://docs.github.com/rest/reference/issues#list-milestones
@@ -578,7 +578,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def create_a_milestone(self, owner, repo, **payload):
+    def create_a_milestone(self, owner, repo, payload=None):
         """
         Create a milestone
         https://docs.github.com/rest/reference/issues#create-a-milestone
@@ -593,7 +593,7 @@ class Issues:
         response = self._execute("post", url, payload)
         return response
 
-    def get_a_milestone(self, owner, repo, milestone_number, **payload):
+    def get_a_milestone(self, owner, repo, milestone_number, payload=None):
         """
         Get a milestone
         https://docs.github.com/rest/reference/issues#get-a-milestone
@@ -609,7 +609,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def update_a_milestone(self, owner, repo, milestone_number, **payload):
+    def update_a_milestone(self, owner, repo, milestone_number, payload=None):
         """
         Update a milestone
         https://docs.github.com/rest/reference/issues#update-a-milestone
@@ -625,7 +625,7 @@ class Issues:
         response = self._execute("patch", url, payload)
         return response
 
-    def delete_a_milestone(self, owner, repo, milestone_number, **payload):
+    def delete_a_milestone(self, owner, repo, milestone_number, payload=None):
         """
         Delete a milestone
         https://docs.github.com/rest/reference/issues#delete-a-milestone
@@ -641,7 +641,7 @@ class Issues:
         response = self._execute("delete", url, payload)
         return response
 
-    def list_labels_for_issues_in_a_milestone(self, owner, repo, milestone_number, **payload):
+    def list_labels_for_issues_in_a_milestone(self, owner, repo, milestone_number, payload=None):
         """
         List labels for issues in a milestone
         https://docs.github.com/rest/reference/issues#list-labels-for-issues-in-a-milestone
@@ -658,7 +658,7 @@ class Issues:
         response = self._execute("get", url, payload)
         return response
 
-    def list_user_account_issues_assigned_to_the_authenticated_user(self, **payload):
+    def list_user_account_issues_assigned_to_the_authenticated_user(self, payload=None):
         """
         List user account issues assigned to the authenticated user
         https://docs.github.com/rest/reference/issues#list-user-account-issues-assigned-to-the-authenticated-user
