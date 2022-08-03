@@ -135,3 +135,11 @@ class GraphQuery:
         query = self._load_query("gql_files/get-repo-branch-protection-rules.gql")
         params = {"owner": org, "name": repo, "cursor": None}
         return self._paginate_results(query, params)
+
+    def get_the_authenticated_user(self):
+        """
+        This module returns a dictionary with the login
+        of the currently authenticated user.
+        """
+        query = self._load_query("gql_files/get-the-authenticated-user.gql")
+        return self._execute(query)

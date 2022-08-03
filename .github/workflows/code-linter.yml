@@ -1,15 +1,10 @@
 ---
-name: python tests
+name: code linting
 
 on: pull_request
 
-env:
-  API_TOKEN: ${{  secrets.API_TOKEN  }}
-  GRAPH_API_URL: https://ghes.kuhlman-labs.io/api/graphql
-  REST_API_URL: https://ghes.kuhlman-labs.io/api/v3
-
 jobs:
-  run-tests:
+  run-linting:
     runs-on: ubuntu-latest
     steps:
       # check-out repo and set-up python
@@ -20,6 +15,15 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '^3.10'
+      # set-up go
+      - name: Set up Go
+        id: setup-go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.16.1' # The Go version to download and use.
+      # install actionlint
+      - name: Install actionlint
+        run: go install github.com/rhysd/actionlint/cmd/actionlint@latest
       # install & configure poetry
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -43,8 +47,11 @@ jobs:
       # install root project, if required
       - name: Install library
         run: poetry install --no-interaction
-      # run test suite
-      - name: Run tests
+      # install pre-commit hooks
+      - name: Install pre-commit hooks
         run: |
-          source .venv/bin/activate
-          pytest tests/
+          poetry run pre-commit install
+      # run pre-commit linting
+      - name: Run pre-commit linting
+        run: |
+          poetry run pre-commit run --all-files --show-diff-on-failure
