@@ -49,7 +49,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
         with open(full_path, encoding="utf8") as file:
             return gql(file.read())
 
-    def _execute(self, query, params):
+    def _execute(self, query, params=None):
         """
         Execute a query.
 
