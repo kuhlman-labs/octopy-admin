@@ -569,7 +569,7 @@ class EnterpriseAdmin:
         response = self._execute("delete", url, payload)
         return response
 
-    def get_the_audit_log_for_an_enterprise(self, enterprise, payload=None):
+    def get_the_audit_log_for_an_enterprise(self, enterprise, params=None, payload=None):
         """
         Get the audit log for an enterprise
         https://docs.github.com/rest/reference/enterprise-admin#get-the-audit-log-for-an-enterprise
@@ -586,7 +586,7 @@ class EnterpriseAdmin:
          per-page
         """
         url = self._base_url + f"/enterprises/{enterprise}/audit-log"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
     def retrieve_enterprise_license_sync_consumed_licenses(self, enterprise, payload=None):

@@ -143,3 +143,15 @@ class GraphQuery:
         """
         query = self._load_query("gql_files/get-the-authenticated-user.gql")
         return self._execute(query)
+
+    def get_org_members(self, org):
+        """
+        This module returns a generator that will yield a dictionary
+         of all members in an organization.
+
+        Attributes:
+            org (str): The name of the Organization.
+        """
+        query = self._load_query("gql_files/get-org-members.gql")
+        params = {"organization": org, "cursor": None}
+        return self._paginate_results(query, params)
