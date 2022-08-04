@@ -96,4 +96,4 @@ Other Examples can be found in the [reports](/reports/) and
 ## Library Reference
 
 For a complete reference of the library's API, please see the
-[API Reference](https://kuhlman-labs.github.io/octopy_admin/reference/).
+[API Reference](https://kuhlman-labs.github.io/octopy-admin/reference/).
