@@ -78,7 +78,7 @@ class RestClient:
         self.teams = apis.teams.Teams(self)
         self.users = apis.users.Users(self)
 
-    def _execute(self, method, url, payload):
+    def _execute(self, method, url, payload=None, params=None):
         """
         Execute a request.
 
@@ -88,7 +88,9 @@ class RestClient:
             payload (dict): Payload.
         """
         try:
-            response = requests.request(method=method, url=url, json=payload, headers=self._headers)
+            response = requests.request(
+                method=method, url=url, params=params, data=payload, headers=self._headers
+            )
             response.raise_for_status()
             return response
         except requests.exceptions.Timeout as errtimeout:
