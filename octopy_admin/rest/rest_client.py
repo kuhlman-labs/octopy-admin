@@ -78,6 +78,18 @@ class RestClient:
         self.teams = apis.teams.Teams(self)
         self.users = apis.users.Users(self)
 
+    def paginate_request(self, response):
+        """
+        Paginate a request.
+
+        Attributes:
+            response (obj): API request.
+        """
+        while response.links.get("next"):
+            yield response.json()
+            url = response.links.get("next").get("url")
+            response = self._execute("GET", url)
+
     def _execute(self, method, url, payload=None, params=None):
         """
         Execute a request.
