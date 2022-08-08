@@ -3,6 +3,7 @@ List emojis available to use on GitHub.
 """
 
 
+# pylint: disable=too-many-arguments
 class Emojis:
     # pylint: disable=too-few-public-methods
     """
@@ -16,7 +17,7 @@ class Emojis:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_emojis(self, payload=None):
+    def get_emojis(self, params=None, payload=None):
         """
         Get emojis
         https://docs.github.com/rest/reference/emojis#get-emojis
@@ -27,5 +28,5 @@ class Emojis:
 
         """
         url = self._base_url + "/emojis"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response

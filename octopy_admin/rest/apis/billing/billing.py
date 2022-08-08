@@ -3,6 +3,7 @@ Monitor charges and usage from Actions and Packages.
 """
 
 
+# pylint: disable=too-many-arguments
 class Billing:
     """
     Monitor charges and usage from Actions and Packages.
@@ -15,7 +16,7 @@ class Billing:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_github_actions_billing_for_an_enterprise(self, enterprise, payload=None):
+    def get_github_actions_billing_for_an_enterprise(self, enterprise, params=None, payload=None):
         """
         Get GitHub Actions billing for an enterprise
         https://docs.github.com/rest/reference/billing#get-github-actions-billing-for-an-enterprise
@@ -26,11 +27,11 @@ class Billing:
 
         """
         url = self._base_url + f"/enterprises/{enterprise}/settings/billing/actions"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
     def get_github_advanced_security_active_committers_for_an_enterprise(
-        self, enterprise, payload=None
+        self, enterprise, params=None, payload=None
     ):
         """
         Get GitHub Advanced Security active committers for an enterprise
@@ -43,10 +44,10 @@ class Billing:
          page
         """
         url = self._base_url + f"/enterprises/{enterprise}/settings/billing/advanced-security"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_packages_billing_for_an_enterprise(self, enterprise, payload=None):
+    def get_github_packages_billing_for_an_enterprise(self, enterprise, params=None, payload=None):
         """
         Get GitHub Packages billing for an enterprise
         https://docs.github.com/rest/reference/billing#get-github-packages-billing-for-an-enterprise
@@ -57,10 +58,10 @@ class Billing:
 
         """
         url = self._base_url + f"/enterprises/{enterprise}/settings/billing/packages"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_shared_storage_billing_for_an_enterprise(self, enterprise, payload=None):
+    def get_shared_storage_billing_for_an_enterprise(self, enterprise, params=None, payload=None):
         """
         Get shared storage billing for an enterprise
         https://docs.github.com/rest/reference/billing#get-shared-storage-billing-for-an-enterprise
@@ -71,10 +72,10 @@ class Billing:
 
         """
         url = self._base_url + f"/enterprises/{enterprise}/settings/billing/shared-storage"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_actions_billing_for_an_organization(self, org, payload=None):
+    def get_github_actions_billing_for_an_organization(self, org, params=None, payload=None):
         """
         Get GitHub Actions billing for an organization
         https://docs.github.com/rest/reference/billing#get-github-actions-billing-for-an-organization
@@ -85,10 +86,12 @@ class Billing:
 
         """
         url = self._base_url + f"/orgs/{org}/settings/billing/actions"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_advanced_security_active_committers_for_an_organization(self, org, payload=None):
+    def get_github_advanced_security_active_committers_for_an_organization(
+        self, org, params=None, payload=None
+    ):
         """
         Get GitHub Advanced Security active committers for an organization
         https://docs.github.com/rest/reference/billing#get-github-advanced-security-active-committers-for-an-organization
@@ -100,10 +103,10 @@ class Billing:
          page
         """
         url = self._base_url + f"/orgs/{org}/settings/billing/advanced-security"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_packages_billing_for_an_organization(self, org, payload=None):
+    def get_github_packages_billing_for_an_organization(self, org, params=None, payload=None):
         """
         Get GitHub Packages billing for an organization
         https://docs.github.com/rest/reference/billing#get-github-packages-billing-for-an-organization
@@ -114,10 +117,10 @@ class Billing:
 
         """
         url = self._base_url + f"/orgs/{org}/settings/billing/packages"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_shared_storage_billing_for_an_organization(self, org, payload=None):
+    def get_shared_storage_billing_for_an_organization(self, org, params=None, payload=None):
         """
         Get shared storage billing for an organization
         https://docs.github.com/rest/reference/billing#get-shared-storage-billing-for-an-organization
@@ -128,10 +131,10 @@ class Billing:
 
         """
         url = self._base_url + f"/orgs/{org}/settings/billing/shared-storage"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_actions_billing_for_a_user(self, username, payload=None):
+    def get_github_actions_billing_for_a_user(self, username, params=None, payload=None):
         """
         Get GitHub Actions billing for a user
         https://docs.github.com/rest/reference/billing#get-github-actions-billing-for-a-user
@@ -142,10 +145,10 @@ class Billing:
 
         """
         url = self._base_url + f"/users/{username}/settings/billing/actions"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_packages_billing_for_a_user(self, username, payload=None):
+    def get_github_packages_billing_for_a_user(self, username, params=None, payload=None):
         """
         Get GitHub Packages billing for a user
         https://docs.github.com/rest/reference/billing#get-github-packages-billing-for-a-user
@@ -156,10 +159,10 @@ class Billing:
 
         """
         url = self._base_url + f"/users/{username}/settings/billing/packages"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_shared_storage_billing_for_a_user(self, username, payload=None):
+    def get_shared_storage_billing_for_a_user(self, username, params=None, payload=None):
         """
         Get shared storage billing for a user
         https://docs.github.com/rest/reference/billing#get-shared-storage-billing-for-a-user
@@ -170,5 +173,5 @@ class Billing:
 
         """
         url = self._base_url + f"/users/{username}/settings/billing/shared-storage"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response

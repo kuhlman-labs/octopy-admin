@@ -3,6 +3,7 @@ Interact with GitHub Projects.
 """
 
 
+# pylint: disable=too-many-arguments
 class Projects:
     # pylint: disable=too-many-public-methods
     """
@@ -16,7 +17,7 @@ class Projects:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organization_projects(self, org, payload=None):
+    def list_organization_projects(self, org, params=None, payload=None):
         """
         List organization projects
         https://docs.github.com/rest/reference/projects#list-organization-projects
@@ -29,10 +30,10 @@ class Projects:
          page
         """
         url = self._base_url + f"/orgs/{org}/projects"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_an_organization_project(self, org, payload=None):
+    def create_an_organization_project(self, org, params=None, payload=None):
         """
         Create an organization project
         https://docs.github.com/rest/reference/projects#create-an-organization-project
@@ -43,10 +44,10 @@ class Projects:
 
         """
         url = self._base_url + f"/orgs/{org}/projects"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def get_a_project_card(self, card_id, payload=None):
+    def get_a_project_card(self, card_id, params=None, payload=None):
         """
         Get a project card
         https://docs.github.com/rest/reference/projects#get-a-project-card
@@ -57,10 +58,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/cards/{card_id}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def update_an_existing_project_card(self, card_id, payload=None):
+    def update_an_existing_project_card(self, card_id, params=None, payload=None):
         """
         Update an existing project card
         https://docs.github.com/rest/reference/projects#update-a-project-card
@@ -71,10 +72,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/cards/{card_id}"
-        response = self._execute("patch", url, payload)
+        response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def delete_a_project_card(self, card_id, payload=None):
+    def delete_a_project_card(self, card_id, params=None, payload=None):
         """
         Delete a project card
         https://docs.github.com/rest/reference/projects#delete-a-project-card
@@ -85,10 +86,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/cards/{card_id}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def move_a_project_card(self, card_id, payload=None):
+    def move_a_project_card(self, card_id, params=None, payload=None):
         """
         Move a project card
         https://docs.github.com/rest/reference/projects#move-a-project-card
@@ -99,10 +100,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/cards/{card_id}/moves"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def get_a_project_column(self, column_id, payload=None):
+    def get_a_project_column(self, column_id, params=None, payload=None):
         """
         Get a project column
         https://docs.github.com/rest/reference/projects#get-a-project-column
@@ -113,10 +114,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/{column_id}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def update_an_existing_project_column(self, column_id, payload=None):
+    def update_an_existing_project_column(self, column_id, params=None, payload=None):
         """
         Update an existing project column
         https://docs.github.com/rest/reference/projects#update-a-project-column
@@ -127,10 +128,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/{column_id}"
-        response = self._execute("patch", url, payload)
+        response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def delete_a_project_column(self, column_id, payload=None):
+    def delete_a_project_column(self, column_id, params=None, payload=None):
         """
         Delete a project column
         https://docs.github.com/rest/reference/projects#delete-a-project-column
@@ -141,10 +142,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/{column_id}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def list_project_cards(self, column_id, payload=None):
+    def list_project_cards(self, column_id, params=None, payload=None):
         """
         List project cards
         https://docs.github.com/rest/reference/projects#list-project-cards
@@ -157,10 +158,10 @@ class Projects:
          page
         """
         url = self._base_url + f"/projects/columns/{column_id}/cards"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_a_project_card(self, column_id, payload=None):
+    def create_a_project_card(self, column_id, params=None, payload=None):
         """
         Create a project card
         https://docs.github.com/rest/reference/projects#create-a-project-card
@@ -171,10 +172,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/{column_id}/cards"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def move_a_project_column(self, column_id, payload=None):
+    def move_a_project_column(self, column_id, params=None, payload=None):
         """
         Move a project column
         https://docs.github.com/rest/reference/projects#move-a-project-column
@@ -185,10 +186,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/columns/{column_id}/moves"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def get_a_project(self, project_id, payload=None):
+    def get_a_project(self, project_id, params=None, payload=None):
         """
         Get a project
         https://docs.github.com/rest/reference/projects#get-a-project
@@ -199,10 +200,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def update_a_project(self, project_id, payload=None):
+    def update_a_project(self, project_id, params=None, payload=None):
         """
         Update a project
         https://docs.github.com/rest/reference/projects#update-a-project
@@ -213,10 +214,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}"
-        response = self._execute("patch", url, payload)
+        response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def delete_a_project(self, project_id, payload=None):
+    def delete_a_project(self, project_id, params=None, payload=None):
         """
         Delete a project
         https://docs.github.com/rest/reference/projects#delete-a-project
@@ -227,10 +228,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def list_project_collaborators(self, project_id, payload=None):
+    def list_project_collaborators(self, project_id, params=None, payload=None):
         """
         List project collaborators
         https://docs.github.com/rest/reference/projects#list-project-collaborators
@@ -243,10 +244,10 @@ class Projects:
          page
         """
         url = self._base_url + f"/projects/{project_id}/collaborators"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def add_project_collaborator(self, project_id, username, payload=None):
+    def add_project_collaborator(self, project_id, username, params=None, payload=None):
         """
         Add project collaborator
         https://docs.github.com/rest/reference/projects#add-project-collaborator
@@ -258,10 +259,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}/collaborators/{username}"
-        response = self._execute("put", url, payload)
+        response = self._execute("put", url, params=params, payload=payload)
         return response
 
-    def remove_user_as_a_collaborator(self, project_id, username, payload=None):
+    def remove_user_as_a_collaborator(self, project_id, username, params=None, payload=None):
         """
         Remove user as a collaborator
         https://docs.github.com/rest/reference/projects#remove-project-collaborator
@@ -273,10 +274,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}/collaborators/{username}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def get_project_permission_for_a_user(self, project_id, username, payload=None):
+    def get_project_permission_for_a_user(self, project_id, username, params=None, payload=None):
         """
         Get project permission for a user
         https://docs.github.com/rest/reference/projects#get-project-permission-for-a-user
@@ -288,10 +289,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}/collaborators/{username}/permission"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_project_columns(self, project_id, payload=None):
+    def list_project_columns(self, project_id, params=None, payload=None):
         """
         List project columns
         https://docs.github.com/rest/reference/projects#list-project-columns
@@ -303,10 +304,10 @@ class Projects:
          page
         """
         url = self._base_url + f"/projects/{project_id}/columns"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_a_project_column(self, project_id, payload=None):
+    def create_a_project_column(self, project_id, params=None, payload=None):
         """
         Create a project column
         https://docs.github.com/rest/reference/projects#create-a-project-column
@@ -317,10 +318,10 @@ class Projects:
 
         """
         url = self._base_url + f"/projects/{project_id}/columns"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def list_repository_projects(self, owner, repo, payload=None):
+    def list_repository_projects(self, owner, repo, params=None, payload=None):
         """
         List repository projects
         https://docs.github.com/rest/reference/projects#list-repository-projects
@@ -334,10 +335,10 @@ class Projects:
          page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/projects"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_a_repository_project(self, owner, repo, payload=None):
+    def create_a_repository_project(self, owner, repo, params=None, payload=None):
         """
         Create a repository project
         https://docs.github.com/rest/reference/projects#create-a-repository-project
@@ -349,10 +350,10 @@ class Projects:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/projects"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def create_a_user_project(self, payload=None):
+    def create_a_user_project(self, params=None, payload=None):
         """
         Create a user project
         https://docs.github.com/rest/reference/projects#create-a-user-project
@@ -363,10 +364,10 @@ class Projects:
 
         """
         url = self._base_url + "/user/projects"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def list_user_projects(self, username, payload=None):
+    def list_user_projects(self, username, params=None, payload=None):
         """
         List user projects
         https://docs.github.com/rest/reference/projects#list-user-projects
@@ -379,5 +380,5 @@ class Projects:
          page
         """
         url = self._base_url + f"/users/{username}/projects"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response

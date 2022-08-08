@@ -3,6 +3,7 @@ Endpoints that give information about the API.
 """
 
 
+# pylint: disable=too-many-arguments
 class Meta:
     """
     Endpoints that give information about the API.
@@ -15,7 +16,7 @@ class Meta:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def github_api_root(self, payload=None):
+    def github_api_root(self, params=None, payload=None):
         """
         GitHub API Root
         https://docs.github.com/rest/overview/resources-in-the-rest-api#root-endpoint
@@ -26,10 +27,10 @@ class Meta:
 
         """
         url = self._base_url + "/"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_github_meta_information(self, payload=None):
+    def get_github_meta_information(self, params=None, payload=None):
         """
         Get GitHub meta information
         https://docs.github.com/rest/reference/meta#get-github-meta-information
@@ -40,10 +41,10 @@ class Meta:
 
         """
         url = self._base_url + "/meta"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_octocat(self, payload=None):
+    def get_octocat(self, params=None, payload=None):
         """
         Get Octocat
         https://docs.github.com/rest/reference/meta#get-octocat
@@ -54,10 +55,10 @@ class Meta:
         s
         """
         url = self._base_url + "/octocat"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_all_api_versions(self, payload=None):
+    def get_all_api_versions(self, params=None, payload=None):
         """
         Get all API versions
         https://docs.github.com/rest/reference/meta#get-all-api-versions
@@ -68,10 +69,10 @@ class Meta:
 
         """
         url = self._base_url + "/versions"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_the_zen_of_github(self, payload=None):
+    def get_the_zen_of_github(self, params=None, payload=None):
         """
         Get the Zen of GitHub
         N/A
@@ -82,5 +83,5 @@ class Meta:
 
         """
         url = self._base_url + "/zen"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response

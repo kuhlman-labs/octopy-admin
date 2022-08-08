@@ -3,6 +3,7 @@ View gitignore templates
 """
 
 
+# pylint: disable=too-many-arguments
 class Gitignore:
     """
     View gitignore templates
@@ -15,7 +16,7 @@ class Gitignore:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def get_all_gitignore_templates(self, payload=None):
+    def get_all_gitignore_templates(self, params=None, payload=None):
         """
         Get all gitignore templates
         https://docs.github.com/rest/reference/gitignore#get-all-gitignore-templates
@@ -26,10 +27,10 @@ class Gitignore:
 
         """
         url = self._base_url + "/gitignore/templates"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_a_gitignore_template(self, name, payload=None):
+    def get_a_gitignore_template(self, name, params=None, payload=None):
         """
         Get a gitignore template
         https://docs.github.com/rest/reference/gitignore#get-a-gitignore-template
@@ -41,5 +42,5 @@ class Gitignore:
 
         """
         url = self._base_url + f"/gitignore/templates/{name}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
