@@ -3,6 +3,7 @@ Retrieve secret scanning alerts from a repository.
 """
 
 
+# pylint: disable=too-many-arguments
 class SecretScanning:
     """
     Retrieve secret scanning alerts from a repository.
@@ -15,7 +16,7 @@ class SecretScanning:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_secret_scanning_alerts_for_an_enterprise(self, enterprise, payload=None):
+    def list_secret_scanning_alerts_for_an_enterprise(self, enterprise, params=None, payload=None):
         """
         List secret scanning alerts for an enterprise
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-an-enterprise
@@ -33,10 +34,10 @@ class SecretScanning:
          pagination-after
         """
         url = self._base_url + f"/enterprises/{enterprise}/secret-scanning/alerts"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_secret_scanning_alerts_for_an_organization(self, org, payload=None):
+    def list_secret_scanning_alerts_for_an_organization(self, org, params=None, payload=None):
         """
         List secret scanning alerts for an organization
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-an-organization
@@ -55,10 +56,10 @@ class SecretScanning:
          secret-scanning-pagination-after-org-repo
         """
         url = self._base_url + f"/orgs/{org}/secret-scanning/alerts"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_secret_scanning_alerts_for_a_repository(self, owner, repo, payload=None):
+    def list_secret_scanning_alerts_for_a_repository(self, owner, repo, params=None, payload=None):
         """
         List secret scanning alerts for a repository
         https://docs.github.com/rest/reference/secret-scanning#list-secret-scanning-alerts-for-a-repository
@@ -78,10 +79,10 @@ class SecretScanning:
          secret-scanning-pagination-after-org-repo
         """
         url = self._base_url + f"/repos/{owner}/{repo}/secret-scanning/alerts"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
+    def get_a_secret_scanning_alert(self, owner, repo, alert_number, params=None, payload=None):
         """
         Get a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#get-a-secret-scanning-alert
@@ -94,10 +95,10 @@ class SecretScanning:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def update_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
+    def update_a_secret_scanning_alert(self, owner, repo, alert_number, params=None, payload=None):
         """
         Update a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#update-a-secret-scanning-alert
@@ -110,10 +111,12 @@ class SecretScanning:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}"
-        response = self._execute("patch", url, payload)
+        response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def list_locations_for_a_secret_scanning_alert(self, owner, repo, alert_number, payload=None):
+    def list_locations_for_a_secret_scanning_alert(
+        self, owner, repo, alert_number, params=None, payload=None
+    ):
         """
         List locations for a secret scanning alert
         https://docs.github.com/rest/reference/secret-scanning#list-locations-for-a-secret-scanning-alert
@@ -130,5 +133,5 @@ class SecretScanning:
             self._base_url
             + f"/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}/locations"
         )
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response

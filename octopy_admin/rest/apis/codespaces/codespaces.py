@@ -3,6 +3,7 @@ Endpoints to manage Codespaces using the REST API.
 """
 
 
+# pylint: disable=too-many-arguments
 class Codespaces:
     # pylint: disable=too-many-public-methods
     """
@@ -16,7 +17,7 @@ class Codespaces:
         self._base_url = client._base_url
         self._execute = client._execute
 
-    def list_organization_secrets(self, org, payload=None):
+    def list_organization_secrets(self, org, params=None, payload=None):
         """
         List organization secrets
         https://docs.github.com/rest/reference/codespaces#list-organization-secrets
@@ -28,10 +29,10 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/organizations/{org}/codespaces/secrets"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_codespaces_for_the_organization(self, org, payload=None):
+    def list_codespaces_for_the_organization(self, org, params=None, payload=None):
         """
         List codespaces for the organization
         https://docs.github.com/rest/reference/codespaces#list-in-organization
@@ -43,10 +44,10 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/orgs/{org}/codespaces"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_codespaces_for_a_user_in_organization(self, org, username, payload=None):
+    def list_codespaces_for_a_user_in_organization(self, org, username, params=None, payload=None):
         """
         List codespaces for a user in organization
         https://docs.github.com/rest/reference/codespaces#get-codespaces-for-user-in-org
@@ -59,10 +60,12 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/orgs/{org}/members/{username}/codespaces"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def delete_a_codespace_from_the_organization(self, org, username, codespace_name, payload=None):
+    def delete_a_codespace_from_the_organization(
+        self, org, username, codespace_name, params=None, payload=None
+    ):
         """
         Delete a codespace from the organization
         https://docs.github.com/rest/reference/codespaces
@@ -75,11 +78,11 @@ class Codespaces:
 
         """
         url = self._base_url + f"/orgs/{org}/members/{username}/codespaces/{codespace_name}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
     def export_a_codespace_for_an_organization_user(
-        self, org, username, codespace_name, payload=None
+        self, org, username, codespace_name, params=None, payload=None
     ):
         """
         Export a codespace for an organization user
@@ -93,11 +96,11 @@ class Codespaces:
 
         """
         url = self._base_url + f"/orgs/{org}/members/{username}/codespaces/{codespace_name}/exports"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
     def start_a_codespace_for_an_organization_user(
-        self, org, username, codespace_name, payload=None
+        self, org, username, codespace_name, params=None, payload=None
     ):
         """
         Start a codespace for an organization user
@@ -111,11 +114,11 @@ class Codespaces:
 
         """
         url = self._base_url + f"/orgs/{org}/members/{username}/codespaces/{codespace_name}/start"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
     def stop_a_codespace_for_an_organization_user(
-        self, org, username, codespace_name, payload=None
+        self, org, username, codespace_name, params=None, payload=None
     ):
         """
         Stop a codespace for an organization user
@@ -129,10 +132,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/orgs/{org}/members/{username}/codespaces/{codespace_name}/stop"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def list_codespaces_in_a_repository_for_the_authenticated_user(self, owner, repo, payload=None):
+    def list_codespaces_in_a_repository_for_the_authenticated_user(
+        self, owner, repo, params=None, payload=None
+    ):
         """
         List codespaces in a repository for the authenticated user
         https://docs.github.com/rest/reference/codespaces#list-codespaces-in-a-repository-for-the-authenticated-user
@@ -145,10 +150,10 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_a_codespace_in_a_repository(self, owner, repo, payload=None):
+    def create_a_codespace_in_a_repository(self, owner, repo, params=None, payload=None):
         """
         Create a codespace in a repository
         https://docs.github.com/rest/reference/codespaces#create-a-codespace-in-a-repository
@@ -160,11 +165,11 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
     def list_devcontainer_configurations_in_a_repository_for_the_authenticated_user(
-        self, owner, repo, payload=None
+        self, owner, repo, params=None, payload=None
     ):
         """
         List devcontainer configurations in a repository for the authenticated user
@@ -178,10 +183,10 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/devcontainers"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_available_machine_types_for_a_repository(self, owner, repo, payload=None):
+    def list_available_machine_types_for_a_repository(self, owner, repo, params=None, payload=None):
         """
         List available machine types for a repository
         https://docs.github.com/rest/reference/codespaces#list-available-machine-types-for-a-repository
@@ -194,10 +199,10 @@ class Codespaces:
          client_ip
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/machines"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_default_attributes_for_a_codespace(self, owner, repo, payload=None):
+    def get_default_attributes_for_a_codespace(self, owner, repo, params=None, payload=None):
         """
         Get default attributes for a codespace
         https://docs.github.com/rest/reference/codespaces#preview-attributes-for-a-new-codespace
@@ -210,10 +215,10 @@ class Codespaces:
          client_ip
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/new"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_repository_secrets(self, owner, repo, payload=None):
+    def list_repository_secrets(self, owner, repo, params=None, payload=None):
         """
         List repository secrets
         https://docs.github.com/rest/reference/codespaces#list-repository-secrets
@@ -226,10 +231,10 @@ class Codespaces:
          page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/secrets"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_a_repository_public_key(self, owner, repo, payload=None):
+    def get_a_repository_public_key(self, owner, repo, params=None, payload=None):
         """
         Get a repository public key
         https://docs.github.com/rest/reference/codespaces#get-a-repository-public-key
@@ -241,10 +246,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/secrets/public-key"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_a_repository_secret(self, owner, repo, secret_name, payload=None):
+    def get_a_repository_secret(self, owner, repo, secret_name, params=None, payload=None):
         """
         Get a repository secret
         https://docs.github.com/rest/reference/codespaces#get-a-repository-secret
@@ -257,10 +262,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/secrets/{secret_name}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_or_update_a_repository_secret(self, owner, repo, secret_name, payload=None):
+    def create_or_update_a_repository_secret(
+        self, owner, repo, secret_name, params=None, payload=None
+    ):
         """
         Create or update a repository secret
         https://docs.github.com/rest/reference/codespaces#create-or-update-a-repository-secret
@@ -273,10 +280,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/secrets/{secret_name}"
-        response = self._execute("put", url, payload)
+        response = self._execute("put", url, params=params, payload=payload)
         return response
 
-    def delete_a_repository_secret(self, owner, repo, secret_name, payload=None):
+    def delete_a_repository_secret(self, owner, repo, secret_name, params=None, payload=None):
         """
         Delete a repository secret
         https://docs.github.com/rest/reference/codespaces#delete-a-repository-secret
@@ -289,10 +296,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/codespaces/secrets/{secret_name}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def create_a_codespace_from_a_pull_request(self, owner, repo, pull_number, payload=None):
+    def create_a_codespace_from_a_pull_request(
+        self, owner, repo, pull_number, params=None, payload=None
+    ):
         """
         Create a codespace from a pull request
         https://docs.github.com/rest/reference/codespaces#create-a-codespace-from-a-pull-request
@@ -305,10 +314,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/repos/{owner}/{repo}/pulls/{pull_number}/codespaces"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def list_codespaces_for_the_authenticated_user(self, payload=None):
+    def list_codespaces_for_the_authenticated_user(self, params=None, payload=None):
         """
         List codespaces for the authenticated user
         https://docs.github.com/rest/reference/codespaces#list-codespaces-for-the-authenticated-user
@@ -321,10 +330,10 @@ class Codespaces:
          repository-id-in-query
         """
         url = self._base_url + "/user/codespaces"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_a_codespace_for_the_authenticated_user(self, payload=None):
+    def create_a_codespace_for_the_authenticated_user(self, params=None, payload=None):
         """
         Create a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#create-a-codespace-for-the-authenticated-user
@@ -335,10 +344,10 @@ class Codespaces:
 
         """
         url = self._base_url + "/user/codespaces"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def list_secrets_for_the_authenticated_user(self, payload=None):
+    def list_secrets_for_the_authenticated_user(self, params=None, payload=None):
         """
         List secrets for the authenticated user
         https://docs.github.com/rest/reference/codespaces#list-secrets-for-the-authenticated-user
@@ -350,10 +359,10 @@ class Codespaces:
          page
         """
         url = self._base_url + "/user/codespaces/secrets"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_public_key_for_the_authenticated_user(self, payload=None):
+    def get_public_key_for_the_authenticated_user(self, params=None, payload=None):
         """
         Get public key for the authenticated user
         https://docs.github.com/rest/reference/codespaces#get-public-key-for-the-authenticated-user
@@ -364,10 +373,10 @@ class Codespaces:
 
         """
         url = self._base_url + "/user/codespaces/secrets/public-key"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def get_a_secret_for_the_authenticated_user(self, secret_name, payload=None):
+    def get_a_secret_for_the_authenticated_user(self, secret_name, params=None, payload=None):
         """
         Get a secret for the authenticated user
         https://docs.github.com/rest/reference/codespaces#get-a-secret-for-the-authenticated-user
@@ -378,10 +387,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/secrets/{secret_name}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def create_or_update_a_secret_for_the_authenticated_user(self, secret_name, payload=None):
+    def create_or_update_a_secret_for_the_authenticated_user(
+        self, secret_name, params=None, payload=None
+    ):
         """
         Create or update a secret for the authenticated user
         https://docs.github.com/rest/reference/codespaces#create-or-update-a-secret-for-the-authenticated-user
@@ -392,10 +403,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/secrets/{secret_name}"
-        response = self._execute("put", url, payload)
+        response = self._execute("put", url, params=params, payload=payload)
         return response
 
-    def delete_a_secret_for_the_authenticated_user(self, secret_name, payload=None):
+    def delete_a_secret_for_the_authenticated_user(self, secret_name, params=None, payload=None):
         """
         Delete a secret for the authenticated user
         https://docs.github.com/rest/reference/codespaces#delete-a-secret-for-the-authenticated-user
@@ -406,10 +417,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/secrets/{secret_name}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def list_selected_repositories_for_a_user_secret(self, secret_name, payload=None):
+    def list_selected_repositories_for_a_user_secret(self, secret_name, params=None, payload=None):
         """
         List selected repositories for a user secret
         https://docs.github.com/rest/reference/codespaces#list-selected-repositories-for-a-user-secret
@@ -420,10 +431,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/secrets/{secret_name}/repositories"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def set_selected_repositories_for_a_user_secret(self, secret_name, payload=None):
+    def set_selected_repositories_for_a_user_secret(self, secret_name, params=None, payload=None):
         """
         Set selected repositories for a user secret
         https://docs.github.com/rest/reference/codespaces#set-selected-repositories-for-a-user-secret
@@ -434,10 +445,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/secrets/{secret_name}/repositories"
-        response = self._execute("put", url, payload)
+        response = self._execute("put", url, params=params, payload=payload)
         return response
 
-    def add_a_selected_repository_to_a_user_secret(self, secret_name, repository_id, payload=None):
+    def add_a_selected_repository_to_a_user_secret(
+        self, secret_name, repository_id, params=None, payload=None
+    ):
         """
         Add a selected repository to a user secret
         https://docs.github.com/rest/reference/codespaces#add-a-selected-repository-to-a-user-secret
@@ -451,11 +464,11 @@ class Codespaces:
         url = (
             self._base_url + f"/user/codespaces/secrets/{secret_name}/repositories/{repository_id}"
         )
-        response = self._execute("put", url, payload)
+        response = self._execute("put", url, params=params, payload=payload)
         return response
 
     def remove_a_selected_repository_from_a_user_secret(
-        self, secret_name, repository_id, payload=None
+        self, secret_name, repository_id, params=None, payload=None
     ):
         """
         Remove a selected repository from a user secret
@@ -470,10 +483,10 @@ class Codespaces:
         url = (
             self._base_url + f"/user/codespaces/secrets/{secret_name}/repositories/{repository_id}"
         )
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def get_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def get_a_codespace_for_the_authenticated_user(self, codespace_name, params=None, payload=None):
         """
         Get a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#get-a-codespace-for-the-authenticated-user
@@ -484,10 +497,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def update_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def update_a_codespace_for_the_authenticated_user(
+        self, codespace_name, params=None, payload=None
+    ):
         """
         Update a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#update-a-codespace-for-the-authenticated-user
@@ -498,10 +513,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}"
-        response = self._execute("patch", url, payload)
+        response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def delete_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def delete_a_codespace_for_the_authenticated_user(
+        self, codespace_name, params=None, payload=None
+    ):
         """
         Delete a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#delete-a-codespace-for-the-authenticated-user
@@ -512,10 +529,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}"
-        response = self._execute("delete", url, payload)
+        response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def export_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def export_a_codespace_for_the_authenticated_user(
+        self, codespace_name, params=None, payload=None
+    ):
         """
         Export a codespace for the authenticated user
         N/A
@@ -526,10 +545,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}/exports"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def get_details_about_a_codespace_export(self, codespace_name, export_id, payload=None):
+    def get_details_about_a_codespace_export(
+        self, codespace_name, export_id, params=None, payload=None
+    ):
         """
         Get details about a codespace export
         N/A
@@ -541,10 +562,10 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}/exports/{export_id}"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def list_machine_types_for_a_codespace(self, codespace_name, payload=None):
+    def list_machine_types_for_a_codespace(self, codespace_name, params=None, payload=None):
         """
         List machine types for a codespace
         https://docs.github.com/rest/reference/codespaces#list-machine-types-for-a-codespace
@@ -555,10 +576,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}/machines"
-        response = self._execute("get", url, payload)
+        response = self._execute("get", url, params=params, payload=payload)
         return response
 
-    def start_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def start_a_codespace_for_the_authenticated_user(
+        self, codespace_name, params=None, payload=None
+    ):
         """
         Start a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#start-a-codespace-for-the-authenticated-user
@@ -569,10 +592,12 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}/start"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def stop_a_codespace_for_the_authenticated_user(self, codespace_name, payload=None):
+    def stop_a_codespace_for_the_authenticated_user(
+        self, codespace_name, params=None, payload=None
+    ):
         """
         Stop a codespace for the authenticated user
         https://docs.github.com/rest/reference/codespaces#stop-a-codespace-for-the-authenticated-user
@@ -583,5 +608,5 @@ class Codespaces:
 
         """
         url = self._base_url + f"/user/codespaces/{codespace_name}/stop"
-        response = self._execute("post", url, payload)
+        response = self._execute("post", url, params=params, payload=payload)
         return response
