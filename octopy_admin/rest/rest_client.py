@@ -85,6 +85,8 @@ class RestClient:
         Attributes:
             response (obj): API request.
         """
+        if response.links.get("next") is None and response:
+            yield response.json()
         while response.links.get("next"):
             yield response.json()
             url = response.links.get("next").get("url")
