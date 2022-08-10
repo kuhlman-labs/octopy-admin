@@ -110,30 +110,30 @@ class GraphQuery:
         params = {"organization": org, "cursor": None}
         return self._paginate_results(query, params)
 
-    def get_repo_collaborators(self, org, repo):
+    def get_repo_collaborators_with_permission(self, owner, name):
         """
         This module returns a generator that will yield a dictionary
          of all collaborators in a repository.
 
         Attributes:
-            org (str): The name of the Organization.
-            repo (str): The name of the Repository.
+            owner (str): The name of the Organization.
+            name (str): The name of the Repository.
         """
-        query = self._load_query("gql_files/get-repo-collaborators.gql")
-        params = {"owner": org, "name": repo, "cursor": None}
+        query = self._load_query("gql_files/get-repo-collaborators-with-permission.gql")
+        params = {"owner": owner, "name": name, "cursor": None}
         return self._paginate_results(query, params)
 
-    def get_repo_branch_protection_rules(self, org, repo):
+    def get_repo_branch_protection_rules(self, owner, name):
         """
         This module returns a generator that will yield a dictionary
          of all branch protection rules in a repository.
 
         Attributes:
-            org (str): The name of the Organization.
-            repo (str): The name of the Repository.
+            owner (str): The name of the Organization.
+            name (str): The name of the Repository.
         """
         query = self._load_query("gql_files/get-repo-branch-protection-rules.gql")
-        params = {"owner": org, "name": repo, "cursor": None}
+        params = {"owner": owner, "name": name, "cursor": None}
         return self._paginate_results(query, params)
 
     def get_the_authenticated_user(self):
@@ -144,7 +144,7 @@ class GraphQuery:
         query = self._load_query("gql_files/get-the-authenticated-user.gql")
         return self._execute(query)
 
-    def get_org_members(self, org):
+    def get_org_members_with_role(self, org):
         """
         This module returns a generator that will yield a dictionary
          of all members in an organization.
@@ -152,6 +152,44 @@ class GraphQuery:
         Attributes:
             org (str): The name of the Organization.
         """
-        query = self._load_query("gql_files/get-org-members.gql")
+        query = self._load_query("gql_files/get-org-members-with-role.gql")
         params = {"organization": org, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def get_repo_prs(self, owner, name):
+        """
+        This module returns a generator that will yield a dictionary
+         of all pull requests in a repository.
+
+        Attributes:
+            owner (str): The name of the Organization.
+            name (str): The name of the Repository.
+        """
+        query = self._load_query("gql_files/get-repo-prs.gql")
+        params = {"owner": owner, "name": name, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def get_repo_pr_review_requested_events(self, owner, name):
+        """
+        This module returns a generator that will yield a dictionary
+         of all pull request review requested events in a repository.
+
+        Attributes:
+            owner (str): The name of the Organization.
+            name (str): The name of the Repository.
+        """
+        query = self._load_query("gql_files/get-repo-pr-review-requested-events.gql")
+        params = {"owner": owner, "name": name, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def get_enterprise_admins(self, enterprise):
+        """
+        This module returns a generator that will yield a dictionary
+         of all admins in an Enterprise.
+
+        Attributes:
+            enterprise (str): The name of the Enterprise.
+        """
+        query = self._load_query("gql_files/get-enterprise-admins.gql")
+        params = {"slug": enterprise, "cursor": None}
         return self._paginate_results(query, params)

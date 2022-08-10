@@ -1,6 +1,5 @@
-query RepoBranchRules($owner: String!, $name: String!, $cursor: String) {
+query getRepoBranchProtectionRules($owner: String!, $name: String!, $cursor: String) {
 	repository(owner:$owner, name:$name) {
-		nameWithOwner
 		branchProtectionRules(first:100, after: $cursor) {
 			totalCount
 			nodes {

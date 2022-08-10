@@ -1,6 +1,7 @@
-query getOrganizationMembers($organization: String!, $cursor: String) {
+query getOrganizationMembersWithRole($organization: String!, $cursor: String) {
 	organization(login:$organization){
 		membersWithRole(first: 100, after:$cursor){
+			totalCount
 			edges{
 				role
 				node {

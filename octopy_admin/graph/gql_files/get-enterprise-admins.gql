@@ -1,0 +1,15 @@
+query getEnterpiseAdmins($slug: String!, $cursor: String) {
+	enterprise(slug: $slug) {
+		ownerInfo{
+			admins(first:100, after:$cursor){
+				nodes{
+					login
+				}
+				pageInfo{
+					hasNextPage
+					endCursor
+				}
+		    }
+		}
+    }
+}

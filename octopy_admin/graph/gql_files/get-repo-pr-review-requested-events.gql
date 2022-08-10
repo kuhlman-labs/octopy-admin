@@ -1,0 +1,50 @@
+query getRepoPrReviewRequestedEvents($owner: String!, $name: String!, $pr: Int!, $cursor: String) {
+	repository(owner:$owner, name:$name) {
+		pullRequest(number: $pr) {
+			timelineItems(first: 100, after: $cursor, itemTypes: [REVIEW_REQUESTED_EVENT, REVIEW_REQUEST_REMOVED_EVENT]) {
+				nodes {
+					... on ReviewRequestRemovedEvent {
+						__typename
+						requestedReviewer {
+							... on User {
+								__typename
+								login
+							}
+							... on Team{
+								__typename
+								name
+							}
+						}
+						createdAt
+						pullRequest {
+							number
+							title
+						}
+					}
+					... on ReviewRequestedEvent {
+						__typename
+						requestedReviewer{
+							... on User {
+								__typename
+								login
+							}
+							... on Team {
+								__typename
+								name
+							}
+						}
+						createdAt
+						pullRequest {
+							number
+							title
+						}
+					}
+				}
+				pageInfo {
+					hasNextPage
+					endCursor
+				}
+			}
+		}
+	}
+}
