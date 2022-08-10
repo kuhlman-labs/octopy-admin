@@ -1,0 +1,11 @@
+{
+    "name": "OctoPy",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    },
+    "extensions": [
+        "davidanson.vscode-markdownlint",
+        "ms-python.python"
+    ],
+    "postCreateCommand": "/bin/bash ./.devcontainer/post-install.sh"
+}
