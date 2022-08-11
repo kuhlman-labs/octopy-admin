@@ -39,7 +39,7 @@ class RestClient:
                     "API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
 
-        hostname = os.environ.get("HOST_NAME")
+        hostname = os.environ.get("HOSTNAME")
         if hostname is None:
             rest_api_url = "https://api.github.com"
         else:

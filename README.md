@@ -27,14 +27,13 @@ pip install octopy-admin
 ### Set Environment Variables
 
 Creat a `.env` file at the root of the repo and set value for `API_TOKEN`.
-If running against GHES, set values for `GQL_API_URL` and `REST_API_URL` endpoints,
+If running against GHES, set value for `HOSTNAME` to determine appropirate API endpoints,
 if these values are not set it defaults to the .com endpoints.
 
 #### GitHub Enterprise Example
 
 ```bash
-GRAPH_API_URL=https://{hostname}/api/graphql
-REST_API_URL=https://{hostname}/api/v3
+HOSTNAME=github.domain.com
 API_TOKEN=ghp_xxx
 ```
 
