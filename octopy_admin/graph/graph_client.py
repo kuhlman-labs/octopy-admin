@@ -15,26 +15,32 @@ class GraphClient:  # pylint: disable=too-few-public-methods
     This following methods are used to form requests to the GitHub GraphQL API.
     """
 
-    def __init__(self, graph_api_url=None, api_token=None):
+    def __init__(self, hostname=None, api_token=None):
         """
         Initialize the GraphQL client.
         """
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise GraphClientError("API_TOKEN environment variable is not set")
+                raise GraphClientError(
+                    "API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        if graph_api_url is None:
-            graph_api_url = os.environ.get("GRAPH_API_URL", r"https://api.github.com/graphql")
+        hostname = os.environ.get("HOST_NAME")
+        if hostname is None:
+            graph_api_url = "https://api.github.com/graphql"
+        else:
+            graph_api_url = "https://" + hostname + "/api/graphql"
         headers = {"Authorization": f"Bearer {api_token}"}
         transport = AIOHTTPTransport(
             url=graph_api_url,
             headers=headers,
         )
-        self._client = Client(transport=transport, fetch_schema_from_transport=True)
+        self._client = Client(transport=transport,
+                              fetch_schema_from_transport=True)
 
         self.query = graph_query.GraphQuery(self)
         self.mutation = graph_mutation.GraphMutation(self)
+        print("URL", graph_api_url)
 
     def _load_query(self, path):
         """
@@ -60,7 +66,8 @@ class GraphClient:  # pylint: disable=too-few-public-methods
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as errquery:
-            raise GraphClientError(errquery.errors[0].get("message")) from errquery
+            raise GraphClientError(
+                errquery.errors[0].get("message")) from errquery
         except TransportServerError as errserver:
             raise GraphClientError(
                 f"Server responded with a {str(errserver.code)} status code"

@@ -22,7 +22,7 @@ class RestClient:
     The following methods are used to form requests to the GitHub REST API.
     """
 
-    def __init__(self, rest_api_url=None, api_token=None):
+    def __init__(self, hostname=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
 
@@ -35,12 +35,17 @@ class RestClient:
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise RestClientError("API_TOKEN environment variable is not set")
+                raise RestClientError(
+                    "API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        if rest_api_url is None:
-            rest_api_url = os.environ.get("REST_API_URL", r"https://api.github.com")
-        self._base_url = rest_api_url
 
+        hostname = os.environ.get("HOST_NAME")
+        if hostname is None:
+            rest_api_url = "https://api.github.com"
+        else:
+            rest_api_url = "https://" + hostname + "/api/v3"
+
+        self._base_url = rest_api_url
         self.actions = apis.actions.Actions(self)
         self.activity = apis.activity.Activity(self)
         self.apps = apis.apps.Apps(self)
@@ -62,7 +67,8 @@ class RestClient:
         self.markdown = apis.markdown.Markdown(self)
         self.meta = apis.meta.Meta(self)
         self.migrations = apis.migrations.Migrations(self)
-        self.oauth_authorizations = apis.oauth_authorizations.OauthAuthorizations(self)
+        self.oauth_authorizations = apis.oauth_authorizations.OauthAuthorizations(
+            self)
         self.oidc = apis.oidc.Oidc(self)
         self.orgs = apis.orgs.Orgs(self)
         self.packages = apis.packages.Packages(self)
@@ -77,6 +83,7 @@ class RestClient:
         self.server_statistics = apis.server_statistics.ServerStatistics(self)
         self.teams = apis.teams.Teams(self)
         self.users = apis.users.Users(self)
+        print("URL: ", rest_api_url)
 
     def paginate_request(self, response):
         """
@@ -108,10 +115,13 @@ class RestClient:
             response.raise_for_status()
             return response
         except requests.exceptions.Timeout as errtimeout:
-            raise RestClientError(f"Timeout error: {errtimeout}") from errtimeout
+            raise RestClientError(
+                f"Timeout error: {errtimeout}") from errtimeout
         except requests.exceptions.HTTPError as errhttp:
             raise RestClientError(f"HTTP error: {errhttp}") from errhttp
         except requests.exceptions.TooManyRedirects as errredirect:
-            raise RestClientError(f"Too many redirects: {errredirect}") from errredirect
+            raise RestClientError(
+                f"Too many redirects: {errredirect}") from errredirect
         except requests.exceptions.RequestException as errexcept:
-            raise RestClientError(f"Unexpected error: {errexcept}") from errexcept
+            raise RestClientError(
+                f"Unexpected error: {errexcept}") from errexcept
