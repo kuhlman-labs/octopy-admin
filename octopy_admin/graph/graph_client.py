@@ -15,7 +15,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
     This following methods are used to form requests to the GitHub GraphQL API.
     """
 
-    def __init__(self, graph_api_url=None, api_token=None):
+    def __init__(self, hostname=None, api_token=None):
         """
         Initialize the GraphQL client.
         """
@@ -24,8 +24,11 @@ class GraphClient:  # pylint: disable=too-few-public-methods
             if os.environ.get("API_TOKEN") is None:
                 raise GraphClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        if graph_api_url is None:
-            graph_api_url = os.environ.get("GRAPH_API_URL", r"https://api.github.com/graphql")
+        hostname = os.environ.get("GHE_HOSTNAME")
+        if hostname is None:
+            graph_api_url = "https://api.github.com/graphql"
+        else:
+            graph_api_url = "https://" + hostname + "/api/graphql"
         headers = {"Authorization": f"Bearer {api_token}"}
         transport = AIOHTTPTransport(
             url=graph_api_url,
@@ -35,6 +38,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
 
         self.query = graph_query.GraphQuery(self)
         self.mutation = graph_mutation.GraphMutation(self)
+        print("URL", graph_api_url)
 
     def _load_query(self, path):
         """

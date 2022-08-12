@@ -5,8 +5,7 @@ on: pull_request
 
 env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
-  GRAPH_API_URL: https://ghes.kuhlman-labs.io/api/graphql
-  REST_API_URL: https://ghes.kuhlman-labs.io/api/v3
+  GHE_HOSTNAME: ghes.kuhlman-labs.io
 
 jobs:
   run-tests:

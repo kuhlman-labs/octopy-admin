@@ -22,7 +22,7 @@ class RestClient:
     The following methods are used to form requests to the GitHub REST API.
     """
 
-    def __init__(self, rest_api_url=None, api_token=None):
+    def __init__(self, hostname=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
 
@@ -37,10 +37,14 @@ class RestClient:
             if os.environ.get("API_TOKEN") is None:
                 raise RestClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        if rest_api_url is None:
-            rest_api_url = os.environ.get("REST_API_URL", r"https://api.github.com")
-        self._base_url = rest_api_url
 
+        hostname = os.environ.get("GHE_HOSTNAME")
+        if hostname is None:
+            rest_api_url = "https://api.github.com"
+        else:
+            rest_api_url = "https://" + hostname + "/api/v3"
+
+        self._base_url = rest_api_url
         self.actions = apis.actions.Actions(self)
         self.activity = apis.activity.Activity(self)
         self.apps = apis.apps.Apps(self)
@@ -77,6 +81,7 @@ class RestClient:
         self.server_statistics = apis.server_statistics.ServerStatistics(self)
         self.teams = apis.teams.Teams(self)
         self.users = apis.users.Users(self)
+        print("URL: ", rest_api_url)
 
     def paginate_request(self, response):
         """
