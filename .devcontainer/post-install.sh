@@ -6,3 +6,6 @@ sudo apt-get install -y --no-install-recommends apt-utils dialog dnsutils httpie
 DEBIAN_FRONTEND=dialog
 
 curl -sSL https://install.python-poetry.org | python -
+go install github.com/rhysd/actionlint/cmd/actionlint@latest
+poetry install
+poetry run pre-commit install
