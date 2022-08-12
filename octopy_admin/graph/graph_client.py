@@ -22,10 +22,9 @@ class GraphClient:  # pylint: disable=too-few-public-methods
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise GraphClientError(
-                    "API_TOKEN environment variable is not set")
+                raise GraphClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        hostname = os.environ.get("HOSTNAME")
+        hostname = os.environ.get("GHE_HOSTNAME")
         if hostname is None:
             graph_api_url = "https://api.github.com/graphql"
         else:
@@ -35,8 +34,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
             url=graph_api_url,
             headers=headers,
         )
-        self._client = Client(transport=transport,
-                              fetch_schema_from_transport=True)
+        self._client = Client(transport=transport, fetch_schema_from_transport=True)
 
         self.query = graph_query.GraphQuery(self)
         self.mutation = graph_mutation.GraphMutation(self)
@@ -66,8 +64,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
         try:
             return self._client.execute(query, variable_values=params)
         except TransportQueryError as errquery:
-            raise GraphClientError(
-                errquery.errors[0].get("message")) from errquery
+            raise GraphClientError(errquery.errors[0].get("message")) from errquery
         except TransportServerError as errserver:
             raise GraphClientError(
                 f"Server responded with a {str(errserver.code)} status code"

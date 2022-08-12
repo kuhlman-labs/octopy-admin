@@ -5,7 +5,7 @@ on: pull_request
 
 env:
   API_TOKEN: ${{  secrets.API_TOKEN  }}
-  HOSTNAME: ghes.kuhlman-labs.io
+  GHE_HOSTNAME: ghes.kuhlman-labs.io
 
 jobs:
   run-tests:

@@ -35,11 +35,10 @@ class RestClient:
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise RestClientError(
-                    "API_TOKEN environment variable is not set")
+                raise RestClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
 
-        hostname = os.environ.get("HOSTNAME")
+        hostname = os.environ.get("GHE_HOSTNAME")
         if hostname is None:
             rest_api_url = "https://api.github.com"
         else:
@@ -67,8 +66,7 @@ class RestClient:
         self.markdown = apis.markdown.Markdown(self)
         self.meta = apis.meta.Meta(self)
         self.migrations = apis.migrations.Migrations(self)
-        self.oauth_authorizations = apis.oauth_authorizations.OauthAuthorizations(
-            self)
+        self.oauth_authorizations = apis.oauth_authorizations.OauthAuthorizations(self)
         self.oidc = apis.oidc.Oidc(self)
         self.orgs = apis.orgs.Orgs(self)
         self.packages = apis.packages.Packages(self)
@@ -115,13 +113,10 @@ class RestClient:
             response.raise_for_status()
             return response
         except requests.exceptions.Timeout as errtimeout:
-            raise RestClientError(
-                f"Timeout error: {errtimeout}") from errtimeout
+            raise RestClientError(f"Timeout error: {errtimeout}") from errtimeout
         except requests.exceptions.HTTPError as errhttp:
             raise RestClientError(f"HTTP error: {errhttp}") from errhttp
         except requests.exceptions.TooManyRedirects as errredirect:
-            raise RestClientError(
-                f"Too many redirects: {errredirect}") from errredirect
+            raise RestClientError(f"Too many redirects: {errredirect}") from errredirect
         except requests.exceptions.RequestException as errexcept:
-            raise RestClientError(
-                f"Unexpected error: {errexcept}") from errexcept
+            raise RestClientError(f"Unexpected error: {errexcept}") from errexcept
