@@ -108,10 +108,10 @@ tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
 typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-uvloop = ["uvloop (>=0.15.2)"]
-jupyter = ["tokenize-rt (>=3.2.0)", "ipython (>=7.8.0)"]
-d = ["aiohttp (>=3.7.4)"]
 colorama = ["colorama (>=0.4.3)"]
+d = ["aiohttp (>=3.7.4)"]
+jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
+uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "certifi"
@@ -187,8 +187,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-testing = ["pytest-timeout (>=1.4.2)", "pytest-cov", "pytest (>=4)", "coverage (>=4)", "covdefaults (>=1.2.0)"]
-docs = ["sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4.1)", "furo (>=2021.8.17b43)"]
+docs = ["furo (>=2021.8.17b43)", "sphinx (>=4.1)", "sphinx-autodoc-typehints (>=1.12)"]
+testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-cov", "pytest-timeout (>=1.4.2)"]
 
 [[package]]
 name = "frozenlist"
@@ -226,14 +226,14 @@ graphql-core = ">=3.2,<3.3"
 yarl = ">=1.6,<2.0"
 
 [package.extras]
-websockets = ["websockets (>=10,<11)", "websockets (>=9,<10)"]
-test_no_transport = ["aiofiles", "vcrpy (==4.0.2)", "mock (==4.0.2)", "pytest-cov (==3.0.0)", "pytest-console-scripts (==1.3.1)", "pytest-asyncio (==0.16.0)", "pytest (==6.2.5)", "parse (==1.15.0)"]
-test = ["websockets (>=10,<11)", "websockets (>=9,<10)", "aiofiles", "vcrpy (==4.0.2)", "mock (==4.0.2)", "pytest-cov (==3.0.0)", "pytest-console-scripts (==1.3.1)", "pytest-asyncio (==0.16.0)", "pytest (==6.2.5)", "parse (==1.15.0)", "botocore (>=1.21,<2)", "urllib3 (>=1.26)", "requests-toolbelt (>=0.9.1,<1)", "requests (>=2.26,<3)", "aiohttp (>=3.7.1,<3.9.0)"]
-requests = ["urllib3 (>=1.26)", "requests-toolbelt (>=0.9.1,<1)", "requests (>=2.26,<3)"]
-dev = ["websockets (>=10,<11)", "websockets (>=9,<10)", "aiofiles", "vcrpy (==4.0.2)", "mock (==4.0.2)", "pytest-cov (==3.0.0)", "pytest-console-scripts (==1.3.1)", "pytest-asyncio (==0.16.0)", "pytest (==6.2.5)", "parse (==1.15.0)", "types-requests", "types-mock", "types-aiofiles", "sphinx-argparse (==0.2.5)", "sphinx-rtd-theme (>=0.4,<1)", "sphinx (>=3.0.0,<4)", "mypy (==0.910)", "isort (==4.3.21)", "flake8 (==3.8.1)", "check-manifest (>=0.42,<1)", "black (==22.3.0)", "botocore (>=1.21,<2)", "urllib3 (>=1.26)", "requests-toolbelt (>=0.9.1,<1)", "requests (>=2.26,<3)", "aiohttp (>=3.7.1,<3.9.0)"]
-botocore = ["botocore (>=1.21,<2)"]
-all = ["websockets (>=10,<11)", "websockets (>=9,<10)", "botocore (>=1.21,<2)", "urllib3 (>=1.26)", "requests-toolbelt (>=0.9.1,<1)", "requests (>=2.26,<3)", "aiohttp (>=3.7.1,<3.9.0)"]
 aiohttp = ["aiohttp (>=3.7.1,<3.9.0)"]
+all = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+botocore = ["botocore (>=1.21,<2)"]
+dev = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "black (==22.3.0)", "check-manifest (>=0.42,<1)", "flake8 (==3.8.1)", "isort (==4.3.21)", "mypy (==0.910)", "sphinx (>=3.0.0,<4)", "sphinx-rtd-theme (>=0.4,<1)", "sphinx-argparse (==0.2.5)", "types-aiofiles", "types-mock", "types-requests", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+requests = ["requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)"]
+test = ["aiohttp (>=3.7.1,<3.9.0)", "requests (>=2.26,<3)", "requests-toolbelt (>=0.9.1,<1)", "urllib3 (>=1.26)", "botocore (>=1.21,<2)", "parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles", "websockets (>=9,<10)", "websockets (>=10,<11)"]
+test_no_transport = ["parse (==1.15.0)", "pytest (==6.2.5)", "pytest-asyncio (==0.16.0)", "pytest-console-scripts (==1.3.1)", "pytest-cov (==3.0.0)", "mock (==4.0.2)", "vcrpy (==4.0.2)", "aiofiles"]
+websockets = ["websockets (>=9,<10)", "websockets (>=10,<11)"]
 
 [[package]]
 name = "graphql-core"
@@ -306,10 +306,10 @@ optional = false
 python-versions = ">=3.6.1,<4.0"
 
 [package.extras]
-plugins = ["setuptools"]
+pipfile_deprecated_finder = ["pipreqs", "requirementslib"]
+requirements_deprecated_finder = ["pipreqs", "pip-api"]
 colors = ["colorama (>=0.4.3,<0.5.0)"]
-requirements_deprecated_finder = ["pip-api", "pipreqs"]
-pipfile_deprecated_finder = ["requirementslib", "pipreqs"]
+plugins = ["setuptools"]
 
 [[package]]
 name = "jinja2"
@@ -408,7 +408,7 @@ mkdocs = ">=1.1"
 
 [[package]]
 name = "mkdocs-material"
-version = "8.4.0"
+version = "8.4.1"
 description = "Documentation that simply works"
 category = "dev"
 optional = false
@@ -619,8 +619,8 @@ tomlkit = ">=0.10.1"
 typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-testutils = ["gitpython (>3)"]
 spelling = ["pyenchant (>=3.2,<4.0)"]
+testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pymdown-extensions"
@@ -781,9 +781,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
 [package.extras]
+brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
+secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
-secure = ["ipaddress", "certifi", "idna (>=2.0.0)", "cryptography (>=1.3.4)", "pyOpenSSL (>=0.14)"]
-brotli = ["brotlipy (>=0.6.0)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 
 [[package]]
 name = "virtualenv"
@@ -799,8 +799,8 @@ filelock = ">=3.2,<4"
 platformdirs = ">=2,<3"
 
 [package.extras]
-testing = ["pytest-timeout (>=1)", "pytest-randomly (>=1)", "pytest-mock (>=2)", "pytest-freezegun (>=0.4.1)", "pytest-env (>=0.6.2)", "pytest (>=4)", "packaging (>=20.0)", "flaky (>=3)", "coverage-enable-subprocess (>=1)", "coverage (>=4)"]
-docs = ["towncrier (>=21.3)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-argparse (>=0.2.5)", "sphinx (>=3)", "proselint (>=0.10.2)"]
+docs = ["proselint (>=0.10.2)", "sphinx (>=3)", "sphinx-argparse (>=0.2.5)", "sphinx-rtd-theme (>=0.4.3)", "towncrier (>=21.3)"]
+testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", "packaging (>=20.0)", "pytest (>=4)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.1)", "pytest-mock (>=2)", "pytest-randomly (>=1)", "pytest-timeout (>=1)"]
 
 [[package]]
 name = "watchdog"
@@ -842,13 +842,13 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-testing = ["pytest-mypy (>=0.9.1)", "pytest-black (>=0.3.7)", "func-timeout", "jaraco.itertools", "pytest-enabler (>=1.3)", "pytest-cov", "pytest-flake8", "pytest-checkdocs (>=2.4)", "pytest (>=6)"]
-docs = ["jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "jaraco.packaging (>=9)", "sphinx"]
+docs = ["sphinx", "jaraco.packaging (>=9)", "rst.linker (>=1.9)", "jaraco.tidelift (>=1.4)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.3)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "efbea26c7190fdf9a30881dece9d6fa05b6b4894a9d32ed3fa986936a1af4360"
+content-hash = "8710230191015001cade530a85e2f3bd3e3d533e50c0ad0881dc2a98f24aa317"
 
 [metadata.files]
 aiohttp = [
@@ -1211,8 +1211,8 @@ mkdocs-autorefs = [
     {file = "mkdocs_autorefs-0.4.1-py3-none-any.whl", hash = "sha256:a2248a9501b29dc0cc8ba4c09f4f47ff121945f6ce33d760f145d6f89d313f5b"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-8.4.0.tar.gz", hash = "sha256:6c0a6e6cda8b43956e0c562374588160af8110584a1444f422b1cfd91930f9c7"},
-    {file = "mkdocs_material-8.4.0-py2.py3-none-any.whl", hash = "sha256:ef6641e1910d4f217873ac376b4594f3157dca3949901b88b4991ba8e5477577"},
+    {file = "mkdocs-material-8.4.1.tar.gz", hash = "sha256:92c70f94b2e1f8a05d9e05eec1c7af9dffc516802d69222329db89503c97b4f3"},
+    {file = "mkdocs_material-8.4.1-py2.py3-none-any.whl", hash = "sha256:319a6254819ce9d864ff79de48c43842fccfdebb43e4e6820eef75216f8cfb0a"},
 ]
 mkdocs-material-extensions = [
     {file = "mkdocs-material-extensions-1.0.3.tar.gz", hash = "sha256:bfd24dfdef7b41c312ede42648f9eb83476ea168ec163b613f9abd12bbfddba2"},
