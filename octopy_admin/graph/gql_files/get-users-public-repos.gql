@@ -1,0 +1,14 @@
+query getUsersPublicRepos($user: String!, $cursor: String) {
+	user(login:$user){
+		repositories(first: 100, after: $cursor, privacy:PUBLIC){
+			totalCount
+			nodes{
+				nameWithOwner
+			}
+			pageInfo{
+				hasNextPage
+				endCursor
+			}
+		}
+	}
+}

@@ -193,3 +193,12 @@ class GraphQuery:
         query = self._load_query("gql_files/get-enterprise-admins.gql")
         params = {"slug": enterprise, "cursor": None}
         return self._paginate_results(query, params)
+
+    def get_users_public_repos(self, user):
+        """
+        This method returns a generator that will yield a dictionary
+        of all public repos for a given user.
+        """
+        query = self._load_query("gql_files/get-users-public-repos.gql")
+        params = {"user": user, "cursor": None}
+        return self._paginate_results(query, params)
