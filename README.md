@@ -54,8 +54,8 @@ from octopy_admin.rest.rest_client import RestClient
 load_dotenv()
 # Create a new RestClient object
 github = RestClient()
-# Create a new RestClient object and set the API token and base API URL
-# github = RestClient(rest_api_url="https://api.github.com", api_token="ghp_xxxxx")
+# Create a new RestClient object and set the API token and the GHES hostname
+# github = RestClient(hostname="ghes.kuhlman-labs.io", api_token="ghp_xxxxx")
 
 # Make a request to the REST API for the current user:
 current_user = github.users.get_the_authenticated_user()
@@ -78,8 +78,8 @@ from octopy_admin.graph.graph_client import GraphClient
 load_dotenv() 
 # Create a new GraphClient object:
 github = GraphClient()
-# Create a new GraphClient object and set the API token and base API URL:
-# github = GraphClient(graph_api_url="https://api.github.com/graphql", api_token="ghp_xxxxx")
+# Create a new GraphClient object and set the API token and the GHES hostname:
+# github = GraphClient(hostname="ghes.kuhlman-labs.io", api_token="ghp_xxxxx")
 
 # Make a request to the Graph API to get an organization's repositories:
 repo_query = github.query.get_org_repos(org)
