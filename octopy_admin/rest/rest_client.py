@@ -108,7 +108,12 @@ class RestClient:
         """
         try:
             response = requests.request(
-                method=method, url=url, params=params, json=payload, headers=self._headers
+                method=method,
+                url=url,
+                params=params,
+                json=payload,
+                headers=self._headers,
+                timeout=10,
             )
             response.raise_for_status()
             return response
