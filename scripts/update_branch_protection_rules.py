@@ -14,7 +14,10 @@ def update_branch_protection_rules(owner, repo, branch, rules):
     Update the branch protection rules for a given repository.
     """
     try:
-        github.repos.update_branch_protection(owner=owner, repo=repo, branch=branch, payload=rules)
+        branch_rules = github.repos.update_branch_protection(
+            owner=owner, repo=repo, branch=branch, payload=rules
+        )
+        return branch_rules.json()
     except RestClientError as e:
         print(e)
 
