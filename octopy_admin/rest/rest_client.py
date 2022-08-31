@@ -27,10 +27,8 @@ class RestClient:
         Initialize the REST client to make requests to the GitHub API.
 
         Attributes:
-            headers (dict): Headers to be used in the requests.
-            base_url (str): Base URL of the GitHub API.
-            API_TOKEN (str): GitHub API token.
-            REST_API_URL (str): GitHub REST API URL.
+            api_token (str): GitHub API token.
+            hostname (str): GitHub URL Slug (only needed if using GHES).
         """
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
