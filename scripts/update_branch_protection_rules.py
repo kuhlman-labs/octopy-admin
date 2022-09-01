@@ -23,7 +23,7 @@ def update_branch_protection_rules(owner, repo, branch, rules):
 
 
 # example
-# update_branch_protection_rules(
+# new_rules = update_branch_protection_rules(
 #    owner='Engineering',
 #    repo='platform',
 #    branch='main',
@@ -40,3 +40,4 @@ def update_branch_protection_rules(owner, repo, branch, rules):
 #    "allow_deletions":True,
 #    "block_creations":True,
 #    "required_conversation_resolution":True})
+# print(new_rules)
