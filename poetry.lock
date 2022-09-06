@@ -77,7 +77,7 @@ tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "autoflake"
-version = "1.5.2"
+version = "1.5.3"
 description = "Removes unused imports and unused variables"
 category = "dev"
 optional = false
@@ -854,6 +854,7 @@ lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
 content-hash = "876b504645a2f56d775bc04f74f1de316867f708f1aee292f839a0ae4d616975"
 
+
 [metadata.files]
 aiohttp = [
     {file = "aiohttp-3.8.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:1ed0b6477896559f17b9eaeb6d38e07f7f9ffe40b9f0f9627ae8b9926ae260a8"},
@@ -949,8 +950,8 @@ attrs = [
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
 ]
 autoflake = [
-    {file = "autoflake-1.5.2-py2.py3-none-any.whl", hash = "sha256:3a57716fdaa6c21273b901e62a8d1682b266a2ad43f7a64e5f16663c9cdfd73c"},
-    {file = "autoflake-1.5.2.tar.gz", hash = "sha256:79c27c11efba4c7f35ca9747cdc2da0f5862fb0e0813c168fd781c0c572b9b01"},
+    {file = "autoflake-1.5.3-py2.py3-none-any.whl", hash = "sha256:90eb8d3f625bd72068eb670338ea7efcddbc5c6e822d3601e3dc9404c06ea8da"},
+    {file = "autoflake-1.5.3.tar.gz", hash = "sha256:44f7d7eb2c1c49505b513c0e93a5dfd3f7b4218283f50c5ca0af4df6b975d470"},
 ]
 backoff = [
     {file = "backoff-2.1.2-py3-none-any.whl", hash = "sha256:b135e6d7c7513ba2bfd6895bc32bc8c66c6f3b0279b4c6cd866053cfd7d3126b"},
