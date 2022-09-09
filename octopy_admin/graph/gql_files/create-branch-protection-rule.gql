@@ -1,0 +1,33 @@
+mutation createBranchProtectionRule($rule: CreateBranchProtectionRuleInput!) {
+	createBranchProtectionRule(input: $rule) {
+		branchProtectionRule {
+			allowsDeletions
+			allowsForcePushes
+			blocksCreations
+			dismissesStaleReviews
+			isAdminEnforced
+			matchingRefs(first: 100) {
+				nodes {
+					name
+				}
+			}
+			pattern
+			repository {
+				name
+			}
+			requiredApprovingReviewCount
+			requiredStatusCheckContexts
+			requiredStatusChecks {
+				context
+			}
+			requiresApprovingReviews
+			requiresCodeOwnerReviews
+			requiresCommitSignatures
+			requiresConversationResolution
+			requiresLinearHistory
+			requiresStatusChecks
+			restrictsPushes
+			restrictsReviewDismissals
+		}
+	}
+}

@@ -1,0 +1,16 @@
+ query getEnterpiseMembers($slug: String!, $cursor: String) {
+  enterprise(slug: $slug) {
+		members(first:100, after:$cursor){
+			totalCount
+			nodes{
+				... on User{
+					login
+				}
+			}
+			pageInfo{
+				hasNextPage
+				endCursor
+			}
+		}
+  }
+}

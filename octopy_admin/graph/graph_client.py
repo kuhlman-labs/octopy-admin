@@ -24,10 +24,14 @@ class GraphClient:  # pylint: disable=too-few-public-methods
             if os.environ.get("API_TOKEN") is None:
                 raise GraphClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        hostname = os.environ.get("GHE_HOSTNAME")
+
         if hostname is None:
-            graph_api_url = "https://api.github.com/graphql"
-        else:
+            hostname = os.environ.get("GHE_HOSTNAME")
+            if os.environ.get("GHE_HOSTNAME") is None:
+                graph_api_url = "https://api.github.com/graphql"
+            else:
+                graph_api_url = "https://" + hostname + "/api/graphql"
+        elif hostname:
             graph_api_url = "https://" + hostname + "/api/graphql"
         headers = {"Authorization": f"Bearer {api_token}"}
         transport = AIOHTTPTransport(
@@ -38,7 +42,7 @@ class GraphClient:  # pylint: disable=too-few-public-methods
 
         self.query = graph_query.GraphQuery(self)
         self.mutation = graph_mutation.GraphMutation(self)
-        print("URL", graph_api_url)
+        print("GRAPH API URL:", graph_api_url)
 
     def _load_query(self, path):
         """

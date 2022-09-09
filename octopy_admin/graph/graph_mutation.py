@@ -38,3 +38,15 @@ class GraphMutation:
         query = self._load_query("gql_files/create-repository.gql")
         result = self._execute(query, params)
         return print(result)
+
+    def create_branch_protection_rule(self, rule):
+        """
+        This module adds a branch protection rule to a repository.
+
+        Attributes:
+            rule (dict): The branch protection rule.
+        """
+        params = {"rule": rule}
+        query = self._load_query("gql_files/create-branch-protection-rule.gql")
+        result = self._execute(query, params)
+        return print(result)

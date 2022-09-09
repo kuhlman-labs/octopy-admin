@@ -1,5 +1,5 @@
 """
-This module containst the RestClient class.
+This module contains the RestClient class.
 """
 
 import os
@@ -18,6 +18,7 @@ class RestClientError(Exception):
 class RestClient:
     # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-statements
     """
     The following methods are used to form requests to the GitHub REST API.
     """
@@ -35,11 +36,13 @@ class RestClient:
             if os.environ.get("API_TOKEN") is None:
                 raise RestClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-
-        hostname = os.environ.get("GHE_HOSTNAME")
         if hostname is None:
-            rest_api_url = "https://api.github.com"
-        else:
+            hostname = os.environ.get("GHE_HOSTNAME")
+            if os.environ.get("GHE_HOSTNAME") is None:
+                rest_api_url = "https://api.github.com"
+            else:
+                rest_api_url = "https://" + hostname + "/api/v3"
+        elif hostname:
             rest_api_url = "https://" + hostname + "/api/v3"
 
         self._base_url = rest_api_url
@@ -79,7 +82,7 @@ class RestClient:
         self.server_statistics = apis.server_statistics.ServerStatistics(self)
         self.teams = apis.teams.Teams(self)
         self.users = apis.users.Users(self)
-        print("URL: ", rest_api_url)
+        print("REST API URL:", rest_api_url)
 
     def paginate_request(self, response):
         """

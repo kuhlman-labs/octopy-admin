@@ -4,6 +4,7 @@ query getOrgRepos($organization: String!, $cursor: String) {
       totalCount
 			nodes {
 				name
+        updatedAt
 			}
       pageInfo {
         endCursor

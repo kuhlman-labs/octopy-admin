@@ -202,3 +202,29 @@ class GraphQuery:
         query = self._load_query("gql_files/get-users-public-repos.gql")
         params = {"user": user, "cursor": None}
         return self._paginate_results(query, params)
+
+    def get_enterprise_members(self, slug):
+        """
+        This method returns a generator that will yield a dictionary
+        of all members for a given enterprise.
+        """
+        query = self._load_query("gql_files/get-enterprise-members.gql")
+        params = {"slug": slug, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def get_repo_languages(self, owner, name):
+        """
+        This method returns a generator that will yield a dictionary
+        of all languages for a given repository.
+        """
+        query = self._load_query("gql_files/get-repo-languages.gql")
+        params = {"owner": owner, "name": name, "cursor": None}
+        return self._paginate_results(query, params)
+
+    def get_repo_id(self, owner, name):
+        """
+        This method returns a dictionary of the ID for a given repository.
+        """
+        query = self._load_query("gql_files/get-repo-id.gql")
+        params = {"owner": owner, "name": name}
+        return self._execute(query, params)

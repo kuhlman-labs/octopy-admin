@@ -5,6 +5,7 @@ query getEnterpiseOrgs($slug: String!, $cursor: String) {
       nodes {
         name
         login
+        updatedAt
       }
       pageInfo {
         hasNextPage
