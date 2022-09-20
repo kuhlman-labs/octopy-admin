@@ -69,7 +69,7 @@ tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "autoflake"
-version = "1.5.3"
+version = "1.6.0"
 description = "Removes unused imports and unused variables"
 category = "dev"
 optional = false
@@ -77,7 +77,7 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 pyflakes = ">=1.1.0"
-toml = ">=0.10.2"
+tomli = {version = ">=2.0.1", markers = "python_version < \"3.11\""}
 
 [[package]]
 name = "backoff"
@@ -860,7 +860,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "a20848d0fc77d05e16944acce03c3eba1829b344a8cdf083f2d1d167790c3569"
+content-hash = "d3757f95aa90a89a24813ff7638cd03bc3cbb0f3627d1368a8a7d7ed63307a4d"
 
 [metadata.files]
 aiohttp = [
@@ -954,8 +954,8 @@ attrs = [
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
 ]
 autoflake = [
-    {file = "autoflake-1.5.3-py2.py3-none-any.whl", hash = "sha256:90eb8d3f625bd72068eb670338ea7efcddbc5c6e822d3601e3dc9404c06ea8da"},
-    {file = "autoflake-1.5.3.tar.gz", hash = "sha256:44f7d7eb2c1c49505b513c0e93a5dfd3f7b4218283f50c5ca0af4df6b975d470"},
+    {file = "autoflake-1.6.0-py2.py3-none-any.whl", hash = "sha256:d5de7da3786809bbdedbdbdeecbb410d55277b3492a4a3ede882998f1e87f156"},
+    {file = "autoflake-1.6.0.tar.gz", hash = "sha256:6d313038abf4ad829cb88c9b01cd16387369ac529842bcd7f25a967ab4e99b8f"},
 ]
 backoff = [
     {file = "backoff-2.1.2-py3-none-any.whl", hash = "sha256:b135e6d7c7513ba2bfd6895bc32bc8c66c6f3b0279b4c6cd866053cfd7d3126b"},
