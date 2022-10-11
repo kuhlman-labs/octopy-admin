@@ -24,19 +24,26 @@ class RestClient:
     The following methods are used to form requests to the GitHub REST API.
     """
 
-    def __init__(self, api_token=None):
+    def __init__(self, hostname=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
-
         Attributes:
             api_token (str): GitHub API token.
+            hostname (str): GitHub URL Slug (only needed if using GHES).
         """
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
                 raise RestClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
-        rest_api_url = "https://api.github.com"
+        if hostname is None:
+            hostname = os.environ.get("GHE_HOSTNAME")
+            if os.environ.get("GHE_HOSTNAME") is None:
+                rest_api_url = "https://api.github.com"
+            else:
+                rest_api_url = "https://" + hostname + "/api/v3"
+        elif hostname:
+            rest_api_url = "https://" + hostname + "/api/v3"
 
         self._base_url = rest_api_url
         self.actions = apis.actions.Actions(self)
