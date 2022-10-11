@@ -16,12 +16,15 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 from octopy_admin.graph.graph_client import GraphClient, GraphClientError
-from octopy_admin.rest.rest_client import RestClient, RestClientError
+from octopy_admin.rest_public.rest_public_client import (
+    RestPublicClient,
+    RestPublicClientError,
+)
 
 load_dotenv()
 
 github_graph = GraphClient()
-github_rest = RestClient()
+github_rest = RestPublicClient()
 
 time = datetime.now()
 time_range = timedelta(days=30)
@@ -97,7 +100,7 @@ def get_repo_languages(owner, name):
         results = github_graph.query.get_repo_languages(owner, name)
         language_list = github_graph.query.results_to_list(results)
         return language_list
-    except RestClientError as e:
+    except RestPublicClientError as e:
         print(e)
 
 
@@ -110,7 +113,7 @@ def get_repo_commits_for_past_month(owner, name):
             owner, name, params={"per_page": 100, "since": time - time_range}
         )
         return results.json()
-    except RestClientError as e:
+    except RestPublicClientError as e:
         print(e)
 
 

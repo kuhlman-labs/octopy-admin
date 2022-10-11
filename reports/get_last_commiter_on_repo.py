@@ -8,10 +8,13 @@ import csv
 
 from dotenv import load_dotenv
 
-from octopy_admin.rest.rest_client import RestClient, RestClientError
+from octopy_admin.rest_public.rest_public_client import (
+    RestPublicClient,
+    RestPublicClientError,
+)
 
 load_dotenv()
-github = RestClient()
+github = RestPublicClient()
 
 
 def get_last_commiter_on_repo(owner, repo):
@@ -25,7 +28,7 @@ def get_last_commiter_on_repo(owner, repo):
         response = response.json()
         last_commit = response[0]
         return last_commit
-    except RestClientError as e:
+    except RestPublicClientError as e:
         print(e)
 
 

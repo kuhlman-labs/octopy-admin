@@ -3,10 +3,13 @@ This script will create a given team in an given organization.
 """
 from dotenv import load_dotenv
 
-from octopy_admin.rest.rest_client import RestClient, RestClientError
+from octopy_admin.rest_public.rest_public_client import (
+    RestPublicClient,
+    RestPublicClientError,
+)
 
 load_dotenv()
-github = RestClient()
+github = RestPublicClient()
 
 # Create a team in the organization
 def create_team_in_org(org, parameters):
@@ -16,7 +19,7 @@ def create_team_in_org(org, parameters):
     try:
         team = github.teams.create_a_team(org=org, payload=parameters)
         return team.json()
-    except RestClientError as e:
+    except RestPublicClientError as e:
         print(e)
 
 
@@ -41,7 +44,7 @@ def add_user_to_team(org, team_slug, username):
             org=org, team_slug=team_slug, username=username
         )
         return user.json()
-    except RestClientError as e:
+    except RestPublicClientError as e:
         print(e)
 
 
