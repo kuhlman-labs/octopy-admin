@@ -3,13 +3,10 @@ This script updates the branch protection rules for a given repository.
 """
 from dotenv import load_dotenv
 
-from octopy_admin.rest_public.rest_public_client import (
-    RestPublicClient,
-    RestPublicClientError,
-)
+from octopy_admin.rest.rest_client import RestClient, RestClientError
 
 load_dotenv()
-github = RestPublicClient()
+github = RestClient()
 
 
 def update_branch_protection_rules(owner, repo, branch):
@@ -38,7 +35,7 @@ def update_branch_protection_rules(owner, repo, branch):
             owner=owner, repo=repo, branch=branch, payload=branch_protection_rules
         )
         return updated_branch_rules.json()
-    except RestPublicClientError as e:
+    except RestClientError as e:
         print(e)
 
 

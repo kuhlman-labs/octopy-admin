@@ -1,13 +1,13 @@
 from dotenv import load_dotenv
 
-from octopy_admin.rest_public.rest_public_client import RestPublicClient
+from octopy_admin.rest.rest_client import RestClient
 
 load_dotenv()
 
 
-class TestRestPublicClient:
+class TestRestClient:
 
-    rest_client = RestPublicClient()
+    rest_client = RestClient()
 
     def test_get_authenticated_user(self):
         response = self.rest_client.users.get_the_authenticated_user()

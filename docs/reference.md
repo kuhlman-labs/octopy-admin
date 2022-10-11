@@ -23,261 +23,261 @@
       show_source: false
       heading_level: 3
 
-## Rest Public Package
+## Rest Package
 
-::: octopy_admin.rest_public.rest_public_client.RestPublicClient
+::: octopy_admin.rest.rest_client.RestClient
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.actions.Actions
+::: octopy_admin.rest.apis.actions.Actions
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.activity.Activity
+::: octopy_admin.rest.apis.activity.Activity
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.apps.Apps
+::: octopy_admin.rest.apis.apps.Apps
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.billing.Billing
+::: octopy_admin.rest.apis.billing.Billing
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.checks.Checks
+::: octopy_admin.rest.apis.checks.Checks
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.code_scanning.CodeScanning
+::: octopy_admin.rest.apis.code_scanning.CodeScanning
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.codes_of_conduct.CodesOfConduct
+::: octopy_admin.rest.apis.codes_of_conduct.CodesOfConduct
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.codespaces.Codespaces
+::: octopy_admin.rest.apis.codespaces.Codespaces
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.dependabot.Dependabot
+::: octopy_admin.rest.apis.dependabot.Dependabot
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.dependency_graph.DependencyGraph
+::: octopy_admin.rest.apis.dependency_graph.DependencyGraph
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.emojis.Emojis
+::: octopy_admin.rest.apis.emojis.Emojis
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.enterprise_admin.EnterpriseAdmin
+::: octopy_admin.rest.apis.enterprise_admin.EnterpriseAdmin
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.gists.Gists
+::: octopy_admin.rest.apis.gists.Gists
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.git.Git
+::: octopy_admin.rest.apis.git.Git
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.gitignore.Gitignore
+::: octopy_admin.rest.apis.gitignore.Gitignore
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.interactions.Interactions
+::: octopy_admin.rest.apis.interactions.Interactions
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.issues.Issues
+::: octopy_admin.rest.apis.issues.Issues
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.licenses.Licenses
+::: octopy_admin.rest.apis.licenses.Licenses
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.markdown.Markdown
+::: octopy_admin.rest.apis.markdown.Markdown
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.meta.Meta
+::: octopy_admin.rest.apis.meta.Meta
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.migrations.Migrations
+::: octopy_admin.rest.apis.migrations.Migrations
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.oauth_authorizations.OauthAuthorizations
+::: octopy_admin.rest.apis.oauth_authorizations.OauthAuthorizations
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.oidc.Oidc
+::: octopy_admin.rest.apis.oidc.Oidc
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.orgs.Orgs
+::: octopy_admin.rest.apis.orgs.Orgs
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.packages.Packages
+::: octopy_admin.rest.apis.packages.Packages
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.projects.Projects
+::: octopy_admin.rest.apis.projects.Projects
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.pulls.Pulls
+::: octopy_admin.rest.apis.pulls.Pulls
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.rate_limit.RateLimit
+::: octopy_admin.rest.apis.rate_limit.RateLimit
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.reactions.Reactions
+::: octopy_admin.rest.apis.reactions.Reactions
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.repos.Repos
+::: octopy_admin.rest.apis.repos.Repos
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.scim.Scim
+::: octopy_admin.rest.apis.scim.Scim
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.search.Search
+::: octopy_admin.rest.apis.search.Search
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.secret_scanning.SecretScanning
+::: octopy_admin.rest.apis.secret_scanning.SecretScanning
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.server_statistics.ServerStatistics
+::: octopy_admin.rest.apis.server_statistics.ServerStatistics
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.teams.Teams
+::: octopy_admin.rest.apis.teams.Teams
     handler: python
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest_public.apis_public.users.Users
+::: octopy_admin.rest.apis.users.Users
     handler: python
     options:
       show_root_heading: true

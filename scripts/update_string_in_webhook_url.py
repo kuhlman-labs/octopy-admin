@@ -6,13 +6,10 @@ import sys
 
 from dotenv import load_dotenv
 
-from octopy_admin.rest_public.rest_public_client import (
-    RestPublicClient,
-    RestPublicClientError,
-)
+from octopy_admin.rest.rest_client import RestClient, RestClientError
 
 load_dotenv()
-github = RestPublicClient()
+github = RestClient()
 
 
 def replace_string_in_org_webhooks_url(org, string_to_replace, new_string):
@@ -30,7 +27,7 @@ def replace_string_in_org_webhooks_url(org, string_to_replace, new_string):
                 github.orgs.update_a_webhook_configuration_for_an_organization(
                     org, webhook.get("id"), payload={"url": new_webhook_url}
                 )
-    except RestPublicClientError as err:
+    except RestClientError as err:
         print(err)
 
 
@@ -49,5 +46,5 @@ def replace_string_in_repo_webhooks_url(org, repo, string_to_replace, new_string
                 github.repos.update_a_webhook_configuration_for_a_repository(
                     org, repo, webhook.get("id"), payload={"url": new_webhook_url}
                 )
-    except RestPublicClientError as err:
+    except RestClientError as err:
         print(err)

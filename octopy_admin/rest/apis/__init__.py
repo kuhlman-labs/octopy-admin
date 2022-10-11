@@ -1,5 +1,5 @@
 """
-Init file for the apis_public package.
+Init file for the apis package.
 """
 # flake8: noqa
 

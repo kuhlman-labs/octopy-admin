@@ -3,13 +3,10 @@ This script creates an autolink reference for a repository.
 """
 from dotenv import load_dotenv
 
-from octopy_admin.rest_public.rest_public_client import (
-    RestPublicClient,
-    RestPublicClientError,
-)
+from octopy_admin.rest.rest_client import RestClient, RestClientError
 
 load_dotenv()
-github = RestPublicClient()
+github = RestClient()
 
 
 def create_autolink_reference(owner, repo, payload):
@@ -21,7 +18,7 @@ def create_autolink_reference(owner, repo, payload):
             owner=owner, repo=repo, payload=payload
         )
         return reference.json()
-    except RestPublicClientError as e:
+    except RestClientError as e:
         print(e)
 
 

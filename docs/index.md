@@ -48,23 +48,23 @@ API_TOKEN=ghp_xxx
 ### Rest Public API
 
 To use the OctoPy Admin Rest package for the pubic API, import
-the `RestPublicClient` class from the
-`octopy_admin.rest_public.rest_public_client` module and
-instantiate a new `RestPublicClient` object.
+the `RestClient` class from the
+`octopy_admin.rest.rest_client` module and
+instantiate a new `RestClient` object.
 
 Example:
 
 ```python
 from dotenv import load_dotenv # Import if you want to use .env file
-from octopy_admin.rest_public.rest_public_client import RestPublicClient
+from octopy_admin.rest.rest_client import RestClient
 
 # Load environment variables from a .env file
 load_dotenv()
-# Create a new RestPublicClient object
-github = RestPublicClient()
+# Create a new RestClient object
+github = RestClient()
 
-# Create a new RestPublicClient object and set the API token
-# github = RestPublicClient(api_token="ghp_xxxxx")
+# Create a new RestClient object and set the API token
+# github = RestClient(api_token="ghp_xxxxx")
 
 # Make a request to the REST API for the current user:
 current_user = github.users.get_the_authenticated_user()
