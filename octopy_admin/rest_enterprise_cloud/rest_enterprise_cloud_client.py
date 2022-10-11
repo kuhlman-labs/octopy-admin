@@ -1,5 +1,5 @@
 """
-This module contains the RestGhecClient class.
+This module contains the RestEnterpriseCloudClient class.
 """
 
 import os
@@ -9,13 +9,13 @@ import requests
 from . import apis_enterprise_cloud
 
 
-class RestGhecClientError(Exception):
+class RestEnterpriseCloudClientError(Exception):
     """
     Exception raised when a REST request fails.
     """
 
 
-class RestGhecClient:
+class RestEnterpriseCloudClient:
     # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-statements
@@ -34,7 +34,7 @@ class RestGhecClient:
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
             if os.environ.get("API_TOKEN") is None:
-                raise RestGhecClientError("API_TOKEN environment variable is not set")
+                raise RestEnterpriseCloudClientError("API_TOKEN environment variable is not set")
         self._headers = {"Authorization": f"Bearer {api_token}"}
         rest_api_url = "https://api.github.com"
 
@@ -58,6 +58,7 @@ class RestGhecClient:
         self.issues = apis_enterprise_cloud.issues.Issues(self)
         self.licenses = apis_enterprise_cloud.licenses.Licenses(self)
         self.markdown = apis_enterprise_cloud.markdown.Markdown(self)
+        self.merge_queue = apis_enterprise_cloud.merge_queue.MergeQueue(self)
         self.meta = apis_enterprise_cloud.meta.Meta(self)
         self.migrations = apis_enterprise_cloud.migrations.Migrations(self)
         self.oidc = apis_enterprise_cloud.oidc.Oidc(self)
@@ -111,10 +112,12 @@ class RestGhecClient:
             response.raise_for_status()
             return response
         except requests.exceptions.Timeout as errtimeout:
-            raise RestGhecClientError(f"Timeout error: {errtimeout}") from errtimeout
+            raise RestEnterpriseCloudClientError(f"Timeout error: {errtimeout}") from errtimeout
         except requests.exceptions.HTTPError as errhttp:
-            raise RestGhecClientError(f"HTTP error: {errhttp}") from errhttp
+            raise RestEnterpriseCloudClientError(f"HTTP error: {errhttp}") from errhttp
         except requests.exceptions.TooManyRedirects as errredirect:
-            raise RestGhecClientError(f"Too many redirects: {errredirect}") from errredirect
+            raise RestEnterpriseCloudClientError(
+                f"Too many redirects: {errredirect}"
+            ) from errredirect
         except requests.exceptions.RequestException as errexcept:
-            raise RestGhecClientError(f"Unexpected error: {errexcept}") from errexcept
+            raise RestEnterpriseCloudClientError(f"Unexpected error: {errexcept}") from errexcept

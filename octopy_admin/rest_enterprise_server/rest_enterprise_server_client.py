@@ -67,6 +67,7 @@ class RestEnterpriseServerClient:
         self.issues = apis_enterprise_server.issues.Issues(self)
         self.licenses = apis_enterprise_server.licenses.Licenses(self)
         self.markdown = apis_enterprise_server.markdown.Markdown(self)
+        self.merge_queue = apis_enterprise_server.merge_queue.MergeQueue(self)
         self.meta = apis_enterprise_server.meta.Meta(self)
         self.migrations = apis_enterprise_server.migrations.Migrations(self)
         self.oauth_authorizations = apis_enterprise_server.oauth_authorizations.OauthAuthorizations(

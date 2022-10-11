@@ -58,6 +58,7 @@ class RestClient:
         self.issues = apis.issues.Issues(self)
         self.licenses = apis.licenses.Licenses(self)
         self.markdown = apis.markdown.Markdown(self)
+        self.merge_queue = apis.merge_queue.MergeQueue(self)
         self.meta = apis.meta.Meta(self)
         self.migrations = apis.migrations.Migrations(self)
         self.orgs = apis.orgs.Orgs(self)
