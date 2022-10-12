@@ -45,7 +45,7 @@ API_TOKEN=ghp_xxx
 
 ## Usage
 
-### Rest Public API
+### Rest API
 
 To use the OctoPy Admin Rest package for the pubic API, import
 the `RestClient` class from the

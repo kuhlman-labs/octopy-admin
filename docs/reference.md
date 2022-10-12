@@ -179,20 +179,6 @@
       show_source: false
       heading_level: 3
 
-::: octopy_admin.rest.apis.oauth_authorizations.OauthAuthorizations
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-::: octopy_admin.rest.apis.oidc.Oidc
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
 ::: octopy_admin.rest.apis.orgs.Orgs
     handler: python
     options:
@@ -236,13 +222,6 @@
       heading_level: 3
 
 ::: octopy_admin.rest.apis.repos.Repos
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-::: octopy_admin.rest.apis.scim.Scim
     handler: python
     options:
       show_root_heading: true
@@ -426,6 +405,13 @@
       show_source: false
       heading_level: 3
 
+::: octopy_admin.rest_enterprise_cloud.apis_enterprise_cloud.merge_queue.MergeQueue
+    handler: python
+    options:
+      show_root_heading: true
+      show_source: false
+      heading_level: 3
+
 ::: octopy_admin.rest_enterprise_cloud.apis_enterprise_cloud.meta.Meta
     handler: python
     options:
@@ -434,13 +420,6 @@
       heading_level: 3
 
 ::: octopy_admin.rest_enterprise_cloud.apis_enterprise_cloud.migrations.Migrations
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-::: octopy_admin.rest_enterprise_cloud.apis_enterprise_cloud.oauth_authorizations.OauthAuthorizations
     handler: python
     options:
       show_root_heading: true
@@ -687,6 +666,13 @@
       show_source: false
       heading_level: 3
 
+::: octopy_admin.rest_enterprise_server.apis_enterprise_server.merge_queue.MergeQueue
+    handler: python
+    options:
+      show_root_heading: true
+      show_source: false
+      heading_level: 3
+
 ::: octopy_admin.rest_enterprise_server.apis_enterprise_server.meta.Meta
     handler: python
     options:
@@ -702,13 +688,6 @@
       heading_level: 3
 
 ::: octopy_admin.rest_enterprise_server.apis_enterprise_server.oauth_authorizations.OauthAuthorizations
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-::: octopy_admin.rest_enterprise_server.apis_enterprise_server.oidc.Oidc
     handler: python
     options:
       show_root_heading: true
@@ -758,13 +737,6 @@
       heading_level: 3
 
 ::: octopy_admin.rest_enterprise_server.apis_enterprise_server.repos.Repos
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-::: octopy_admin.rest_enterprise_server.apis_enterprise_server.scim.Scim
     handler: python
     options:
       show_root_heading: true
