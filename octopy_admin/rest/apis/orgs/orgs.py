@@ -1,32 +1,27 @@
 """
 Interact with GitHub Orgs.
 """
+# pylint: disable=too-many-arguments, too-many-public-methods, too-many-lines, duplicate-code, line-too-long
 
 
-# pylint: disable=too-many-arguments
 class Orgs:
-    # pylint: disable=too-many-public-methods
     """
     Interact with GitHub Orgs.
     """
 
     def __init__(self, client):
         """
-        Initialize the Orgs class.
+        Initializes the Orgs class.
         """
         self._base_url = client._base_url
         self._execute = client._execute
 
     def list_organizations(self, params=None, payload=None):
         """
+        Summary:
         List organizations
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organizations
-        Attributes:
-        Path Parameters:
-
-        Payload Parameters:
-        since-org
-         per-page
         """
         url = self._base_url + "/organizations"
         response = self._execute("get", url, params=params, payload=payload)
@@ -36,13 +31,10 @@ class Orgs:
         self, organization_id, params=None, payload=None
     ):
         """
+        Summary:
         List custom repository roles in an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-custom-repository-roles-in-an-organization
-        Attributes:
-        Path Parameters:
-        organization_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/organizations/{organization_id}/custom_roles"
         response = self._execute("get", url, params=params, payload=payload)
@@ -50,13 +42,10 @@ class Orgs:
 
     def get_an_organization(self, org, params=None, payload=None):
         """
+        Summary:
         Get an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -64,46 +53,21 @@ class Orgs:
 
     def update_an_organization(self, org, params=None, payload=None):
         """
+        Summary:
         Update an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs/#update-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}"
         response = self._execute("patch", url, params=params, payload=payload)
         return response
 
-    def get_the_audit_log_for_an_organization(self, org, params=None, payload=None):
-        """
-        Get the audit log for an organization
-        https://docs.github.com/rest/reference/orgs#get-audit-log
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        audit-log-phrase
-         audit-log-include
-         audit-log-after
-         audit-log-before
-         audit-log-order
-         per-page
-        """
-        url = self._base_url + f"/orgs/{org}/audit-log"
-        response = self._execute("get", url, params=params, payload=payload)
-        return response
-
     def list_users_blocked_by_an_organization(self, org, params=None, payload=None):
         """
+        Summary:
         List users blocked by an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-users-blocked-by-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/blocks"
         response = self._execute("get", url, params=params, payload=payload)
@@ -113,14 +77,10 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Check if a user is blocked by an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#check-if-a-user-is-blocked-by-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/blocks/{username}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -128,14 +88,10 @@ class Orgs:
 
     def block_a_user_from_an_organization(self, org, username, params=None, payload=None):
         """
+        Summary:
         Block a user from an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#block-a-user-from-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/blocks/{username}"
         response = self._execute("put", url, params=params, payload=payload)
@@ -143,77 +99,76 @@ class Orgs:
 
     def unblock_a_user_from_an_organization(self, org, username, params=None, payload=None):
         """
+        Summary:
         Unblock a user from an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#unblock-a-user-from-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/blocks/{username}"
         response = self._execute("delete", url, params=params, payload=payload)
         return response
 
-    def list_saml_sso_authorizations_for_an_organization(self, org, params=None, payload=None):
+    def create_a_custom_role(self, org, params=None, payload=None):
         """
-        List SAML SSO authorizations for an organization
-        https://docs.github.com/rest/reference/orgs#list-saml-sso-authorizations-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
-         login
+        Summary:
+        Create a custom role
+        Docs:
+        https://docs.github.com/rest/reference/orgs#create-a-custom-role
         """
-        url = self._base_url + f"/orgs/{org}/credential-authorizations"
-        response = self._execute("get", url, params=params, payload=payload)
+        url = self._base_url + f"/orgs/{org}/custom_roles"
+        response = self._execute("post", url, params=params, payload=payload)
         return response
 
-    def remove_a_saml_sso_authorization_for_an_organization(
-        self, org, credential_id, params=None, payload=None
-    ):
+    def update_a_custom_role(self, org, role_id, params=None, payload=None):
         """
-        Remove a SAML SSO authorization for an organization
-        https://docs.github.com/rest/reference/orgs#remove-a-saml-sso-authorization-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        credential_id
-        Payload Parameters:
+        Summary:
+        Update a custom role
+        Docs:
+        https://docs.github.com/rest/reference/orgs#update-a-custom-role
+        """
+        url = self._base_url + f"/orgs/{org}/custom_roles/{role_id}"
+        response = self._execute("patch", url, params=params, payload=payload)
+        return response
 
+    def delete_a_custom_role(self, org, role_id, params=None, payload=None):
         """
-        url = self._base_url + f"/orgs/{org}/credential-authorizations/{credential_id}"
+        Summary:
+        Delete a custom role
+        Docs:
+        https://docs.github.com/rest/reference/orgs#delete-a-custom-role
+        """
+        url = self._base_url + f"/orgs/{org}/custom_roles/{role_id}"
         response = self._execute("delete", url, params=params, payload=payload)
         return response
 
     def list_failed_organization_invitations(self, org, params=None, payload=None):
         """
+        Summary:
         List failed organization invitations
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-failed-organization-invitations
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/failed_invitations"
         response = self._execute("get", url, params=params, payload=payload)
         return response
 
+    def list_fine_grained_permissions_for_an_organization(self, org, params=None, payload=None):
+        """
+        Summary:
+        List fine-grained permissions for an organization
+        Docs:
+        https://docs.github.com/rest/reference/orgs#list-fine-grained-permissions-for-an-organization
+        """
+        url = self._base_url + f"/orgs/{org}/fine_grained_permissions"
+        response = self._execute("get", url, params=params, payload=payload)
+        return response
+
     def list_organization_webhooks(self, org, params=None, payload=None):
         """
+        Summary:
         List organization webhooks
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organization-webhooks
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/hooks"
         response = self._execute("get", url, params=params, payload=payload)
@@ -221,13 +176,10 @@ class Orgs:
 
     def create_an_organization_webhook(self, org, params=None, payload=None):
         """
+        Summary:
         Create an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#create-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks"
         response = self._execute("post", url, params=params, payload=payload)
@@ -235,14 +187,10 @@ class Orgs:
 
     def get_an_organization_webhook(self, org, hook_id, params=None, payload=None):
         """
+        Summary:
         Get an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -250,14 +198,10 @@ class Orgs:
 
     def update_an_organization_webhook(self, org, hook_id, params=None, payload=None):
         """
+        Summary:
         Update an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#update-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}"
         response = self._execute("patch", url, params=params, payload=payload)
@@ -265,14 +209,10 @@ class Orgs:
 
     def delete_an_organization_webhook(self, org, hook_id, params=None, payload=None):
         """
+        Summary:
         Delete an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#delete-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}"
         response = self._execute("delete", url, params=params, payload=payload)
@@ -282,14 +222,10 @@ class Orgs:
         self, org, hook_id, params=None, payload=None
     ):
         """
+        Summary:
         Get a webhook configuration for an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-a-webhook-configuration-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/config"
         response = self._execute("get", url, params=params, payload=payload)
@@ -299,14 +235,10 @@ class Orgs:
         self, org, hook_id, params=None, payload=None
     ):
         """
+        Summary:
         Update a webhook configuration for an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#update-a-webhook-configuration-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/config"
         response = self._execute("patch", url, params=params, payload=payload)
@@ -314,15 +246,10 @@ class Orgs:
 
     def list_deliveries_for_an_organization_webhook(self, org, hook_id, params=None, payload=None):
         """
+        Summary:
         List deliveries for an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-deliveries-for-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-        per-page
-         cursor
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/deliveries"
         response = self._execute("get", url, params=params, payload=payload)
@@ -332,15 +259,10 @@ class Orgs:
         self, org, hook_id, delivery_id, params=None, payload=None
     ):
         """
+        Summary:
         Get a webhook delivery for an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-a-webhook-delivery-for-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        delivery_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -350,15 +272,10 @@ class Orgs:
         self, org, hook_id, delivery_id, params=None, payload=None
     ):
         """
+        Summary:
         Redeliver a delivery for an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#redeliver-a-delivery-for-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        delivery_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}/attempts"
         response = self._execute("post", url, params=params, payload=payload)
@@ -366,14 +283,10 @@ class Orgs:
 
     def ping_an_organization_webhook(self, org, hook_id, params=None, payload=None):
         """
+        Summary:
         Ping an organization webhook
+        Docs:
         https://docs.github.com/rest/reference/orgs#ping-an-organization-webhook
-        Attributes:
-        Path Parameters:
-        org
-        hook_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/hooks/{hook_id}/pings"
         response = self._execute("post", url, params=params, payload=payload)
@@ -381,14 +294,10 @@ class Orgs:
 
     def list_app_installations_for_an_organization(self, org, params=None, payload=None):
         """
+        Summary:
         List app installations for an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-app-installations-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/installations"
         response = self._execute("get", url, params=params, payload=payload)
@@ -396,14 +305,10 @@ class Orgs:
 
     def list_pending_organization_invitations(self, org, params=None, payload=None):
         """
+        Summary:
         List pending organization invitations
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-pending-organization-invitations
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/invitations"
         response = self._execute("get", url, params=params, payload=payload)
@@ -411,13 +316,10 @@ class Orgs:
 
     def create_an_organization_invitation(self, org, params=None, payload=None):
         """
+        Summary:
         Create an organization invitation
+        Docs:
         https://docs.github.com/rest/reference/orgs#create-an-organization-invitation
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/invitations"
         response = self._execute("post", url, params=params, payload=payload)
@@ -425,14 +327,10 @@ class Orgs:
 
     def cancel_an_organization_invitation(self, org, invitation_id, params=None, payload=None):
         """
+        Summary:
         Cancel an organization invitation
+        Docs:
         https://docs.github.com/rest/reference/orgs#cancel-an-organization-invitation
-        Attributes:
-        Path Parameters:
-        org
-        invitation_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/invitations/{invitation_id}"
         response = self._execute("delete", url, params=params, payload=payload)
@@ -440,15 +338,10 @@ class Orgs:
 
     def list_organization_invitation_teams(self, org, invitation_id, params=None, payload=None):
         """
+        Summary:
         List organization invitation teams
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organization-invitation-teams
-        Attributes:
-        Path Parameters:
-        org
-        invitation_id
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/invitations/{invitation_id}/teams"
         response = self._execute("get", url, params=params, payload=payload)
@@ -456,16 +349,10 @@ class Orgs:
 
     def list_organization_members(self, org, params=None, payload=None):
         """
+        Summary:
         List organization members
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organization-members
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        filter
-         role
-         per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/members"
         response = self._execute("get", url, params=params, payload=payload)
@@ -473,14 +360,10 @@ class Orgs:
 
     def check_organization_membership_for_a_user(self, org, username, params=None, payload=None):
         """
+        Summary:
         Check organization membership for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#check-organization-membership-for-a-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/members/{username}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -488,14 +371,10 @@ class Orgs:
 
     def remove_an_organization_member(self, org, username, params=None, payload=None):
         """
+        Summary:
         Remove an organization member
+        Docs:
         https://docs.github.com/rest/reference/orgs#remove-an-organization-member
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/members/{username}"
         response = self._execute("delete", url, params=params, payload=payload)
@@ -503,14 +382,10 @@ class Orgs:
 
     def get_organization_membership_for_a_user(self, org, username, params=None, payload=None):
         """
+        Summary:
         Get organization membership for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-organization-membership-for-a-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/memberships/{username}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -518,14 +393,10 @@ class Orgs:
 
     def set_organization_membership_for_a_user(self, org, username, params=None, payload=None):
         """
+        Summary:
         Set organization membership for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#set-organization-membership-for-a-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/memberships/{username}"
         response = self._execute("put", url, params=params, payload=payload)
@@ -533,14 +404,10 @@ class Orgs:
 
     def remove_organization_membership_for_a_user(self, org, username, params=None, payload=None):
         """
+        Summary:
         Remove organization membership for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#remove-organization-membership-for-a-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/memberships/{username}"
         response = self._execute("delete", url, params=params, payload=payload)
@@ -548,15 +415,10 @@ class Orgs:
 
     def list_outside_collaborators_for_an_organization(self, org, params=None, payload=None):
         """
+        Summary:
         List outside collaborators for an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-outside-collaborators-for-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        filter
-         per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/outside_collaborators"
         response = self._execute("get", url, params=params, payload=payload)
@@ -566,14 +428,10 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Convert an organization member to outside collaborator
+        Docs:
         https://docs.github.com/rest/reference/orgs#convert-an-organization-member-to-outside-collaborator
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/outside_collaborators/{username}"
         response = self._execute("put", url, params=params, payload=payload)
@@ -583,14 +441,10 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Remove outside collaborator from an organization
+        Docs:
         https://docs.github.com/rest/reference/orgs#remove-outside-collaborator-from-an-organization
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/outside_collaborators/{username}"
         response = self._execute("delete", url, params=params, payload=payload)
@@ -598,14 +452,10 @@ class Orgs:
 
     def list_public_organization_members(self, org, params=None, payload=None):
         """
+        Summary:
         List public organization members
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-public-organization-members
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/orgs/{org}/public_members"
         response = self._execute("get", url, params=params, payload=payload)
@@ -615,14 +465,10 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Check public organization membership for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#check-public-organization-membership-for-a-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/public_members/{username}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -632,14 +478,10 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Set public organization membership for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#set-public-organization-membership-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/public_members/{username}"
         response = self._execute("put", url, params=params, payload=payload)
@@ -649,30 +491,67 @@ class Orgs:
         self, org, username, params=None, payload=None
     ):
         """
+        Summary:
         Remove public organization membership for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#remove-public-organization-membership-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-        org
-        username
-        Payload Parameters:
-
         """
         url = self._base_url + f"/orgs/{org}/public_members/{username}"
         response = self._execute("delete", url, params=params, payload=payload)
         return response
 
+    def list_security_manager_teams(self, org, params=None, payload=None):
+        """
+        Summary:
+        List security manager teams
+        Docs:
+        https://docs.github.com/rest/reference/orgs#list-security-manager-teams
+        """
+        url = self._base_url + f"/orgs/{org}/security-managers"
+        response = self._execute("get", url, params=params, payload=payload)
+        return response
+
+    def add_a_security_manager_team(self, org, team_slug, params=None, payload=None):
+        """
+        Summary:
+        Add a security manager team
+        Docs:
+        https://docs.github.com/rest/reference/orgs#add-a-security-manager-team
+        """
+        url = self._base_url + f"/orgs/{org}/security-managers/teams/{team_slug}"
+        response = self._execute("put", url, params=params, payload=payload)
+        return response
+
+    def remove_a_security_manager_team(self, org, team_slug, params=None, payload=None):
+        """
+        Summary:
+        Remove a security manager team
+        Docs:
+        https://docs.github.com/rest/reference/orgs#remove-a-security-manager-team
+        """
+        url = self._base_url + f"/orgs/{org}/security-managers/teams/{team_slug}"
+        response = self._execute("delete", url, params=params, payload=payload)
+        return response
+
+    def enable_or_disable_a_security_feature_for_an_organization(
+        self, org, security_product, enablement, params=None, payload=None
+    ):
+        """
+        Summary:
+        Enable or disable a security feature for an organization
+        Docs:
+        https://docs.github.com/rest/reference/orgs#enable-or-disable-security-product-on-all-org-repos
+        """
+        url = self._base_url + f"/orgs/{org}/{security_product}/{enablement}"
+        response = self._execute("post", url, params=params, payload=payload)
+        return response
+
     def list_organization_memberships_for_the_authenticated_user(self, params=None, payload=None):
         """
+        Summary:
         List organization memberships for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organization-memberships-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-
-        Payload Parameters:
-        state
-         per-page
-         page
         """
         url = self._base_url + "/user/memberships/orgs"
         response = self._execute("get", url, params=params, payload=payload)
@@ -682,13 +561,10 @@ class Orgs:
         self, org, params=None, payload=None
     ):
         """
+        Summary:
         Get an organization membership for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#get-an-organization-membership-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/user/memberships/orgs/{org}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -698,13 +574,10 @@ class Orgs:
         self, org, params=None, payload=None
     ):
         """
+        Summary:
         Update an organization membership for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#update-an-organization-membership-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-        org
-        Payload Parameters:
-
         """
         url = self._base_url + f"/user/memberships/orgs/{org}"
         response = self._execute("patch", url, params=params, payload=payload)
@@ -712,14 +585,10 @@ class Orgs:
 
     def list_organizations_for_the_authenticated_user(self, params=None, payload=None):
         """
+        Summary:
         List organizations for the authenticated user
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organizations-for-the-authenticated-user
-        Attributes:
-        Path Parameters:
-
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + "/user/orgs"
         response = self._execute("get", url, params=params, payload=payload)
@@ -727,14 +596,10 @@ class Orgs:
 
     def list_organizations_for_a_user(self, username, params=None, payload=None):
         """
+        Summary:
         List organizations for a user
+        Docs:
         https://docs.github.com/rest/reference/orgs#list-organizations-for-a-user
-        Attributes:
-        Path Parameters:
-        username
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/users/{username}/orgs"
         response = self._execute("get", url, params=params, payload=payload)

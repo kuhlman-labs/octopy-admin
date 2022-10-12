@@ -1,9 +1,9 @@
 """
 Rich interactions with checks run by your integrations.
 """
+# pylint: disable=too-many-arguments, too-many-public-methods, too-many-lines, duplicate-code, line-too-long
 
 
-# pylint: disable=too-many-arguments
 class Checks:
     """
     Rich interactions with checks run by your integrations.
@@ -11,21 +11,17 @@ class Checks:
 
     def __init__(self, client):
         """
-        Initialize the Checks class.
+        Initializes the Checks class.
         """
         self._base_url = client._base_url
         self._execute = client._execute
 
     def create_a_check_run(self, owner, repo, params=None, payload=None):
         """
+        Summary:
         Create a check run
+        Docs:
         https://docs.github.com/rest/reference/checks#create-a-check-run
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-runs"
         response = self._execute("post", url, params=params, payload=payload)
@@ -33,15 +29,10 @@ class Checks:
 
     def get_a_check_run(self, owner, repo, check_run_id, params=None, payload=None):
         """
+        Summary:
         Get a check run
+        Docs:
         https://docs.github.com/rest/reference/checks#get-a-check-run
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_run_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-runs/{check_run_id}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -49,15 +40,10 @@ class Checks:
 
     def update_a_check_run(self, owner, repo, check_run_id, params=None, payload=None):
         """
+        Summary:
         Update a check run
+        Docs:
         https://docs.github.com/rest/reference/checks#update-a-check-run
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_run_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-runs/{check_run_id}"
         response = self._execute("patch", url, params=params, payload=payload)
@@ -65,16 +51,10 @@ class Checks:
 
     def list_check_run_annotations(self, owner, repo, check_run_id, params=None, payload=None):
         """
+        Summary:
         List check run annotations
+        Docs:
         https://docs.github.com/rest/reference/checks#list-check-run-annotations
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_run_id
-        Payload Parameters:
-        per-page
-         page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-runs/{check_run_id}/annotations"
         response = self._execute("get", url, params=params, payload=payload)
@@ -82,15 +62,10 @@ class Checks:
 
     def rerequest_a_check_run(self, owner, repo, check_run_id, params=None, payload=None):
         """
+        Summary:
         Rerequest a check run
+        Docs:
         https://docs.github.com/rest/reference/checks#rerequest-a-check-run
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_run_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest"
         response = self._execute("post", url, params=params, payload=payload)
@@ -98,14 +73,10 @@ class Checks:
 
     def create_a_check_suite(self, owner, repo, params=None, payload=None):
         """
+        Summary:
         Create a check suite
+        Docs:
         https://docs.github.com/rest/reference/checks#create-a-check-suite
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-suites"
         response = self._execute("post", url, params=params, payload=payload)
@@ -115,14 +86,10 @@ class Checks:
         self, owner, repo, params=None, payload=None
     ):
         """
+        Summary:
         Update repository preferences for check suites
+        Docs:
         https://docs.github.com/rest/reference/checks#update-repository-preferences-for-check-suites
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-suites/preferences"
         response = self._execute("patch", url, params=params, payload=payload)
@@ -130,15 +97,10 @@ class Checks:
 
     def get_a_check_suite(self, owner, repo, check_suite_id, params=None, payload=None):
         """
+        Summary:
         Get a check suite
+        Docs:
         https://docs.github.com/rest/reference/checks#get-a-check-suite
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_suite_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-suites/{check_suite_id}"
         response = self._execute("get", url, params=params, payload=payload)
@@ -148,19 +110,10 @@ class Checks:
         self, owner, repo, check_suite_id, params=None, payload=None
     ):
         """
+        Summary:
         List check runs in a check suite
+        Docs:
         https://docs.github.com/rest/reference/checks#list-check-runs-in-a-check-suite
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_suite_id
-        Payload Parameters:
-        check-name
-         status
-         filter
-         per-page
-         page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-suites/{check_suite_id}/check-runs"
         response = self._execute("get", url, params=params, payload=payload)
@@ -168,15 +121,10 @@ class Checks:
 
     def rerequest_a_check_suite(self, owner, repo, check_suite_id, params=None, payload=None):
         """
+        Summary:
         Rerequest a check suite
+        Docs:
         https://docs.github.com/rest/reference/checks#rerequest-a-check-suite
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        check_suite_id
-        Payload Parameters:
-
         """
         url = self._base_url + f"/repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest"
         response = self._execute("post", url, params=params, payload=payload)
@@ -184,20 +132,10 @@ class Checks:
 
     def list_check_runs_for_a_git_reference(self, owner, repo, ref, params=None, payload=None):
         """
+        Summary:
         List check runs for a Git reference
+        Docs:
         https://docs.github.com/rest/reference/checks#list-check-runs-for-a-git-reference
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        ref
-        Payload Parameters:
-        check-name
-         status
-         filter
-         per-page
-         page
-         app_id
         """
         url = self._base_url + f"/repos/{owner}/{repo}/commits/{ref}/check-runs"
         response = self._execute("get", url, params=params, payload=payload)
@@ -205,18 +143,10 @@ class Checks:
 
     def list_check_suites_for_a_git_reference(self, owner, repo, ref, params=None, payload=None):
         """
+        Summary:
         List check suites for a Git reference
+        Docs:
         https://docs.github.com/rest/reference/checks#list-check-suites-for-a-git-reference
-        Attributes:
-        Path Parameters:
-        owner
-        repo
-        ref
-        Payload Parameters:
-        app_id
-         check-name
-         per-page
-         page
         """
         url = self._base_url + f"/repos/{owner}/{repo}/commits/{ref}/check-suites"
         response = self._execute("get", url, params=params, payload=payload)

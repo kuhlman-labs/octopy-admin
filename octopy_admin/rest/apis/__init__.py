@@ -1,7 +1,8 @@
 """
-Init file for apis package.
+Init file for the apis package.
 """
 # flake8: noqa
+
 from .actions import actions
 from .activity import activity
 from .apps import apps
@@ -21,10 +22,9 @@ from .interactions import interactions
 from .issues import issues
 from .licenses import licenses
 from .markdown import markdown
+from .merge_queue import merge_queue
 from .meta import meta
 from .migrations import migrations
-from .oauth_authorizations import oauth_authorizations
-from .oidc import oidc
 from .orgs import orgs
 from .packages import packages
 from .projects import projects
@@ -32,7 +32,6 @@ from .pulls import pulls
 from .rate_limit import rate_limit
 from .reactions import reactions
 from .repos import repos
-from .scim import scim
 from .search import search
 from .secret_scanning import secret_scanning
 from .server_statistics import server_statistics

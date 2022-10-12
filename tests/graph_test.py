@@ -14,6 +14,6 @@ class TestGraphClient:
         assert response.get("viewer").get("login") is not None
 
     def test_get_enterprise_orgs(self):
-        responses = self.graph_client.query.get_enterprise_orgs("github")
+        responses = self.graph_client.query.get_enterprise_orgs("avocado-corp")
         for response in responses:
             assert response.get("enterprise").get("organizations") is not None
