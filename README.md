@@ -30,13 +30,13 @@ Creat a `.env` file at the root of the repo and set value for `API_TOKEN`.
 If running against GHES, set value for `GHE_HOSTNAME` to determine appropirate
 API endpoints, if these values are not set it defaults to the .com endpoints.
 
-#### GitHub:
+#### GitHub and GitHub Enterprise Cloud
 
 ```bash
 API_TOKEN=ghp_xxx
 ```
 
-#### GitHub Enterprise Server:
+#### GitHub Enterprise Server
 
 ```bash
 GHE_HOSTNAME=github.domain.com
@@ -45,10 +45,12 @@ API_TOKEN=ghp_xxx
 
 ## Usage
 
-### Rest API
+### Rest Public API
 
-To use the OctoPy Admin Rest package, import the `RestClient` class from the
-`octopy_admin.rest.rest_client` module and instantiate a new `RestClient` object.
+To use the OctoPy Admin Rest package for the pubic API, import
+the `RestClient` class from the
+`octopy_admin.rest.rest_client` module and
+instantiate a new `RestClient` object.
 
 Example:
 
@@ -60,12 +62,66 @@ from octopy_admin.rest.rest_client import RestClient
 load_dotenv()
 # Create a new RestClient object
 github = RestClient()
-# Create a new RestClient object and set the API token and the GHES hostname
-# github = RestClient(hostname="ghes.kuhlman-labs.io", api_token="ghp_xxxxx")
+
+# Create a new RestClient object and set the API token
+# github = RestClient(api_token="ghp_xxxxx")
 
 # Make a request to the REST API for the current user:
 current_user = github.users.get_the_authenticated_user()
 # Print response
+print(current_user.text)
+```
+
+### Rest Enterprise Cloud API
+
+To use the OctoPy Admin Rest package for the Enterprise Cloud API,
+import the `RestEnterpriseCloudClient` class from the
+`octopy_admin.rest_enterprise_cloud.rest_enterprise_cloud_client` module and
+instantiate a new `RestEnterpriseCloudClient` object.
+
+Example:
+
+```python
+from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.rest_enterprise_cloud.rest_enterprise_cloud_client import RestEnterpriseCloudClient
+
+# Load environment variables from a .env file
+load_dotenv()
+# Create a new RestEnterpriseCloudClient object
+github = RestEnterpriseCloudClient()
+
+# Create a new RestEnterpriseCloudClient object and set the API token
+# github = RestEnterpriseCloudClient(api_token="ghp_xxxxx")
+
+# Make a request to the Enterprise Cloud REST API for the current user:
+current_user = github.users.get_the_authenticated_user()
+# Print response
+print(current_user.text)
+```
+
+### Rest Enterprise Server API
+
+To use the OctoPy Admin Rest package for the Enterprise Server API,
+ import the `RestEnterpriseServerClient` class from the
+`octopy_admin.rest_enterprise_server.rest_enterprise_server_client` module and
+instantiate a new `RestEnterpriseServerClient` object.
+
+Example:
+
+```python
+from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.rest_enterprise_server.rest_enterprise_server_client import RestEnterpriseServerClient
+
+# Load environment variables from a .env file
+load_dotenv()
+# Create a new RestEnterpriseServerClient object
+github = RestEnterpriseServerClient()
+
+# Create a new RestEnterpriseServerClient object and set the API token and Hostname
+# github = RestEnterpriseServerClient(api_token="ghp_xxxxx", hostname="github.domain.com")
+
+# Make a request to the Enterprise Server REST API for the current user:
+current_user = github.users.get_the_authenticated_user()
 print(current_user.text)
 ```
 

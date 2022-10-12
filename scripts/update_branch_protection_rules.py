@@ -9,35 +9,34 @@ load_dotenv()
 github = RestClient()
 
 
-def update_branch_protection_rules(owner, repo, branch, rules):
+def update_branch_protection_rules(owner, repo, branch):
     """
     Update the branch protection rules for a given repository.
+
+    input:
+        owner: the owner of the repository
+        repo: the name of the repository
+        branch: the name of the branch
+
+    output:
+        json: the response from the GitHub API
     """
+    branch_protection_rules = {
+        "required_status_checks": None,
+        "enforce_admins": True,
+        "required_pull_request_reviews": {
+            "dismiss_stale_reviews": True,
+            "required_approving_review_count": 2,
+        },
+        "restrictions": None,
+    }
     try:
-        branch_rules = github.repos.update_branch_protection(
-            owner=owner, repo=repo, branch=branch, payload=rules
+        updated_branch_rules = github.repos.update_branch_protection(
+            owner=owner, repo=repo, branch=branch, payload=branch_protection_rules
         )
-        return branch_rules.json()
+        return updated_branch_rules.json()
     except RestClientError as e:
         print(e)
 
 
-# example
-# new_rules = update_branch_protection_rules(
-#    owner='Engineering',
-#    repo='platform',
-#    branch='main',
-#    rules={"required_status_checks":{"strict":True,"contexts":["continuous-integration/travis-ci"]},
-#    "enforce_admins":True,
-#    "required_pull_request_reviews":{"dismissal_restrictions":{"users":["octocat"],"teams":["justice-league"]},
-#    "dismiss_stale_reviews":True,
-#    "require_code_owner_reviews":True,
-#    "required_approving_review_count":2,
-#    "bypass_pull_request_allowances":{"users":["kuhlman-labs"],"teams":["justice-league"]}},
-#    "restrictions":{"users":["kuhlman-labs"],"teams":["justice-league"]},
-#    "required_linear_history":True,
-#    "allow_force_pushes":True,
-#    "allow_deletions":True,
-#    "block_creations":True,
-#    "required_conversation_resolution":True})
-# print(new_rules)
+print(update_branch_protection_rules("bean-dips", "beans", "main"))

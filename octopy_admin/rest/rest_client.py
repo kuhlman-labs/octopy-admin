@@ -19,6 +19,7 @@ class RestClient:
     # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-statements
+    # pylint: disable=duplicate-code
     """
     The following methods are used to form requests to the GitHub REST API.
     """
@@ -26,7 +27,6 @@ class RestClient:
     def __init__(self, hostname=None, api_token=None):
         """
         Initialize the REST client to make requests to the GitHub API.
-
         Attributes:
             api_token (str): GitHub API token.
             hostname (str): GitHub URL Slug (only needed if using GHES).
@@ -65,10 +65,9 @@ class RestClient:
         self.issues = apis.issues.Issues(self)
         self.licenses = apis.licenses.Licenses(self)
         self.markdown = apis.markdown.Markdown(self)
+        self.merge_queue = apis.merge_queue.MergeQueue(self)
         self.meta = apis.meta.Meta(self)
         self.migrations = apis.migrations.Migrations(self)
-        self.oauth_authorizations = apis.oauth_authorizations.OauthAuthorizations(self)
-        self.oidc = apis.oidc.Oidc(self)
         self.orgs = apis.orgs.Orgs(self)
         self.packages = apis.packages.Packages(self)
         self.projects = apis.projects.Projects(self)
@@ -76,7 +75,6 @@ class RestClient:
         self.rate_limit = apis.rate_limit.RateLimit(self)
         self.reactions = apis.reactions.Reactions(self)
         self.repos = apis.repos.Repos(self)
-        self.scim = apis.scim.Scim(self)
         self.search = apis.search.Search(self)
         self.secret_scanning = apis.secret_scanning.SecretScanning(self)
         self.server_statistics = apis.server_statistics.ServerStatistics(self)
