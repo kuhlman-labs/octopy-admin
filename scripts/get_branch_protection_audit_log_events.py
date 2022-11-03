@@ -3,10 +3,13 @@ import json
 
 from dotenv import load_dotenv
 
-from octopy_admin.rest.rest_client import RestClient, RestClientError
+from octopy_admin.rest_enterprise_server.rest_enterprise_server_client import (
+    RestEnterpriseServerClient,
+    RestEnterpriseServerClientError,
+)
 
 load_dotenv()
-github = RestClient()
+github = RestEnterpriseServerClient()
 
 
 def get_repo_branch_protection_aduit_log_events(enterprise, repo):
@@ -32,7 +35,7 @@ def get_repo_branch_protection_aduit_log_events(enterprise, repo):
             for event in response:
                 events.append(event)
         return events
-    except RestClientError as e:
+    except RestEnterpriseServerClientError as e:
         print(e)
 
 

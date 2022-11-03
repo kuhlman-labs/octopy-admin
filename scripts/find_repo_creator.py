@@ -39,7 +39,6 @@ def get_first_commit_author(owner, repo):
     repo_commits = get_repo_commits(owner=owner, repo=repo)
     if repo_commits:
         first_commit = repo_commits[-1]
-        print(first_commit)
         commit_author = first_commit.get("commit").get("author").get("name")
         return commit_author
 

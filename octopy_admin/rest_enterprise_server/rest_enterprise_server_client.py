@@ -20,6 +20,7 @@ class RestEnterpriseServerClient:
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-statements
     # pylint: disable=duplicate-code
+    # pylint: disable=too-many-arguments
     """
     The following methods are used to form requests to the GitHub Enterprise Server REST API.
     """
@@ -101,7 +102,7 @@ class RestEnterpriseServerClient:
             url = response.links.get("next").get("url")
             response = self._execute("GET", url)
 
-    def _execute(self, method, url, payload=None, params=None):
+    def _execute(self, method, url, payload=None, params=None, verify=True):
         """
         Execute a request.
 
@@ -118,6 +119,7 @@ class RestEnterpriseServerClient:
                 json=payload,
                 headers=self._headers,
                 timeout=10,
+                verify=verify,
             )
             response.raise_for_status()
             return response

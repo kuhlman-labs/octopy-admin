@@ -1,0 +1,5 @@
+query getEnterpiseMembers($slug: String!) {
+	enterprise(slug: $slug) {
+		id
+	}
+}

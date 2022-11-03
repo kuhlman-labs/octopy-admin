@@ -228,3 +228,11 @@ class GraphQuery:
         query = self._load_query("gql_files/get-repo-id.gql")
         params = {"owner": owner, "name": name}
         return self._execute(query, params)
+
+    def get_enterprise_id(self, slug):
+        """
+        This method returns a dictionary of the ID for a given enterprise.
+        """
+        query = self._load_query("gql_files/get-enterprise-id.gql")
+        params = {"slug": slug}
+        return self._execute(query, params)
