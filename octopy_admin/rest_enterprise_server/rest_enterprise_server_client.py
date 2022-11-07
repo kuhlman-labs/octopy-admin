@@ -25,13 +25,14 @@ class RestEnterpriseServerClient:
     The following methods are used to form requests to the GitHub Enterprise Server REST API.
     """
 
-    def __init__(self, hostname=None, api_token=None):
+    def __init__(self, hostname=None, api_token=None, verify=None):
         """
         Initialize the REST client to make requests to the GitHub Enterprise Server API.
 
         Attributes:
             api_token (str): GitHub Enterprise Server API token.
             hostname (str): GitHub Enterprise Server Hostname. Example: ghes.example.com
+            verify (bool): Verify SSL certificate.
         """
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
@@ -49,6 +50,7 @@ class RestEnterpriseServerClient:
             rest_api_url = "https://" + hostname + "/api/v3"
 
         self._base_url = rest_api_url
+        self._verify = verify
         self.actions = apis_enterprise_server.actions.Actions(self)
         self.activity = apis_enterprise_server.activity.Activity(self)
         self.apps = apis_enterprise_server.apps.Apps(self)
@@ -102,7 +104,7 @@ class RestEnterpriseServerClient:
             url = response.links.get("next").get("url")
             response = self._execute("GET", url)
 
-    def _execute(self, method, url, payload=None, params=None, verify=True):
+    def _execute(self, method, url, payload=None, params=None):
         """
         Execute a request.
 
@@ -119,7 +121,7 @@ class RestEnterpriseServerClient:
                 json=payload,
                 headers=self._headers,
                 timeout=10,
-                verify=verify,
+                verify=self._verify,
             )
             response.raise_for_status()
             return response

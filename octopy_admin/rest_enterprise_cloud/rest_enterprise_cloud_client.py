@@ -25,12 +25,13 @@ class RestEnterpriseCloudClient:
     The following methods are used to form requests to the GitHub REST API.
     """
 
-    def __init__(self, api_token=None):
+    def __init__(self, api_token=None, verify=None):
         """
         Initialize the REST client to make requests to the GitHub API.
 
         Attributes:
             api_token (str): GitHub API token.
+            verify (bool): Verify SSL certificate.
         """
         if api_token is None:
             api_token = os.environ.get("API_TOKEN")
@@ -40,6 +41,7 @@ class RestEnterpriseCloudClient:
         rest_api_url = "https://api.github.com"
 
         self._base_url = rest_api_url
+        self._verify = verify
         self.actions = apis_enterprise_cloud.actions.Actions(self)
         self.activity = apis_enterprise_cloud.activity.Activity(self)
         self.apps = apis_enterprise_cloud.apps.Apps(self)
@@ -92,7 +94,7 @@ class RestEnterpriseCloudClient:
             url = response.links.get("next").get("url")
             response = self._execute("GET", url)
 
-    def _execute(self, method, url, payload=None, params=None, verify=True):
+    def _execute(self, method, url, payload=None, params=None):
         """
         Execute a request.
 
@@ -109,7 +111,7 @@ class RestEnterpriseCloudClient:
                 json=payload,
                 headers=self._headers,
                 timeout=10,
-                verify=verify,
+                verify=self._verify,
             )
             response.raise_for_status()
             return response
