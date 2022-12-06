@@ -25,7 +25,7 @@ pandas = "^1.5"
 mkdocs-material = "^8.5.7"
 mkdocstrings = "^0.19.0"
 mkdocstrings-python = "^0.7.1"
-pylint = "^2.15.5"
+pylint = "^2.15.8"
 
 [tool.isort]
 profile = "black"
