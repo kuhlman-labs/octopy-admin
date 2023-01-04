@@ -252,11 +252,14 @@ python-versions = ">=3.6,<4"
 
 [[package]]
 name = "griffe"
-version = "0.23.0"
+version = "0.25.2"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[package.dependencies]
+colorama = ">=0.4"
 
 [package.extras]
 async = ["aiofiles (>=0.7,<1.0)"]
@@ -465,14 +468,14 @@ python-legacy = ["mkdocstrings-python-legacy (>=0.2.1)"]
 
 [[package]]
 name = "mkdocstrings-python"
-version = "0.7.1"
+version = "0.8.2"
 description = "A Python handler for mkdocstrings."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-griffe = ">=0.11.1"
+griffe = ">=0.24"
 mkdocstrings = ">=0.19"
 
 [[package]]
@@ -876,7 +879,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "452d0f0243621c67594a6e960c9cc2e8eda2f03fcb66fba16a8c0a86fdaf8051"
+content-hash = "cf181d6ebeca09effa4592bc4b95b6cc9c3868e29d778b04423b4d4311d82dcf"
 
 [metadata.files]
 aiohttp = [
@@ -1125,8 +1128,8 @@ graphql-core = [
     {file = "graphql_core-3.2.3-py3-none-any.whl", hash = "sha256:5766780452bd5ec8ba133f8bf287dc92713e3868ddd83aee4faab9fc3e303dc3"},
 ]
 griffe = [
-    {file = "griffe-0.23.0-py3-none-any.whl", hash = "sha256:cfca5f523808109da3f8cfaa46e325fa2e5bef51120d1146e908c121b56475f0"},
-    {file = "griffe-0.23.0.tar.gz", hash = "sha256:a639e2968c8e27f56ebcc57f869a03cea7ac7e7f5684bd2429c665f761c4e7bd"},
+    {file = "griffe-0.25.2-py3-none-any.whl", hash = "sha256:0868da415c5f43fe186705c041d98b69523c24a6504e841031373eacfdd7ec05"},
+    {file = "griffe-0.25.2.tar.gz", hash = "sha256:555707b3417355e015d837845522cb38ee4ffcec485427868648eafacabe142e"},
 ]
 identify = [
     {file = "identify-2.5.8-py2.py3-none-any.whl", hash = "sha256:48b7925fe122720088aeb7a6c34f17b27e706b72c61070f27fe3789094233440"},
@@ -1248,8 +1251,8 @@ mkdocstrings = [
     {file = "mkdocstrings-0.19.0.tar.gz", hash = "sha256:efa34a67bad11229d532d89f6836a8a215937548623b64f3698a1df62e01cc3e"},
 ]
 mkdocstrings-python = [
-    {file = "mkdocstrings-python-0.7.1.tar.gz", hash = "sha256:c334b382dca202dfa37071c182418a6df5818356a95d54362a2b24822ca3af71"},
-    {file = "mkdocstrings_python-0.7.1-py3-none-any.whl", hash = "sha256:a22060bfa374697678e9af4e62b020d990dad2711c98f7a9fac5c0345bef93c7"},
+    {file = "mkdocstrings-python-0.8.2.tar.gz", hash = "sha256:b22528b7a7a0589d007eced019d97ad14de4eba4b2b9ba6a013bb66edc74ab43"},
+    {file = "mkdocstrings_python-0.8.2-py3-none-any.whl", hash = "sha256:213d9592e66e084a9bd2fa4956d6294a3487c6dc9cc45164058d6317249b7b6e"},
 ]
 multidict = [
     {file = "multidict-6.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:0b9e95a740109c6047602f4db4da9949e6c5945cefbad34a1299775ddc9a62e2"},
