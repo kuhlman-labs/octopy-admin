@@ -612,7 +612,7 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pylint"
-version = "2.15.9"
+version = "2.15.10"
 description = "python code static checker"
 category = "dev"
 optional = false
@@ -874,7 +874,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "4439dec1f8f90b88de9c3a5603d4d6c795fb3f6677bfbaafe61eef893f57446d"
+content-hash = "ef4c759b4b2cc8fef027d58ba36b859d1ef76dc17c1f125261aba3173db7d2f4"
 
 [metadata.files]
 aiohttp = [
@@ -1397,8 +1397,8 @@ pygments = [
     {file = "Pygments-2.14.0.tar.gz", hash = "sha256:b3ed06a9e8ac9a9aae5a6f5dbe78a8a58655d17b43b93c078f094ddc476ae297"},
 ]
 pylint = [
-    {file = "pylint-2.15.9-py3-none-any.whl", hash = "sha256:349c8cd36aede4d50a0754a8c0218b43323d13d5d88f4b2952ddfe3e169681eb"},
-    {file = "pylint-2.15.9.tar.gz", hash = "sha256:18783cca3cfee5b83c6c5d10b3cdb66c6594520ffae61890858fe8d932e1c6b4"},
+    {file = "pylint-2.15.10-py3-none-any.whl", hash = "sha256:9df0d07e8948a1c3ffa3b6e2d7e6e63d9fb457c5da5b961ed63106594780cc7e"},
+    {file = "pylint-2.15.10.tar.gz", hash = "sha256:b3dc5ef7d33858f297ac0d06cc73862f01e4f2e74025ec3eff347ce0bc60baf5"},
 ]
 pymdown-extensions = [
     {file = "pymdown_extensions-9.9-py3-none-any.whl", hash = "sha256:ac698c15265680db5eb13cd4342abfcde2079ac01e5486028f47a1b41547b859"},
