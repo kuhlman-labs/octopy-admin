@@ -1,4 +1,4 @@
-query getEnterpiseMembers($slug: String!) {
+query getEnterpiseId($slug: String!) {
 	enterprise(slug: $slug) {
 		id
 	}
