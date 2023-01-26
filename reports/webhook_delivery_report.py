@@ -83,7 +83,7 @@ def get_org_webhook_deliveries(org, webhook_id):
 
 
 # create webhook delivery report for a repository
-def create_webhook_delivery_report(org, repo):
+def create_repo_webhook_delivery_report(org, repo):
     """
     This function creates a webhook delivery report for a repository.
     """
@@ -147,7 +147,7 @@ def create_org_webhook_delivery_report(org):
 
 
 # example of creating a webhook delivery report for a repository
-# create_webhook_delivery_report("engineering", "platform")
+# create_repo_webhook_delivery_report("engineering", "platform")
 
 # example of creating a webhook delivery report for an organization
-create_org_webhook_delivery_report("engineering")
+# create_org_webhook_delivery_report("engineering")
