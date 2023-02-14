@@ -24,7 +24,7 @@ isort = "^5.11.4"
 mkdocs-material = "^9.0.6"
 mkdocstrings = "^0.20.0"
 mkdocstrings-python = "^0.8.3"
-pylint = "^2.15.10"
+pylint = "^2.16.2"
 
 [tool.isort]
 profile = "black"
