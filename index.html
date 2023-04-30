@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://kuhlman-labs.github.io/octopy_admin/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>OctoPy Admin</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/octopy_admin/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> OctoPy Admin
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#install-with-poetry">Install with Poetry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#install-with-pip">Install with pip</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-environment-variables">Set Environment Variables</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#github-and-github-enterprise-cloud">GitHub and GitHub Enterprise Cloud</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#github-enterprise-server">GitHub Enterprise Server</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rest-api">Rest API</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rest-enterprise-cloud-api">Rest Enterprise Cloud API</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rest-enterprise-server-api">Rest Enterprise Server API</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#graphql-api">GraphQL API</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="reference/">Reference</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">OctoPy Admin</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="octopy-admin">OctoPy Admin</h1>
+<p>OctoPy Admin is a Python library for interacting with the GitHub GraphQL
+and REST APIs.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="install-with-poetry">Install with Poetry</h3>
+<p>OctoPy Admin uses Poetry for dependency management. If you haven't installed
+it already please use Poetry's <a href="https://python-poetry.org/docs/#installation">official docs</a>
+for instructions.</p>
+<p>Clone the repository locally, change directory to
+project root, and run the following command:</p>
+<pre><code class="language-bash">poetry install
+</code></pre>
+<h3 id="install-with-pip">Install with pip</h3>
+<pre><code class="language-bash">pip install octopy-admin
+</code></pre>
+<h3 id="set-environment-variables">Set Environment Variables</h3>
+<p>Creat a <code>.env</code> file at the root of the repo and set value for <code>API_TOKEN</code>.
+If running against GHES, set value for <code>GHE_HOSTNAME</code> to determine appropirate
+API endpoints, if these values are not set it defaults to the .com endpoints.</p>
+<h4 id="github-and-github-enterprise-cloud">GitHub and GitHub Enterprise Cloud</h4>
+<pre><code class="language-bash">API_TOKEN=ghp_xxx
+</code></pre>
+<h4 id="github-enterprise-server">GitHub Enterprise Server</h4>
+<pre><code class="language-bash">GHE_HOSTNAME=github.domain.com
+API_TOKEN=ghp_xxx
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="rest-api">Rest API</h3>
+<p>To use the OctoPy Admin Rest package for the pubic API, import
+the <code>RestClient</code> class from the
+<code>octopy_admin.rest.rest_client</code> module and
+instantiate a new <code>RestClient</code> object.</p>
+<p>Example:</p>
+<pre><code class="language-python">from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.rest.rest_client import RestClient
+
+# Load environment variables from a .env file
+load_dotenv()
+# Create a new RestClient object
+github = RestClient()
+
+# Create a new RestClient object and set the API token
+# github = RestClient(api_token=&quot;ghp_xxxxx&quot;)
+
+# Make a request to the REST API for the current user:
+current_user = github.users.get_the_authenticated_user()
+# Print response
+print(current_user.text)
+</code></pre>
+<h3 id="rest-enterprise-cloud-api">Rest Enterprise Cloud API</h3>
+<p>To use the OctoPy Admin Rest package for the Enterprise Cloud API,
+import the <code>RestEnterpriseCloudClient</code> class from the
+<code>octopy_admin.rest_enterprise_cloud.rest_enterprise_cloud_client</code> module and
+instantiate a new <code>RestEnterpriseCloudClient</code> object.</p>
+<p>Example:</p>
+<pre><code class="language-python">from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.rest_enterprise_cloud.rest_enterprise_cloud_client import RestEnterpriseCloudClient
+
+# Load environment variables from a .env file
+load_dotenv()
+# Create a new RestEnterpriseCloudClient object
+github = RestEnterpriseCloudClient()
+
+# Create a new RestEnterpriseCloudClient object and set the API token
+# github = RestEnterpriseCloudClient(api_token=&quot;ghp_xxxxx&quot;)
+
+# Make a request to the Enterprise Cloud REST API for the current user:
+current_user = github.users.get_the_authenticated_user()
+# Print response
+print(current_user.text)
+</code></pre>
+<h3 id="rest-enterprise-server-api">Rest Enterprise Server API</h3>
+<p>To use the OctoPy Admin Rest package for the Enterprise Server API,
+ import the <code>RestEnterpriseServerClient</code> class from the
+<code>octopy_admin.rest_enterprise_server.rest_enterprise_server_client</code> module and
+instantiate a new <code>RestEnterpriseServerClient</code> object.</p>
+<p>Example:</p>
+<pre><code class="language-python">from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.rest_enterprise_server.rest_enterprise_server_client import RestEnterpriseServerClient
+
+# Load environment variables from a .env file
+load_dotenv()
+# Create a new RestEnterpriseServerClient object
+github = RestEnterpriseServerClient()
+
+# Create a new RestEnterpriseServerClient object and set the API token and Hostname
+# github = RestEnterpriseServerClient(api_token=&quot;ghp_xxxxx&quot;, hostname=&quot;github.domain.com&quot;)
+
+# Make a request to the Enterprise Server REST API for the current user:
+current_user = github.users.get_the_authenticated_user()
+print(current_user.text)
+</code></pre>
+<h3 id="graphql-api">GraphQL API</h3>
+<p>To use the OctoPy Admin Rest package, import the <code>GraphClient</code> class from the
+<code>octopy_admin.graph.graph_client</code> module and instantiate a new <code>GraphClient</code> object.</p>
+<p>Example:</p>
+<pre><code class="language-python">from dotenv import load_dotenv # Import if you want to use .env file
+from octopy_admin.graph.graph_client import GraphClient
+
+# Load environment variables from a .env file:
+load_dotenv() 
+# Create a new GraphClient object:
+github = GraphClient()
+# Create a new GraphClient object and set the API token and the GHES hostname:
+# github = GraphClient(hostname=&quot;ghes.kuhlman-labs.io&quot;, api_token=&quot;ghp_xxxxx&quot;)
+
+# Make a request to the Graph API to get an organization's repositories:
+repo_query = github.query.get_org_repos(org)
+# Get a list of repositories:
+repos = github.query.results_to_list(repo_query)
+# Print list:
+print(repos)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="reference/" class="btn btn-neutral float-right" title="Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2023-04-30 14:24:30.059053+00:00
+-->
